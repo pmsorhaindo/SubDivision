@@ -136,138 +136,40 @@ SetUpCube::SetUpCube() {
 	GeometryOps::sixFace sixFaceStorage;
 	GeometryOps::eightEdge eightEdgeStorage;
 
-	/**
-	//Looped!!
-	for(int i=0; i<sizeOfEdgeArray; i++)
-	{
-		cout << "For face " <<i <<" the edge Midpoint is x: "<< edgeArray[i].getEdgeMidPoint().getX() << " y: " << edgeArray[i].getEdgeMidPoint().getY() << " z: " << edgeArray[1].getEdgeMidPoint().getZ() <<endl;
-		float aq = (edgeArray[i].getVertexA().getX()+edgeArray[i].getVertexB().getX()+edgeArray[i].getFacesJoined1()->getCentroid().getX()+edgeArray[i].getFacesJoined2()->getCentroid().getX())/4.0f;
-		float aw = (edgeArray[i].getVertexA().getY()+edgeArray[i].getVertexB().getY()+edgeArray[i].getFacesJoined1()->getCentroid().getY()+edgeArray[i].getFacesJoined2()->getCentroid().getY())/4.0f;
-		float ae = (edgeArray[i].getVertexA().getZ()+edgeArray[i].getVertexB().getZ()+edgeArray[i].getFacesJoined1()->getCentroid().getZ()+edgeArray[i].getFacesJoined2()->getCentroid().getZ())/4.0f;
-		Vertex edgeV = Vertex(aq,aw,ae);
-		std::cout << i<<"'s Edge point is - X: " << edgeV.getX() << " Y: " << edgeV.getY() << " Z: " << edgeV.getZ() << std::endl;
-	}
 
-	//edgpoint
-	float aq = (a.getVertexA().getX()+a.getVertexB().getX()+a.getFacesJoined1()->getCentroid().getX()+a.getFacesJoined2()->getCentroid().getX())/4.0f;
-	float aw = (a.getVertexA().getY()+a.getVertexB().getY()+a.getFacesJoined1()->getCentroid().getY()+a.getFacesJoined2()->getCentroid().getY())/4.0f;
-	float ae = (a.getVertexA().getZ()+a.getVertexB().getZ()+a.getFacesJoined1()->getCentroid().getZ()+a.getFacesJoined2()->getCentroid().getZ())/4.0f;
-	Vertex edgeV = Vertex(aq,aw,ae);
-
-	std::cout << "A's edge point is - X: " << edgeV.getX() << " Y: " << edgeV.getY() << " Z: " << edgeV.getZ() << std::endl;
-	cout << "a Vertex A: " << a.getVertexA().getX() << ":" << a.getVertexA().getY() << ":" << a.getVertexA().getZ() << endl;
-	cout << "a Vertex B: " << b.getVertexB().getX() << ":" << b.getVertexB().getY() << ":" << a.getVertexB().getZ() << endl;
-	cout << "a face1 centroid: " << a.getFacesJoined1()->getCentroid().getX()<<" : "<<a.getFacesJoined1()->getCentroid().getY()<<" : "<<a.getFacesJoined1()->getCentroid().getZ()<<endl;
-	cout << "a face2 centroid: " << a.getFacesJoined2()->getCentroid().getX()<<" : "<<a.getFacesJoined2()->getCentroid().getY()<<" : "<<a.getFacesJoined2()->getCentroid().getZ()<<endl;
-	cout << "centroid 1 composed of" << a.getFacesJoined1()->getEdgeA().getVertexA().getX() << ":"<<a.getFacesJoined1()->getEdgeA().getVertexA().getY()<<":" << a.getFacesJoined1()->getEdgeA().getVertexA().getX()<<endl;
-	cout << "\t\t "<< a.getFacesJoined1()->getEdgeA().getVertexB().getX() << ":"<< a.getFacesJoined1()->getEdgeA().getVertexB().getY() << ":" << a.getFacesJoined1()->getEdgeA().getVertexB().getZ() << endl;
-	cout << "\t\t "<< a.getFacesJoined1()->getEdgeB().getVertexB().getX() <<":"<<a.getFacesJoined1()->getEdgeB().getVertexB().getY()<<":"<<a.getFacesJoined1()->getEdgeB().getVertexB().getZ()<<endl;
-	cout <<""<<endl;
-	cout << "centroid 2 composed of" << a.getFacesJoined2()->getEdgeA().getVertexA().getX() << ":"<<a.getFacesJoined2()->getEdgeA().getVertexA().getY()<<":" << a.getFacesJoined2()->getEdgeA().getVertexA().getX()<<endl;
-	cout << "\t\t "<< a.getFacesJoined2()->getEdgeA().getVertexB().getX() << ":"<< a.getFacesJoined2()->getEdgeA().getVertexB().getY() << ":" << a.getFacesJoined2()->getEdgeA().getVertexB().getZ() << endl;
-	cout << "\t\t "<< a.getFacesJoined2()->getEdgeB().getVertexB().getX() <<":"<<a.getFacesJoined2()->getEdgeB().getVertexB().getY()<<":"<<a.getFacesJoined2()->getEdgeB().getVertexB().getZ()<<endl;
-	cout <<""<<endl;
-	cout <<""<<endl;
-	cout <<"some more centroids" <<endl;
-	cout << "a face1 centroid: " << a.getFacesJoined1()->getCentroid().getX()<<" : "<<a.getFacesJoined1()->getCentroid().getY()<<" : "<<a.getFacesJoined1()->getCentroid().getZ()<<endl;
-	cout << "a face1 centroid: " << a.getFacesJoined2()->getCentroid().getX()<<" : "<<a.getFacesJoined2()->getCentroid().getY()<<" : "<<a.getFacesJoined2()->getCentroid().getZ()<<endl;
-	cout << "a face1 centroid: " << c.getFacesJoined1()->getCentroid().getX()<<" : "<<c.getFacesJoined1()->getCentroid().getY()<<" : "<<c.getFacesJoined1()->getCentroid().getZ()<<endl;
-	cout << "a face1 centroid: " << d.getFacesJoined1()->getCentroid().getX()<<" : "<<d.getFacesJoined1()->getCentroid().getY()<<" : "<<d.getFacesJoined1()->getCentroid().getZ()<<endl;
-	cout << "a face1 centroid: " << e.getFacesJoined1()->getCentroid().getX()<<" : "<<e.getFacesJoined1()->getCentroid().getY()<<" : "<<e.getFacesJoined1()->getCentroid().getZ()<<endl;
-
-	cout << ">>> Geometry Ops Class Testing! <<<" <<endl;
-	cout << "" <<endl;
-	cout << "Compare Vertexes"<<endl;
-	cout << "compareVertices(v1,v1) = " << gOps.compareVertices(v1,v1) <<endl;
-	cout << "compareVertices(v1,v2) = " << gOps.compareVertices(v1,v2) <<endl;
-	cout << "compareVertices(v2,v2) = " << gOps.compareVertices(v2,v2) <<endl;
-	cout << "compareVertices(v2,v3) = " << gOps.compareVertices(v2,v3) <<endl;
-	cout << "compareVertices(v3,v3) = " << gOps.compareVertices(v3,v3) <<endl;
-	cout << "" <<endl;
-	cout << "Get Centroid"<<endl;
-	cout << "getCentroid() = " << gOps.compareVertices(v1,v2) <<endl;
-	cout << "getCentroid(v2,v2) = " << gOps.compareVertices(v2,v2) <<endl;
-	cout << "getCentroid(v2,v3) = " << gOps.compareVertices(v2,v3) <<endl;
-	cout << "getCentroid(v3,v3) = " << gOps.compareVertices(v3,v3) <<endl;
-	cout << "" <<endl;
-	cout << "Compare Edges"<<endl;
-	cout << "compareEdges(a,a) "<<gOps.compareEdges(a,a)<<endl;
-	cout << "compareEdges(b,a) "<<gOps.compareEdges(b,a)<<endl;
-	cout << "compareEdges(b,b) "<<gOps.compareEdges(b,b)<<endl;
-	cout << "compareEdges(b,c) "<<gOps.compareEdges(b,c)<<endl;
-	cout << "" <<endl;
-	cout << "getOtherFace"<<endl;
-	twoFaceStorage = gOps.getOtherFace(a,faceArrayPtr,sizeOfFaceArray);
-	cout << "getOtherFace(a,faceArrayPtr,sizeOfFaceArray) " <<gOps.printUniqueVertices(twoFaceStorage.faceOne)<<endl;
-	cout << "getOtherFace(a,faceArrayPtr,sizeOfFaceArray) " <<gOps.printUniqueVertices(twoFaceStorage.faceTwo)<<endl;
-	cout << "" <<endl;
-	cout << "Vertex Overloading"<<endl;
-	cout << "v1 + v1 " <<gOps.vertexToString((v1+v1))<<endl;
-	cout << "v1 + v2 " <<gOps.vertexToString((v1+v2))<<endl;
-	cout << "v2 + v2 " <<gOps.vertexToString((v2+v2))<<endl;
-	cout << "" <<endl;
-	cout << "Edge Points"<<endl;
-	cout << "edge point of a: " << gOps.vertexToString(gOps.getEdgePoint(a,faceArrayPtr,sizeOfFaceArray))<<endl;
-	cout << "edge point of b: " << gOps.vertexToString(gOps.getEdgePoint(b,faceArrayPtr,sizeOfFaceArray))<<endl;
-	cout << "edge point of c: " << gOps.vertexToString(gOps.getEdgePoint(c,faceArrayPtr,sizeOfFaceArray))<<endl;
-	cout << "" <<endl;
-	cout << "Face Contains Points"<<endl;
-	cout << "Face one contains Vertex 3: " << gOps.faceContainsVertex(one,v3)<<endl;
-	cout << "Face eight does not contain Vertex 6: " << gOps.faceContainsVertex(eight,v6)<<endl;
-	cout << "Face four contains Vertex 1: " << gOps.faceContainsVertex(four,v1)<<endl;
-	cout << "" <<endl;
-	cout << "Get Adjacent Faces" <<endl;
-	sixFaceStorage = gOps.getAdjacentFaces(v1,faceArrayPtr,sizeOfFaceArray);
-	cout << "Adjacent Faces to Vertex one: " << sixFaceStorage.contains <<endl;
-	sixFaceStorage = gOps.getAdjacentFaces(v2,faceArrayPtr,sizeOfFaceArray);
-	cout << "Adjacent Faces to Vertex two: " << sixFaceStorage.contains <<endl;
-	sixFaceStorage = gOps.getAdjacentFaces(v3,faceArrayPtr,sizeOfFaceArray);
-	cout << "Adjacent Faces to Vertex three: " << sixFaceStorage.contains <<endl;
-	sixFaceStorage = gOps.getAdjacentFaces(v4,faceArrayPtr,sizeOfFaceArray);
-	cout << "Adjacent Faces to Vertex four: " << sixFaceStorage.contains <<endl;
-	sixFaceStorage = gOps.getAdjacentFaces(v5,faceArrayPtr,sizeOfFaceArray);
-	cout << "Adjacent Faces to Vertex five: " << sixFaceStorage.contains <<endl;
-	sixFaceStorage = gOps.getAdjacentFaces(v6,faceArrayPtr,sizeOfFaceArray);
-	cout << "Adjacent Faces to Vertex six: " << sixFaceStorage.contains <<endl;
-	sixFaceStorage = gOps.getAdjacentFaces(v7,faceArrayPtr,sizeOfFaceArray);
-	cout << "Adjacent Faces to Vertex seven: " << sixFaceStorage.contains <<endl;
-	sixFaceStorage = gOps.getAdjacentFaces(v8,faceArrayPtr,sizeOfFaceArray);
-	cout << "Adjacent Faces to Vertex eight: " << sixFaceStorage.contains <<endl;
-	cout << "" <<endl;
-	cout << "Get Q" <<endl;
-	cout << "The Q for Vertex 1 is: " << gOps.vertexToString(gOps.getQ(v1,faceArrayPtr,sizeOfFaceArray)) <<endl;
-	cout << "The Q for Vertex 2 is: " << gOps.vertexToString(gOps.getQ(v2,faceArrayPtr,sizeOfFaceArray)) <<endl;
-	cout << "The Q for Vertex 3 is: " << gOps.vertexToString(gOps.getQ(v3,faceArrayPtr,sizeOfFaceArray)) <<endl;
-	cout << "" <<endl;
-	cout << "Get Incident Edges" <<endl;
-	eightEdgeStorage = gOps.getIncidentEdges(v1,edgeArrayPtr,sizeOfEdgeArray);
-	cout << "The number of edges incident on v1 are: " << eightEdgeStorage.contains <<endl;
-	eightEdgeStorage = gOps.getIncidentEdges(v2,edgeArrayPtr,sizeOfEdgeArray);
-	cout << "The number of edges incident on v2 are: " << eightEdgeStorage.contains <<endl;
-	eightEdgeStorage = gOps.getIncidentEdges(v3,edgeArrayPtr,sizeOfEdgeArray);
-	cout << "The number of edges incident on v3 are: " << eightEdgeStorage.contains <<endl;
-	eightEdgeStorage = gOps.getIncidentEdges(v4,edgeArrayPtr,sizeOfEdgeArray);
-	cout << "The number of edges incident on v4 are: " << eightEdgeStorage.contains <<endl;
-	cout << "" <<endl;
-	cout << "Get 2R" <<endl;
-	cout << "The 2R for Vertex 1 is: " << gOps.vertexToString(gOps.get2R(v1,edgeArrayPtr,sizeOfEdgeArray)) <<endl;
-	cout << "The 2R for Vertex 2 is: " << gOps.vertexToString(gOps.get2R(v2,edgeArrayPtr,sizeOfEdgeArray)) <<endl;
-	cout << "The 2R for Vertex 3 is: " << gOps.vertexToString(gOps.get2R(v3,edgeArrayPtr,sizeOfEdgeArray)) <<endl;
-	cout << "" <<endl;
-	cout << "Get SandStuff" <<endl;
-	cout << "The sAndStuff for Vertex 1 is: " << gOps.vertexToString(gOps.getSandStuff(v1,edgeArrayPtr,sizeOfEdgeArray)) <<endl;
-	cout << "The sAndStuff for Vertex 2 is: " << gOps.vertexToString(gOps.getSandStuff(v2,edgeArrayPtr,sizeOfEdgeArray)) <<endl;
-	cout << "The sAndStuff for Vertex 3 is: " << gOps.vertexToString(gOps.getSandStuff(v3,edgeArrayPtr,sizeOfEdgeArray)) <<endl;
-	cout << "" <<endl;
-	**/
-
-	//cout << "OMG new Vertex Point NO WAI!!" <<endl;
-	//cout << "The first NEW Vertex generated from original Vertex 1 is: " << gOps.vertexToString(gOps.generateNewVertexPoint(v1,faceArrayPtr,edgeArrayPtr,sizeOfFaceArray,sizeOfEdgeArray)) <<endl;
 
 	for(int i=0; i<sizeOfVertexArray; i++)
-		{
-			cout << "The vertex point for v" <<i <<" is: "<< gOps.vertexToString(gOps.generateNewVertexPoint(vertexArrayPtr[i],faceArrayPtr,edgeArrayPtr,sizeOfFaceArray,sizeOfEdgeArray))  << std::endl;
-		}
+	{
+		cout << "The vertex point for v" <<i <<" is: "<< gOps.vertexToString(gOps.generateNewVertexPoint(vertexArrayPtr[i],faceArrayPtr,edgeArrayPtr,sizeOfFaceArray,sizeOfEdgeArray))  << std::endl;
+	}
+
+	//MAKE NEW FACE EDGE VERTEX STRUCTURE¬!"!!!!!
+	//ok here we go..
+
+	Face newFaceArray[500];// this is bad will link lists fix this?! faces will always be 4*more
+	Edge newEdgeArray[500]; //
+	Vertex newVertexArray[500];
+	int totalNewVerts = 0;
+	for (int i=0; i<sizeOfVertexArray; i++)
+	{
+		newVertexArray[totalNewVerts] = gOps.generateNewVertexPoint(vertexArrayPtr[i],faceArrayPtr,edgeArrayPtr,sizeOfFaceArray,sizeOfEdgeArray);
+		totalNewVerts++;
+	}
+
+	for (int i=0; i<sizeOfVertexArray; i++)
+	{
+		newVertexArray[totalNewVerts] = gOps.getEdgePoint(edgeArrayPtr[i],faceArrayPtr,sizeOfFaceArray);
+		totalNewVerts++;
+	}
+
+	for (int i=0; i<sizeOfVertexArray; i++)
+	{
+		newVertexArray[totalNewVerts] = faceArrayPtr[i].getCentroid();
+		totalNewVerts++;
+	}
+
+	cout << "Yay total new Verts = " << totalNewVerts <<endl;
+
 
 }
 

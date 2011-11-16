@@ -168,6 +168,16 @@ SetUpCube::SetUpCube() {
 		totalNewVerts++;
 	}
 
+	/**SOLUTION?
+	For each face
+	Take two edges
+	take their edge points for point on newFace
+	and the new Vertex for the 4th point on the face
+	addToVertex Array if not existing in VertexArray
+	Repeat twice (3x more on next iteratations) more for the next two Pair of edges on the face.
+	Repeat for all faces.**/
+
+
 	cout << "Yay total new Verts = " << totalNewVerts <<endl;
 
 

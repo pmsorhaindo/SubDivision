@@ -132,11 +132,6 @@ SetUpCube::SetUpCube() {
 	edgeArrayPtr = edgeArray;
 
 	GeometryOps gOps = GeometryOps();
-	GeometryOps::twoFace twoFaceStorage;
-	GeometryOps::sixFace sixFaceStorage;
-	GeometryOps::eightEdge eightEdgeStorage;
-
-
 
 	for(int i=0; i<sizeOfVertexArray; i++)
 	{
@@ -146,9 +141,13 @@ SetUpCube::SetUpCube() {
 	//MAKE NEW FACE EDGE VERTEX STRUCTURE¬!"!!!!!
 	//ok here we go..
 
-	Face newFaceArray[500];// this is bad will link lists fix this?! faces will always be 4*more
+	QFace newFaceArray[500];// this is bad will link lists fix this?! faces will always be 4*more
 	Edge newEdgeArray[500]; //
 	Vertex newVertexArray[500];
+	Vertex *newVertexArrayPtr = newVertexArray;
+
+	//Look! all the new Vertices in a point cloud :D
+	/**
 	int totalNewVerts = 0;
 	for (int i=0; i<sizeOfVertexArray; i++)
 	{
@@ -166,7 +165,7 @@ SetUpCube::SetUpCube() {
 	{
 		newVertexArray[totalNewVerts] = faceArrayPtr[i].getCentroid();
 		totalNewVerts++;
-	}
+	} **/
 
 	/**SOLUTION?
 	For each face
@@ -177,9 +176,232 @@ SetUpCube::SetUpCube() {
 	Repeat twice (3x more on next iteratations) more for the next two Pair of edges on the face.
 	Repeat for all faces.**/
 
+	int totalNewVerts = 0;
+	int totalNewEdges = 0;
+	int totalNewFaces = 0;
+	for (int i=0; i<sizeOfFaceArray; i++)
+	{
+		//cin.get();
+		Vertex temp1;
+		GeometryOps::fourExistVert tempQuad;
+		tempQuad.vertOne = faceArrayPtr[i].getCentroid();
+		faceArrayPtr[i].getEdgeA();
+		tempQuad.vertTwo = gOps.getEdgePoint(faceArrayPtr[i].getEdgeA(),faceArrayPtr,sizeOfFaceArray);
+		faceArrayPtr[i].getEdgeB();
+		tempQuad.vertThree = gOps.getEdgePoint(faceArrayPtr[i].getEdgeB(),faceArrayPtr,sizeOfFaceArray);
+		if(gOps.twoEdgesIsCommonVertex(faceArrayPtr[i].getEdgeA(),faceArrayPtr[i].getEdgeB()))
+			temp1 = gOps.twoEdgesGetCommonVertex(faceArrayPtr[i].getEdgeA(),faceArrayPtr[i].getEdgeB());
+		tempQuad.vertFour = gOps.generateNewVertexPoint(temp1,faceArrayPtr,edgeArrayPtr,sizeOfFaceArray,sizeOfEdgeArray);
 
+		if(gOps.existsInNewVertexArray(tempQuad.vertOne,newVertexArrayPtr,totalNewVerts))
+		{
+			cout<<"caught a double!" <<endl;
+			cout << "Tried to Add vertex: " << gOps.vertexToString(tempQuad.vertOne)<<endl;
+
+		}
+		else
+		{
+			newVertexArray[totalNewVerts] = tempQuad.vertOne;
+			totalNewVerts ++;
+			cout << "Added vertex: " << gOps.vertexToString(tempQuad.vertOne)<<endl;
+			cout << "Vertex stored as: " << gOps.vertexToString(newVertexArray[totalNewVerts]) <<endl;
+		}
+
+		if(gOps.existsInNewVertexArray(tempQuad.vertTwo,newVertexArrayPtr,totalNewVerts))
+		{
+			cout<<"caught a double!" <<endl;
+		}
+		else
+		{
+			newVertexArray[totalNewVerts] = tempQuad.vertTwo;
+			totalNewVerts ++;
+		}
+
+		if(gOps.existsInNewVertexArray(tempQuad.vertThree,newVertexArrayPtr,totalNewVerts))
+		{
+			cout<<"caught a double!" <<endl;
+		}
+		else
+		{
+			newVertexArray[totalNewVerts] = tempQuad.vertThree;
+			totalNewVerts ++;
+		}
+		if(gOps.existsInNewVertexArray(tempQuad.vertFour,newVertexArrayPtr,totalNewVerts))
+		{
+			cout<<"caught a double!" <<endl;
+		}
+		else
+		{
+			newVertexArray[totalNewVerts] = tempQuad.vertFour;
+			totalNewVerts ++;
+		}
+		//TODO move to a NEW function in gOPs?
+		// This needs to be repeated for each temp Quad and then again for edges.
+		GeometryOps::eightEdge tempEdges;
+		tempEdges.edgeOne = Edge(tempQuad.vertTwo,tempQuad.vertFour);
+		tempEdges.edgeTwo = Edge(tempQuad.vertFour,tempQuad.vertThree);
+		tempEdges.edgeThree = Edge(tempQuad.vertThree,tempQuad.vertOne);
+		tempEdges.edgeFour = Edge(tempQuad.vertOne,tempQuad.vertTwo);
+
+		QFace newQuad = QFace(tempEdges.edgeOne,tempEdges.edgeTwo,tempEdges.edgeThree,tempEdges.edgeFour);
+		newFaceArray[totalNewFaces] = newQuad;
+		totalNewFaces++;
+		//useExistsInNewVertex Array before Adding
+		/**for (int j =0; j<totalNewVerts; j++)
+			{
+				cout<< "New Shapes Vertex "<< j <<" "<< gOps.vertexToString(newVertexArray[j]) <<endl;
+			}**/
+
+		//cin.get();
+		Vertex temp2;
+		GeometryOps::fourExistVert tempQuad2;
+		tempQuad2.vertOne = faceArrayPtr[i].getCentroid();
+		faceArrayPtr[i].getEdgeA();
+		tempQuad2.vertTwo = gOps.getEdgePoint(faceArrayPtr[i].getEdgeA(),faceArrayPtr,sizeOfFaceArray);
+		faceArrayPtr[i].getEdgeB();
+		tempQuad2.vertThree = gOps.getEdgePoint(faceArrayPtr[i].getEdgeB(),faceArrayPtr,sizeOfFaceArray);
+		if(gOps.twoEdgesIsCommonVertex(faceArrayPtr[i].getEdgeA(),faceArrayPtr[i].getEdgeB()))
+			temp2 = gOps.twoEdgesGetCommonVertex(faceArrayPtr[i].getEdgeA(),faceArrayPtr[i].getEdgeB());
+		tempQuad2.vertFour = gOps.generateNewVertexPoint(temp2,faceArrayPtr,edgeArrayPtr,sizeOfFaceArray,sizeOfEdgeArray);
+
+
+		if(gOps.existsInNewVertexArray(tempQuad2.vertOne,newVertexArrayPtr,totalNewVerts))
+		{
+			cout<<"caught a double!" <<endl;
+			cout << "Tried to Add vertex: " << gOps.vertexToString(tempQuad2.vertOne)<<endl;
+			cout << "Vertex stored as: " << gOps.vertexToString(newVertexArray[totalNewVerts]) <<endl;;
+		}
+		else
+		{
+			newVertexArray[totalNewVerts] = tempQuad2.vertOne;
+			totalNewVerts ++;
+		}
+
+		if(gOps.existsInNewVertexArray(tempQuad2.vertTwo,newVertexArrayPtr,totalNewVerts))
+		{
+			cout<<"caught a double!" <<endl;
+		}
+		else
+		{
+			newVertexArray[totalNewVerts] = tempQuad2.vertTwo;
+			totalNewVerts ++;
+		}
+
+		if(gOps.existsInNewVertexArray(tempQuad2.vertThree,newVertexArrayPtr,totalNewVerts))
+		{
+			cout<<"caught a double!" <<endl;
+		}
+		else
+		{
+			newVertexArray[totalNewVerts] = tempQuad2.vertThree;
+			totalNewVerts ++;
+		}
+		if(gOps.existsInNewVertexArray(tempQuad2.vertFour,newVertexArrayPtr,totalNewVerts))
+		{
+			cout<<"caught a double!" <<endl;
+		}
+		else
+		{
+			newVertexArray[totalNewVerts] = tempQuad2.vertFour;
+			totalNewVerts ++;
+		}
+
+		GeometryOps::eightEdge tempEdges2;
+		tempEdges2.edgeOne = Edge(tempQuad2.vertTwo,tempQuad2.vertFour);
+		tempEdges2.edgeTwo = Edge(tempQuad2.vertFour,tempQuad2.vertThree);
+		tempEdges2.edgeThree = Edge(tempQuad2.vertThree,tempQuad2.vertOne);
+		tempEdges2.edgeFour = Edge(tempQuad2.vertOne,tempQuad2.vertTwo);
+
+		QFace newQuad2 = QFace(tempEdges2.edgeOne,tempEdges2.edgeTwo,tempEdges2.edgeThree,tempEdges2.edgeFour);
+		newFaceArray[totalNewFaces] = newQuad2;
+		totalNewFaces++;
+		//useExistsInNewVertex Array before Adding
+		/**for (int j =0; j<totalNewVerts; j++)
+			{
+				cout<< "New Shapes Vertex "<< j <<" "<< gOps.vertexToString(newVertexArray[j]) <<endl;
+			}**/
+
+
+		//cin.get();
+		Vertex temp3;
+		GeometryOps::fourExistVert tempQuad3;
+		tempQuad3.vertOne = faceArrayPtr[i].getCentroid();
+		faceArrayPtr[i].getEdgeA();
+		tempQuad3.vertTwo = gOps.getEdgePoint(faceArrayPtr[i].getEdgeA(),faceArrayPtr,sizeOfFaceArray);
+		faceArrayPtr[i].getEdgeB();
+		tempQuad3.vertThree = gOps.getEdgePoint(faceArrayPtr[i].getEdgeB(),faceArrayPtr,sizeOfFaceArray);
+		if(gOps.twoEdgesIsCommonVertex(faceArrayPtr[i].getEdgeA(),faceArrayPtr[i].getEdgeB()))
+			temp3 = gOps.twoEdgesGetCommonVertex(faceArrayPtr[i].getEdgeA(),faceArrayPtr[i].getEdgeB());
+		tempQuad3.vertFour = gOps.generateNewVertexPoint(temp3,faceArrayPtr,edgeArrayPtr,sizeOfFaceArray,sizeOfEdgeArray);
+
+
+		if(gOps.existsInNewVertexArray(tempQuad3.vertOne,newVertexArrayPtr,totalNewVerts))
+		{
+			cout<<"caught a double!" <<endl;
+			cout << "Tried to Add vertex: " << gOps.vertexToString(tempQuad3.vertOne)<<endl;
+			cout << "Vertex stored as: " << gOps.vertexToString(newVertexArray[totalNewVerts]) <<endl;
+		}
+		else
+		{
+			newVertexArray[totalNewVerts] = tempQuad3.vertOne;
+			totalNewVerts ++;
+		}
+
+		if(gOps.existsInNewVertexArray(tempQuad3.vertTwo,newVertexArrayPtr,totalNewVerts))
+		{
+			cout<<"caught a double!" <<endl;
+		}
+		else
+		{
+			newVertexArray[totalNewVerts] = tempQuad3.vertTwo;
+			totalNewVerts ++;
+		}
+
+		if(gOps.existsInNewVertexArray(tempQuad3.vertThree,newVertexArrayPtr,totalNewVerts))
+		{
+			cout<<"caught a double!" <<endl;
+		}
+		else
+		{
+			newVertexArray[totalNewVerts] = tempQuad3.vertThree;
+			totalNewVerts ++;
+		}
+		if(gOps.existsInNewVertexArray(tempQuad3.vertFour,newVertexArrayPtr,totalNewVerts))
+		{
+			cout<<"caught a double!" <<endl;
+		}
+		else
+		{
+			newVertexArray[totalNewVerts] = tempQuad3.vertFour;
+			totalNewVerts ++;
+		}
+
+
+		GeometryOps::eightEdge tempEdges3;
+		tempEdges3.edgeOne = Edge(tempQuad3.vertTwo,tempQuad3.vertFour);
+		tempEdges3.edgeTwo = Edge(tempQuad3.vertFour,tempQuad3.vertThree);
+		tempEdges3.edgeThree = Edge(tempQuad3.vertThree,tempQuad3.vertOne);
+		tempEdges3.edgeFour = Edge(tempQuad3.vertOne,tempQuad3.vertTwo);
+
+		QFace newQuad3 = QFace(tempEdges3.edgeOne,tempEdges3.edgeTwo,tempEdges3.edgeThree,tempEdges3.edgeFour);
+		newFaceArray[totalNewFaces] = newQuad3;
+		totalNewFaces++;
+		//useExistsInNewVertex Array before Adding
+		/**for (int j =0; j<totalNewVerts; j++)
+			{
+				cout<< "New Shapes Vertex "<< j <<" "<< gOps.vertexToString(newVertexArray[j]) <<endl;
+			}**/
+		//cin.get();
+
+	}
+	cout << "Yay total new Faces = " << totalNewFaces <<endl;
 	cout << "Yay total new Verts = " << totalNewVerts <<endl;
+	cout << "face 1 attempt "<< newFaceArray[0].getEdgeA().getVertexA().getX() <<endl;
 
+	/**for (int i =0; i<totalNewVerts; i++)
+	{
+		cout<< "New Shapes Vertex "<< i <<" "<< gOps.vertexToString(newVertexArray[i]) <<endl;
+	}**/
 
 }
 

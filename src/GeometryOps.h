@@ -8,6 +8,7 @@
 #ifndef GEOMETRYOPS_H_
 #define GEOMETRYOPS_H_
 #include "Face.h"
+#include "QFace.h"
 #include <string>
 #include <iostream>
 #include <sstream>
@@ -52,6 +53,17 @@ public:
 			Vertex vertTwo;
 		};
 
+	struct fourExistVert{
+				Vertex vertOne;
+				bool vertOneExists;
+				Vertex vertTwo;
+				bool vertTwoExists;
+				Vertex vertThree;
+				bool vertThreeExists;
+				Vertex vertFour;
+				bool vertFourExists;
+			};
+
 	GeometryOps();
 	virtual ~GeometryOps();
 	//pass by reference to save on the copying
@@ -76,9 +88,12 @@ public:
 	Vertex get2R(Vertex v, Edge*ptr, int i);
 	Vertex getSandStuff(Vertex v, Edge*ptr, int i);
 	Vertex generateNewVertexPoint(Vertex v, Face*facePtr, Edge*edgePtr, int faceSize, int edgeSize);
-
+	Vertex twoEdgesGetCommonVertex(Edge a, Edge b);
+	bool twoEdgesIsCommonVertex(Edge a, Edge b);
 	//int GeometryOps::matchIsFound(int found, twoFace twoFacestruct,);
-
+	bool existsInNewFaceArray(Face f, Face*facePtr,int faceArraySize);
+	bool existsInNewEdgeArray(Edge f, Edge*edgePtr,int edgeArraySize);
+	bool existsInNewVertexArray(Vertex v, Vertex*vertexPtr,int vertexArraySize);
 };
 
 #endif /* GEOMETRYOPS_H_ */

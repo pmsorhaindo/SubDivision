@@ -383,4 +383,58 @@ Vertex GeometryOps::generateNewVertexPoint(Vertex v, Face*facePtr, Edge*edgePtr,
 	Vertex polishAverageOfVertices = (jeden+dwa+trzy)/edges.contains;
 	return polishAverageOfVertices;
 }
+Vertex GeometryOps::twoEdgesGetCommonVertex(Edge a, Edge b){
+	if(compareVertices(a.getVertexA(),b.getVertexA())){
+		return a.getVertexA();
+	}
+	if(compareVertices(a.getVertexA(),b.getVertexB())){
+		return a.getVertexA();
+	}
+	if(compareVertices(a.getVertexB(),b.getVertexA())){
+		return a.getVertexB();
+	}
+	if(compareVertices(a.getVertexB(),b.getVertexB()))
+	{
+		return a.getVertexB();
+	}
+	return Vertex(); // run twoEdgesIsCommonVertex to not catch this nasty thing.
 
+}
+
+bool GeometryOps::twoEdgesIsCommonVertex(Edge a, Edge b){
+	if(compareVertices(a.getVertexA(),b.getVertexA())||
+			compareVertices(a.getVertexA(),b.getVertexB())||
+			compareVertices(a.getVertexB(),b.getVertexA())||
+			compareVertices(a.getVertexB(),b.getVertexB())){
+		return true;
+	}
+	return false;
+}
+
+bool GeometryOps::existsInNewFaceArray(Face f, Face*facePtr,int faceArraySize){
+	bool exists = false;
+	//not needed
+	return exists;
+}
+
+bool GeometryOps::existsInNewEdgeArray(Edge e, Edge*edgePtr,int edgeArraySize){
+	bool exists = false;
+		for(int i=0; i<edgeArraySize; i++)
+		{
+			if(compareEdges(e,edgePtr[i])){
+				return true;
+			}
+		}
+		return exists;
+}
+
+bool GeometryOps::existsInNewVertexArray(Vertex v, Vertex*vertexPtr,int vertexArraySize){
+	bool exists = false;
+	for(int i=0; i<vertexArraySize; i++)
+	{
+		if(compareVertices(v,vertexPtr[i])){
+			return true;
+		}
+	}
+	return exists;
+}

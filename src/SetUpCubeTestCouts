@@ -1,4 +1,8 @@
 	/**
+	GeometryOps::twoFace twoFaceStorage;
+	GeometryOps::sixFace sixFaceStorage;
+	GeometryOps::eightEdge eightEdgeStorage;
+	
 	//Looped!!
 	for(int i=0; i<sizeOfEdgeArray; i++)
 	{

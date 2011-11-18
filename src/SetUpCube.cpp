@@ -202,9 +202,10 @@ SetUpCube::SetUpCube() {
 		else
 		{
 			newVertexArray[totalNewVerts] = tempQuad.vertOne;
-			totalNewVerts ++;
+			cout << "inside First temp!" <<endl;
 			cout << "Added vertex: " << gOps.vertexToString(tempQuad.vertOne)<<endl;
 			cout << "Vertex stored as: " << gOps.vertexToString(newVertexArray[totalNewVerts]) <<endl;
+			totalNewVerts ++;
 		}
 
 		if(gOps.existsInNewVertexArray(tempQuad.vertTwo,newVertexArrayPtr,totalNewVerts))
@@ -214,6 +215,8 @@ SetUpCube::SetUpCube() {
 		else
 		{
 			newVertexArray[totalNewVerts] = tempQuad.vertTwo;
+			cout << "Added vertex: " << gOps.vertexToString(tempQuad.vertTwo)<<endl;
+			cout << "Vertex stored as: " << gOps.vertexToString(newVertexArray[totalNewVerts]) <<endl;
 			totalNewVerts ++;
 		}
 
@@ -268,12 +271,14 @@ SetUpCube::SetUpCube() {
 		if(gOps.existsInNewVertexArray(tempQuad2.vertOne,newVertexArrayPtr,totalNewVerts))
 		{
 			cout<<"caught a double!" <<endl;
-			cout << "Tried to Add vertex: " << gOps.vertexToString(tempQuad2.vertOne)<<endl;
-			cout << "Vertex stored as: " << gOps.vertexToString(newVertexArray[totalNewVerts]) <<endl;;
+			//cout << "Tried to Add vertex: " << gOps.vertexToString(tempQuad2.vertOne)<<endl;
 		}
 		else
 		{
+			cerr << "Shouldn't run."<<endl;
 			newVertexArray[totalNewVerts] = tempQuad2.vertOne;
+			cout << "Added vertex: " << gOps.vertexToString(tempQuad2.vertOne)<<endl;
+			cout << "Vertex stored as: " << gOps.vertexToString(newVertexArray[totalNewVerts]) <<endl;
 			totalNewVerts ++;
 		}
 
@@ -284,6 +289,8 @@ SetUpCube::SetUpCube() {
 		else
 		{
 			newVertexArray[totalNewVerts] = tempQuad2.vertTwo;
+			cout << "Added vertex: " << gOps.vertexToString(tempQuad2.vertTwo)<<endl;
+			cout << "Vertex stored as: " << gOps.vertexToString(newVertexArray[totalNewVerts]) <<endl;
 			totalNewVerts ++;
 		}
 
@@ -338,12 +345,14 @@ SetUpCube::SetUpCube() {
 		if(gOps.existsInNewVertexArray(tempQuad3.vertOne,newVertexArrayPtr,totalNewVerts))
 		{
 			cout<<"caught a double!" <<endl;
-			cout << "Tried to Add vertex: " << gOps.vertexToString(tempQuad3.vertOne)<<endl;
-			cout << "Vertex stored as: " << gOps.vertexToString(newVertexArray[totalNewVerts]) <<endl;
+			//cout << "Tried to Add vertex: " << gOps.vertexToString(tempQuad3.vertOne)<<endl;
 		}
 		else
 		{
+			cerr << "shouldn't run" <<endl;
 			newVertexArray[totalNewVerts] = tempQuad3.vertOne;
+			cout << "Added vertex: " << gOps.vertexToString(tempQuad3.vertOne)<<endl;
+			cout << "Vertex stored as: " << gOps.vertexToString(newVertexArray[totalNewVerts]) <<endl;
 			totalNewVerts ++;
 		}
 
@@ -354,6 +363,8 @@ SetUpCube::SetUpCube() {
 		else
 		{
 			newVertexArray[totalNewVerts] = tempQuad3.vertTwo;
+			cout << "Added vertex: " << gOps.vertexToString(tempQuad.vertOne)<<endl;
+			cout << "Vertex stored as: " << gOps.vertexToString(newVertexArray[totalNewVerts]) <<endl;
 			totalNewVerts ++;
 		}
 

@@ -121,7 +121,7 @@ SetUpCube::SetUpCube() {
 
 	for(int i=0;i<sizeOfEdgeArray;i++)
 	{
-		Vertex temp= gOps.getEdgePoint(&edgeArrayPtr[i],faceArrayPtr,sizeOfFaceArray);
+		Vertex temp= gOps.getEdgePoint(edgeArrayPtr[i],faceArrayPtr,sizeOfFaceArray);
 		edgeArrayPtr[i].setEdgePoint(temp);
 	}
 
@@ -152,13 +152,32 @@ SetUpCube::SetUpCube() {
 
 		for(int k=0;k<sizeOfEdgeArray;k++)
 		{
-			Vertex temp= gOps.getEdgePoint(&edgeArrayPtr[k],faceArrayPtr,sizeOfFaceArray);
+			Vertex temp= gOps.getEdgePoint(edgeArrayPtr[k],faceArrayPtr,sizeOfFaceArray);
 			edgeArrayPtr[k].setEdgePoint(temp);
 		}
 		Vertex edgePointA = Vertex(1.0f,2.0f,3.0f);
 		cout<<"filled?\n";
-		//edgePointA = faceArrayPtr[i].getEdgeA()->getEdgePoint();
-		edgePointA = gOps.getEdgePoint(faceArrayPtr[i].getEdgeA(),faceArrayPtr,sizeOfFaceArray);
+
+
+		/*Vertex GeometryOps::getEdgePoint(Edge* edg,Face*fptr,int i){
+			Vertex edgePoint = Vertex();
+			GeometryOps::twoFace touchingFaces;
+			touchingFaces = getOtherFace(*edg,fptr,i);
+			cout<< "New EdgePoint: \t"<< vertexToString(edg->getVertexA()) <<" + \n\t\t" << vertexToString(edg->getVertexA()) << " + \n\t\t" <<
+					vertexToString(touchingFaces.faceOne.getCentroid()) << " + \n\t\t" << vertexToString(touchingFaces.faceOne.getCentroid())<< "/4"<<endl;
+			//edgePoint=edg.getVertexA()+edg.getVertexB()+touchingFaces.faceOne.getCentroid()+touchingFaces.faceTwo.getCentroid();
+			edgePoint.add(edg->getVertexA());
+			edgePoint.add(edg->getVertexB());
+			edgePoint.add(touchingFaces.faceOne.getCentroid());
+			edgePoint.add(touchingFaces.faceTwo.getCentroid());
+			cout << "EdgePoint Added" << vertexToString(edgePoint)<<endl;
+			edgePoint.div(4.0f);
+			cout << "Edgepoint: \t" << vertexToString(edgePoint)<<"\n"<<endl;
+			return edgePoint;
+		}*/
+		//gOps.edgeMidPoint(faceArrayPtr[i].getEdgeA(),faceArrayPtr,sizeOfFaceArray);
+		edgePointA = faceArrayPtr[i].getEdgeA()->getEdgePoint();
+		//edgePointA = gOps.getEdgePoint(faceArrayPtr[i].getEdgeA(),faceArrayPtr,sizeOfFaceArray);
 		cout<<"filled with! " << gOps.vertexToString(edgePointA)<<endl;
 		if(!gOps.existsInNewVertexArray(edgePointA,newVertexArrayPtr,50))
 		{
@@ -167,7 +186,7 @@ SetUpCube::SetUpCube() {
 		}
 		else{cout<<"caught!\n";}
 		Vertex edgePointB;
-		edgePointB = gOps.getEdgePoint(faceArrayPtr[i].getEdgeB(),faceArrayPtr,sizeOfFaceArray);
+		edgePointB = gOps.getEdgePoint((&faceArrayPtr[i].getEdgeB()),faceArrayPtr,sizeOfFaceArray);
 		if(!gOps.existsInNewVertexArray(edgePointB,newVertexArrayPtr,50))
 		{
 			newVertexArray[totalNewVerts] = edgePointB;

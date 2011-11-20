@@ -69,7 +69,7 @@ public:
 	//pass by reference to save on the copying
 	Vertex edgeMidPoint(Edge e1);
 	Vertex getCentroid(Vertex v1, Vertex v2, Vertex v3);
-	Vertex getEdgePoint(Edge* edg,Face*fptr,int iFaces);
+	Vertex getEdgePoint(Edge edg,Face*fptr,int iFaces);
 	bool compareVertices(Vertex v1,Vertex v2);
 	twoFace getOtherFace(Edge e,Face*ptr,int iFaces);
 	eightEdge getIncidentEdges(Vertex v, Edge*ptr, int iEdges);

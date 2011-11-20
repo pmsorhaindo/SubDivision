@@ -1,0 +1,55 @@
+	//Not needed
+	/**a.setJoinsFace(&two,&three);
+	b.setJoinsFace(&two,&eleven);
+	c.setJoinsFace(&one,&eight);
+	d.setJoinsFace(&one,&nine);
+	e.setJoinsFace(&one,&two);
+	f.setJoinsFace(&four,&twelve);
+	g.setJoinsFace(&four,&five);
+	h.setJoinsFace(&three,&ten);
+	i.setJoinsFace(&three,&four);
+	j.setJoinsFace(&five,&ten);
+	k.setJoinsFace(&six,&twelve);
+	l.setJoinsFace(&six,&seven);
+	m.setJoinsFace(&five,&six);
+	n.setJoinsFace(&eight,&nine);
+	o.setJoinsFace(&seven,&eleven);
+	p.setJoinsFace(&seven,&eight);
+	q.setJoinsFace(&nine,&ten);
+	r.setJoinsFace(&eleven,&twelve);**/
+
+
+//Look! all the new Vertices in a point cloud :D
+	/**
+	int totalNewVerts = 0;
+	for (int i=0; i<sizeOfVertexArray; i++)
+	{
+		newVertexArray[totalNewVerts] = gOps.generateNewVertexPoint(vertexArrayPtr[i],faceArrayPtr,edgeArrayPtr,sizeOfFaceArray,sizeOfEdgeArray);
+		totalNewVerts++;
+	}
+
+	for (int i=0; i<sizeOfVertexArray; i++)
+	{
+		newVertexArray[totalNewVerts] = gOps.getEdgePoint(edgeArrayPtr[i],faceArrayPtr,sizeOfFaceArray);
+		totalNewVerts++;
+	}
+
+	for (int i=0; i<sizeOfVertexArray; i++)
+	{
+		newVertexArray[totalNewVerts] = faceArrayPtr[i].getCentroid();
+		totalNewVerts++;
+	} **/
+
+	/**SOLUTION?
+	For each face
+	Take two edges
+	take their edge points for point on newFace
+	and the new Vertex for the 4th point on the face
+	addToVertex Array if not existing in VertexArray
+	Repeat twice (3x more on next iteratations) more for the next two Pair of edges on the face.
+	Repeat for all faces.**/
+
+	//GeometryOps::twoFace tempTwo;
+	//tempTwo = gOps.getOtherFace(a,faceArrayPtr,sizeOfFaceArray);
+	//cout<<gOps.printUniqueVertices(tempTwo.faceOne)<<endl;
+	//cout<<gOps.printUniqueVertices(tempTwo.faceTwo)<<endl;

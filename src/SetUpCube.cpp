@@ -57,25 +57,6 @@ SetUpCube::SetUpCube() {
 	Face eleven = Face(reverseEdge(o),reverseEdge(r),b); // right top
 	Face twelve = Face(r,k,f); // right bottom
 
-	a.setJoinsFace(&two,&three);
-	b.setJoinsFace(&two,&eleven);
-	c.setJoinsFace(&one,&eight);
-	d.setJoinsFace(&one,&nine);
-	e.setJoinsFace(&one,&two);
-	f.setJoinsFace(&four,&twelve);
-	g.setJoinsFace(&four,&five);
-	h.setJoinsFace(&three,&ten);
-	i.setJoinsFace(&three,&four);
-	j.setJoinsFace(&five,&ten);
-	k.setJoinsFace(&six,&twelve);
-	l.setJoinsFace(&six,&seven);
-	m.setJoinsFace(&five,&six);
-	n.setJoinsFace(&eight,&nine);
-	o.setJoinsFace(&seven,&eleven);
-	p.setJoinsFace(&seven,&eight);
-	q.setJoinsFace(&nine,&ten);
-	r.setJoinsFace(&eleven,&twelve);
-
 	vertexArray[0] = v1;
 	vertexArray[1] = v2;
 	vertexArray[2] = v3;
@@ -140,7 +121,7 @@ SetUpCube::SetUpCube() {
 
 	for(int i=0;i<sizeOfEdgeArray;i++)
 	{
-		Vertex temp= gOps.getEdgePoint(edgeArrayPtr[i],faceArrayPtr,sizeOfFaceArray);
+		Vertex temp= gOps.getEdgePoint(&edgeArrayPtr[i],faceArrayPtr,sizeOfFaceArray);
 		edgeArrayPtr[i].setEdgePoint(temp);
 	}
 
@@ -157,75 +138,45 @@ SetUpCube::SetUpCube() {
 	Vertex newVertexArray[50];
 	Vertex *newVertexArrayPtr = newVertexArray;
 
-	//Look! all the new Vertices in a point cloud :D
-	/**
-	int totalNewVerts = 0;
-	for (int i=0; i<sizeOfVertexArray; i++)
-	{
-		newVertexArray[totalNewVerts] = gOps.generateNewVertexPoint(vertexArrayPtr[i],faceArrayPtr,edgeArrayPtr,sizeOfFaceArray,sizeOfEdgeArray);
-		totalNewVerts++;
-	}
 
-	for (int i=0; i<sizeOfVertexArray; i++)
-	{
-		newVertexArray[totalNewVerts] = gOps.getEdgePoint(edgeArrayPtr[i],faceArrayPtr,sizeOfFaceArray);
-		totalNewVerts++;
-	}
-
-	for (int i=0; i<sizeOfVertexArray; i++)
-	{
-		newVertexArray[totalNewVerts] = faceArrayPtr[i].getCentroid();
-		totalNewVerts++;
-	} **/
-
-	/**SOLUTION?
-	For each face
-	Take two edges
-	take their edge points for point on newFace
-	and the new Vertex for the 4th point on the face
-	addToVertex Array if not existing in VertexArray
-	Repeat twice (3x more on next iteratations) more for the next two Pair of edges on the face.
-	Repeat for all faces.**/
-
-	GeometryOps::twoFace tempTwo;
-	tempTwo = gOps.getOtherFace(a,faceArrayPtr,sizeOfFaceArray);
-	cout<<gOps.printUniqueVertices(tempTwo.faceOne)<<endl;
-	cout<<gOps.printUniqueVertices(tempTwo.faceTwo)<<endl;
 
 	int totalNewVerts = 0;
 	int totalNewEdges = 0;
 	int totalNewFaces = 0;
 	for (int i=0; i<sizeOfFaceArray; i++)
 	{
-		for(int j=0;j<sizeOfEdgeArray;j++)
-			{
-				Vertex temp= gOps.getEdgePoint(edgeArrayPtr[j],faceArrayPtr,sizeOfFaceArray);
-				edgeArrayPtr[j].setEdgePoint(temp);
-			}
 		Vertex facep;
 		facep = faceArrayPtr[i].getCentroid();
 		newVertexArray[totalNewVerts] = facep;
 		totalNewVerts++;
 
-		Vertex edgePointA;
-		edgePointA = faceArrayPtr[i].getEdgeA().getEdgePoint();
-		if(!gOps.existsInNewVertexArray(edgePointA,newVertexArrayPtr,totalNewVerts))
+		for(int k=0;k<sizeOfEdgeArray;k++)
+		{
+			Vertex temp= gOps.getEdgePoint(&edgeArrayPtr[k],faceArrayPtr,sizeOfFaceArray);
+			edgeArrayPtr[k].setEdgePoint(temp);
+		}
+		Vertex edgePointA = Vertex(1.0f,2.0f,3.0f);
+		cout<<"filled?\n";
+		//edgePointA = faceArrayPtr[i].getEdgeA()->getEdgePoint();
+		edgePointA = gOps.getEdgePoint(faceArrayPtr[i].getEdgeA(),faceArrayPtr,sizeOfFaceArray);
+		cout<<"filled with! " << gOps.vertexToString(edgePointA)<<endl;
+		if(!gOps.existsInNewVertexArray(edgePointA,newVertexArrayPtr,50))
 		{
 			newVertexArray[totalNewVerts] = edgePointA;
 			totalNewVerts++;
 		}
 		else{cout<<"caught!\n";}
 		Vertex edgePointB;
-		edgePointB = faceArrayPtr[i].getEdgeB().getEdgePoint();
-		if(!gOps.existsInNewVertexArray(edgePointB,newVertexArrayPtr,totalNewVerts))
+		edgePointB = gOps.getEdgePoint(faceArrayPtr[i].getEdgeB(),faceArrayPtr,sizeOfFaceArray);
+		if(!gOps.existsInNewVertexArray(edgePointB,newVertexArrayPtr,50))
 		{
 			newVertexArray[totalNewVerts] = edgePointB;
 			totalNewVerts++;
 		}
 		else{cout<<"caught!\n";}
 		Vertex edgePointC;
-		edgePointC = faceArrayPtr[i].getEdgeC().getEdgePoint();
-		if(!gOps.existsInNewVertexArray(edgePointC,newVertexArrayPtr,totalNewVerts))
+		edgePointC = gOps.getEdgePoint(faceArrayPtr[i].getEdgeC(),faceArrayPtr,sizeOfFaceArray);
+		if(!gOps.existsInNewVertexArray(edgePointC,newVertexArrayPtr,50))
 		{
 			newVertexArray[totalNewVerts] = edgePointC;
 			totalNewVerts++;
@@ -286,9 +237,9 @@ void SetUpCube::draw(){
 					glColor3f(0.0f,0.0f,1.0f); //Blue
 				}
 
-				glVertex3f(faceArray[i].getEdgeA().getVertexA().getX(),faceArray[i].getEdgeA().getVertexA().getY(),faceArray[i].getEdgeA().getVertexA().getZ()); //
-				glVertex3f(faceArray[i].getEdgeA().getVertexB().getX(),faceArray[i].getEdgeA().getVertexB().getY(),faceArray[i].getEdgeA().getVertexB().getZ());
-				glVertex3f(faceArray[i].getEdgeB().getVertexB().getX(),faceArray[i].getEdgeB().getVertexB().getY(),faceArray[i].getEdgeB().getVertexB().getZ());
+				glVertex3f(faceArray[0].getEdgeA()->getVertexA().getX(),faceArray[0].getEdgeA()->getVertexA().getY(),faceArray[0].getEdgeA()->getVertexA().getZ()); //
+				glVertex3f(faceArray[0].getEdgeA()->getVertexB().getX(),faceArray[0].getEdgeA()->getVertexB().getY(),faceArray[0].getEdgeA()->getVertexB().getZ());
+				glVertex3f(faceArray[0].getEdgeB()->getVertexB().getX(),faceArray[0].getEdgeB()->getVertexB().getY(),faceArray[0].getEdgeB()->getVertexB().getZ());
 
 				glEnd();
 			}

@@ -37,11 +37,11 @@ Vertex GeometryOps::getCentroid(Vertex v1, Vertex v2, Vertex v3){
 
 bool GeometryOps::compareVertices(Vertex v1,Vertex v2){
 	bool areSame = true;
-	if(v1.getX()!=v2.getX()||v1.getX()+v2.getX()==0)
+	if(v1.getX()!=v2.getX())
 		{areSame = false;}
-	if(v1.getY()!=v2.getY()||v1.getY()+v2.getY()==0)
+	if(v1.getY()!=v2.getY())
 		{areSame = false;}
-	if(v1.getZ()!=v2.getZ()||v1.getZ()+v2.getZ()==0)
+	if(v1.getZ()!=v2.getZ())
 		{areSame=false;}
 	return areSame;
 }
@@ -132,13 +132,13 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 	return otherFaces;
 }
 
-bool GeometryOps::compareEdges(Edge e1, Edge e2){
+bool GeometryOps::compareEdges(Edge* e1, Edge e2){
 	bool areSame = false;
 	if (
-		(compareVertices(e1.getVertexA(),e2.getVertexA())
-				&&compareVertices(e1.getVertexB(),e2.getVertexB()))||
-				(compareVertices(e1.getVertexA(),e2.getVertexA())
-						&&compareVertices(e1.getVertexB(),e2.getVertexB())))
+		(compareVertices(e1->getVertexA(),e2.getVertexA())
+				&&compareVertices(e1->getVertexB(),e2.getVertexB()))||
+				(compareVertices(e1->getVertexA(),e2.getVertexA())
+						&&compareVertices(e1->getVertexB(),e2.getVertexB())))
 	{
 		areSame=true;
 	}
@@ -157,22 +157,22 @@ string GeometryOps::vertexToString(Vertex v){
 string GeometryOps::printUniqueVertices(Face f){
 	string uniqueVertsStr;
 	Vertex first,second,third;
-	first = f.getEdgeA().getVertexA();
+	first = f.getEdgeA()->getVertexA();
 	//cout << "First!!! << " + vertexToString(first)<<endl;
-	second = f.getEdgeA().getVertexB();
-	if(!compareVertices(f.getEdgeB().getVertexA(),f.getEdgeA().getVertexA()))
+	second = f.getEdgeA()->getVertexB();
+	if(!compareVertices(f.getEdgeB()->getVertexA(),f.getEdgeA()->getVertexA()))
 	{
-		if(!compareVertices(f.getEdgeB().getVertexA(),f.getEdgeA().getVertexB()))
+		if(!compareVertices(f.getEdgeB()->getVertexA(),f.getEdgeA()->getVertexB()))
 			{
-			third = f.getEdgeB().getVertexA();
+			third = f.getEdgeB()->getVertexA();
 			//cout << "third!!! x: " << third.getX()<<endl;
 			}
 	}
-	if(!compareVertices(f.getEdgeB().getVertexB(),f.getEdgeA().getVertexA()))
+	if(!compareVertices(f.getEdgeB()->getVertexB(),f.getEdgeA()->getVertexA()))
 	{
-		if(!compareVertices(f.getEdgeB().getVertexB(),f.getEdgeA().getVertexB()))
+		if(!compareVertices(f.getEdgeB()->getVertexB(),f.getEdgeA()->getVertexB()))
 		{
-		third = f.getEdgeB().getVertexB();
+		third = f.getEdgeB()->getVertexB();
 		//cout << "third!!! x: " << third.getX()<<endl;
 		}
 	}
@@ -216,24 +216,24 @@ bool GeometryOps::edgeContainsVertex(Edge e, Vertex v){
 
 bool GeometryOps::faceContainsVertex(Face f, Vertex v){
 	bool doesContain=false;
-	if(compareVertices(f.getEdgeA().getVertexA(),v)) doesContain=true;
-	if(compareVertices(f.getEdgeA().getVertexB(),v)) doesContain=true;
-	if(compareVertices(f.getEdgeB().getVertexA(),v)) doesContain=true;
-	if(compareVertices(f.getEdgeB().getVertexB(),v)) doesContain=true;
-	if(compareVertices(f.getEdgeC().getVertexA(),v)) doesContain=true;
-	if(compareVertices(f.getEdgeC().getVertexB(),v)) doesContain=true;
+	if(compareVertices(f.getEdgeA()->getVertexA(),v)) doesContain=true;
+	if(compareVertices(f.getEdgeA()->getVertexB(),v)) doesContain=true;
+	if(compareVertices(f.getEdgeB()->getVertexA(),v)) doesContain=true;
+	if(compareVertices(f.getEdgeB()->getVertexB(),v)) doesContain=true;
+	if(compareVertices(f.getEdgeC()->getVertexA(),v)) doesContain=true;
+	if(compareVertices(f.getEdgeC()->getVertexB(),v)) doesContain=true;
 	return doesContain;
 }
 
-Vertex GeometryOps::getEdgePoint(Edge edg,Face*fptr,int i){
+Vertex GeometryOps::getEdgePoint(Edge* edg,Face*fptr,int i){
 	Vertex edgePoint = Vertex();
 	GeometryOps::twoFace touchingFaces;
-	touchingFaces = getOtherFace(edg,fptr,i);
-	cout<< "New EdgePoint: \t"<< vertexToString(edg.getVertexA()) <<" + \n\t\t" << vertexToString(edg.getVertexA()) << " + \n\t\t" <<
+	touchingFaces = getOtherFace(*edg,fptr,i);
+	cout<< "New EdgePoint: \t"<< vertexToString(edg->getVertexA()) <<" + \n\t\t" << vertexToString(edg->getVertexA()) << " + \n\t\t" <<
 			vertexToString(touchingFaces.faceOne.getCentroid()) << " + \n\t\t" << vertexToString(touchingFaces.faceOne.getCentroid())<< "/4"<<endl;
 	//edgePoint=edg.getVertexA()+edg.getVertexB()+touchingFaces.faceOne.getCentroid()+touchingFaces.faceTwo.getCentroid();
-	edgePoint.add(edg.getVertexA());
-	edgePoint.add(edg.getVertexB());
+	edgePoint.add(edg->getVertexA());
+	edgePoint.add(edg->getVertexB());
 	edgePoint.add(touchingFaces.faceOne.getCentroid());
 	edgePoint.add(touchingFaces.faceTwo.getCentroid());
 	cout << "EdgePoint Added" << vertexToString(edgePoint)<<endl;
@@ -430,7 +430,7 @@ bool GeometryOps::existsInNewEdgeArray(Edge e, Edge*edgePtr,int edgeArraySize){
 	bool exists = false;
 		for(int i=0; i<edgeArraySize; i++)
 		{
-			if(compareEdges(e,edgePtr[i])){
+			if(compareEdges(&e,edgePtr[i])){
 				return true;
 			}
 		}

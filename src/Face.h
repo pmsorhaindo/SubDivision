@@ -13,18 +13,18 @@ class Face {
 
 
 private:
-	Edge a;
-	Edge b;
-	Edge c;
+	Edge *a;
+	Edge *b;
+	Edge *c;
 	Vertex facePoint;
 
 public:
 	Face();
 	Face(Edge newA, Edge newB, Edge newC);
 	virtual ~Face();
-	Edge getEdgeA();
-	Edge getEdgeB();
-	Edge getEdgeC();
+	Edge* getEdgeA();
+	Edge* getEdgeB();
+	Edge* getEdgeC();
 	Vertex calcCentroid();
 	void setCentroid();
 	Vertex getCentroid();

@@ -27,6 +27,8 @@ public:
 	void setX(float f);
 	void setY(float f);
 	void setZ(float f);
+	void div(float f);
+	void add(Vertex v);
 	Vertex operator+(const Vertex &a) const;
 	Vertex operator-(const Vertex &a) const;
 	Vertex operator*(const Vertex &a) const;

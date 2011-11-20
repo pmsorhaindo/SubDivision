@@ -69,4 +69,14 @@ Vertex Edge::getEdgeMidPoint()
 	return midPoint;
 }
 
+void Edge::setEdgePoint(Vertex v)
+{
+	edgePoint = v;
+}
+
+Vertex Edge::getEdgePoint()
+{
+	return edgePoint;
+}
+
 

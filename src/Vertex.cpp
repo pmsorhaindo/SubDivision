@@ -6,9 +6,14 @@
  */
 
 #include "Vertex.h"
+#include <iostream>
+
+using namespace std;
 
 Vertex::Vertex(){
-
+	x=0;
+	y=0;
+	z=0;
 }
 
 Vertex::Vertex(float newX, float newY, float newZ) {
@@ -41,6 +46,31 @@ void Vertex::setY(float val){
 }
 void Vertex::setZ(float val){
 	z=val;
+}
+
+void Vertex::div(float val){
+	//std::cout << "before div x was: " << x <<"\n";
+	x=x/val;
+	//std::cout << "after div x was: " << x <<"\n";
+	//std::cout << "before div y was: " << y <<"\n";
+	y=y/val;
+	//std::cout << "after div y was: " << y <<"\n";
+	//std::cout << "before div z was: " << z <<"\n";
+	z=z/val;
+	//std::cout << "after div z was: " << z <<"\n";
+}
+
+void Vertex::add(Vertex v){
+	cout << "Addition Test\n";
+	cout << "x:"<<x<<" + vx:"<<v.getX();
+	x = x+v.getX();
+	cout << " = " << x<<endl;
+	cout << "y:"<<y<<" + vy:"<<v.getY();
+	y = y+v.getY();
+	cout << " = " << y<<endl;
+	cout << "z:"<<z<<" + vz:"<<v.getZ();
+	z = z+v.getZ();
+	cout << " = " << z<<endl;
 }
 
 Vertex Vertex::operator+(const Vertex &a) const

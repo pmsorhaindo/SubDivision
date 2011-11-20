@@ -18,6 +18,7 @@ private:
 	Face * joinsFace1;
 	Face * joinsFace2;
 	Vertex midPoint;
+	Vertex edgePoint;
 
 public:
 	Edge();
@@ -30,6 +31,8 @@ public:
 	Face * getFacesJoined2();
 	void calcEdgeMidPoint();
 	Vertex getEdgeMidPoint();
+	void setEdgePoint (Vertex v);
+	Vertex getEdgePoint();
 
 };
 

@@ -226,10 +226,19 @@ bool GeometryOps::faceContainsVertex(Face f, Vertex v){
 }
 
 Vertex GeometryOps::getEdgePoint(Edge edg,Face*fptr,int i){
-	Vertex edgePoint;
+	Vertex edgePoint = Vertex();
 	GeometryOps::twoFace touchingFaces;
 	touchingFaces = getOtherFace(edg,fptr,i);
-	edgePoint=(edg.getVertexA()+edg.getVertexB()+touchingFaces.faceOne.calcCentroid() + touchingFaces.faceTwo.calcCentroid())/4;
+	cout<< "New EdgePoint: \t"<< vertexToString(edg.getVertexA()) <<" + \n\t\t" << vertexToString(edg.getVertexA()) << " + \n\t\t" <<
+			vertexToString(touchingFaces.faceOne.getCentroid()) << " + \n\t\t" << vertexToString(touchingFaces.faceOne.getCentroid())<< "/4"<<endl;
+	//edgePoint=edg.getVertexA()+edg.getVertexB()+touchingFaces.faceOne.getCentroid()+touchingFaces.faceTwo.getCentroid();
+	edgePoint.add(edg.getVertexA());
+	edgePoint.add(edg.getVertexB());
+	edgePoint.add(touchingFaces.faceOne.getCentroid());
+	edgePoint.add(touchingFaces.faceTwo.getCentroid());
+	cout << "EdgePoint Added" << vertexToString(edgePoint)<<endl;
+	edgePoint.div(4.0f);
+	cout << "Edgepoint: \t" << vertexToString(edgePoint)<<"\n"<<endl;
 	return edgePoint;
 }
 

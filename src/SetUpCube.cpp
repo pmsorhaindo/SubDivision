@@ -24,24 +24,24 @@ SetUpCube::SetUpCube() {
 	Vertex v7 = Vertex(0.5f,0.5f,-0.5f);
 	Vertex v8 = Vertex(-0.5f,0.5f,-0.5f);
 
-	Edge a = Edge(v4,v3); //top front
-	Edge b = Edge(v3,v7); //top right
-	Edge c = Edge(v7,v8); //top back
-	Edge d = Edge(v8,v4); //top left
-	Edge e = Edge(v3,v8); //top middle
-	Edge f = Edge(v2,v3); //front right
-	Edge g = Edge(v1,v2); // front bottom
-	Edge h = Edge(v1,v4); //front left
-	Edge i = Edge(v3,v1); // front middle
-	Edge j = Edge(v1,v5); //bottom left
-	Edge k = Edge(v6,v2); //bottom right
-	Edge l = Edge(v5,v6); //bottom back
-	Edge m = Edge(v5,v2); // bottom middle
-	Edge n = Edge(v8,v5); // back left
-	Edge o = Edge(v6,v7); // back right
-	Edge p = Edge(v5,v7); // back middle
-	Edge q = Edge(v4,v5); // left middle
-	Edge r = Edge(v3,v6); // right middle
+	Edge a = Edge(&v4,&v3); //top front
+	Edge b = Edge(&v3,&v7); //top right
+	Edge c = Edge(&v7,&v8); //top back
+	Edge d = Edge(&v8,&v4); //top left
+	Edge e = Edge(&v3,&v8); //top middle
+	Edge f = Edge(&v2,&v3); //front right
+	Edge g = Edge(&v1,&v2); // front bottom
+	Edge h = Edge(&v1,&v4); //front left
+	Edge i = Edge(&v3,&v1); // front middle
+	Edge j = Edge(&v1,&v5); //bottom left
+	Edge k = Edge(&v6,&v2); //bottom right
+	Edge l = Edge(&v5,&v6); //bottom back
+	Edge m = Edge(&v5,&v2); // bottom middle
+	Edge n = Edge(&v8,&v5); // back left
+	Edge o = Edge(&v6,&v7); // back right
+	Edge p = Edge(&v5,&v7); // back middle
+	Edge q = Edge(&v4,&v5); // left middle
+	Edge r = Edge(&v3,&v6); // right middle
 
 	//surface -> face
 	Face one = Face(c,reverseEdge(e),b); //top back g
@@ -121,7 +121,7 @@ SetUpCube::SetUpCube() {
 
 	for(int i=0;i<sizeOfEdgeArray;i++)
 	{
-		Vertex temp= gOps.getEdgePoint(edgeArrayPtr[i],faceArrayPtr,sizeOfFaceArray);
+		Vertex temp= gOps.getEdgePoint(&edgeArrayPtr[i],faceArrayPtr,sizeOfFaceArray);
 		edgeArrayPtr[i].setEdgePoint(temp);
 	}
 
@@ -138,6 +138,13 @@ SetUpCube::SetUpCube() {
 	Vertex newVertexArray[50];
 	Vertex *newVertexArrayPtr = newVertexArray;
 
+	Vertex EdgePointArray[18];
+	for(int k=0;k<sizeOfEdgeArray;k++)
+			{
+				Vertex temp= gOps.getEdgePoint(&edgeArrayPtr[k],faceArrayPtr,sizeOfFaceArray);
+				edgeArrayPtr[k].setEdgePoint(temp);
+				EdgePointArray[k] = temp;
+			}
 
 
 	int totalNewVerts = 0;
@@ -150,34 +157,12 @@ SetUpCube::SetUpCube() {
 		newVertexArray[totalNewVerts] = facep;
 		totalNewVerts++;
 
-		for(int k=0;k<sizeOfEdgeArray;k++)
-		{
-			Vertex temp= gOps.getEdgePoint(edgeArrayPtr[k],faceArrayPtr,sizeOfFaceArray);
-			edgeArrayPtr[k].setEdgePoint(temp);
-		}
 		Vertex edgePointA = Vertex(1.0f,2.0f,3.0f);
 		cout<<"filled?\n";
 
-
-		/*Vertex GeometryOps::getEdgePoint(Edge* edg,Face*fptr,int i){
-			Vertex edgePoint = Vertex();
-			GeometryOps::twoFace touchingFaces;
-			touchingFaces = getOtherFace(*edg,fptr,i);
-			cout<< "New EdgePoint: \t"<< vertexToString(edg->getVertexA()) <<" + \n\t\t" << vertexToString(edg->getVertexA()) << " + \n\t\t" <<
-					vertexToString(touchingFaces.faceOne.getCentroid()) << " + \n\t\t" << vertexToString(touchingFaces.faceOne.getCentroid())<< "/4"<<endl;
-			//edgePoint=edg.getVertexA()+edg.getVertexB()+touchingFaces.faceOne.getCentroid()+touchingFaces.faceTwo.getCentroid();
-			edgePoint.add(edg->getVertexA());
-			edgePoint.add(edg->getVertexB());
-			edgePoint.add(touchingFaces.faceOne.getCentroid());
-			edgePoint.add(touchingFaces.faceTwo.getCentroid());
-			cout << "EdgePoint Added" << vertexToString(edgePoint)<<endl;
-			edgePoint.div(4.0f);
-			cout << "Edgepoint: \t" << vertexToString(edgePoint)<<"\n"<<endl;
-			return edgePoint;
-		}*/
-		//gOps.edgeMidPoint(faceArrayPtr[i].getEdgeA(),faceArrayPtr,sizeOfFaceArray);
+		//faceArrayPtr[i].getEdgeA()->setEdgePoint(gOps.getEdgePoint(faceArrayPtr[i].getEdgeA(),faceArrayPtr,sizeOfFaceArray));
 		edgePointA = faceArrayPtr[i].getEdgeA()->getEdgePoint();
-		//edgePointA = gOps.getEdgePoint(faceArrayPtr[i].getEdgeA(),faceArrayPtr,sizeOfFaceArray);
+		edgePointA = gOps.getEdgePoint(faceArrayPtr[i].getEdgeA(),faceArrayPtr,sizeOfFaceArray);
 		cout<<"filled with! " << gOps.vertexToString(edgePointA)<<endl;
 		if(!gOps.existsInNewVertexArray(edgePointA,newVertexArrayPtr,50))
 		{
@@ -186,7 +171,9 @@ SetUpCube::SetUpCube() {
 		}
 		else{cout<<"caught!\n";}
 		Vertex edgePointB;
-		edgePointB = gOps.getEdgePoint((&faceArrayPtr[i].getEdgeB()),faceArrayPtr,sizeOfFaceArray);
+		faceArrayPtr[i].getEdgeB()->setEdgePoint(gOps.getEdgePoint(faceArrayPtr[i].getEdgeB(),faceArrayPtr,sizeOfFaceArray));
+		edgePointB = faceArrayPtr[i].getEdgeB()->getEdgePoint();
+		//edgePointB = gOps.getEdgePoint(faceArrayPtr[i].getEdgeB(),faceArrayPtr,sizeOfFaceArray);
 		if(!gOps.existsInNewVertexArray(edgePointB,newVertexArrayPtr,50))
 		{
 			newVertexArray[totalNewVerts] = edgePointB;
@@ -194,7 +181,9 @@ SetUpCube::SetUpCube() {
 		}
 		else{cout<<"caught!\n";}
 		Vertex edgePointC;
-		edgePointC = gOps.getEdgePoint(faceArrayPtr[i].getEdgeC(),faceArrayPtr,sizeOfFaceArray);
+		faceArrayPtr[i].getEdgeC()->setEdgePoint(gOps.getEdgePoint(faceArrayPtr[i].getEdgeC(),faceArrayPtr,sizeOfFaceArray));
+		edgePointC = faceArrayPtr[i].getEdgeC()->getEdgePoint();
+		//edgePointC = gOps.getEdgePoint(faceArrayPtr[i].getEdgeC(),faceArrayPtr,sizeOfFaceArray);
 		if(!gOps.existsInNewVertexArray(edgePointC,newVertexArrayPtr,50))
 		{
 			newVertexArray[totalNewVerts] = edgePointC;
@@ -206,12 +195,20 @@ SetUpCube::SetUpCube() {
 	cout << "Yay! total new Faces = " << totalNewFaces <<endl;
 	cout << "Yay! total new Edges = " << totalNewEdges <<endl;
 	cout << "Yay! total new Verts = " << totalNewVerts <<endl;
-	cout << "face 1 attempt "<< newFaceArray[0].getEdgeA().getVertexA().getX() <<endl;
+	cout << "face 1 attempt "<< newFaceArray[0].getEdgeA().getVertexA()->getX() <<endl;
 
 
 	for (int i =0; i<totalNewVerts; i++)
 	{
 		cout<< "New Shapes Vertex "<< i <<" "<< gOps.vertexToString(newVertexArray[i]) <<endl;
+
+	}
+
+	cout <<"\n"<<endl;
+
+	for (int i=0; i<18; i++)
+	{
+		cout<< "EdgePointArray"<<i<<": "<<gOps.vertexToString(EdgePointArray[i])<<"\n";
 	}
 
 	//cout << "Vertex v1 " << gOps.vertexToString(v1) << " + Vertex v2 " << gOps.vertexToString(v2)<<endl;
@@ -226,7 +223,8 @@ SetUpCube::~SetUpCube() {
 }
 
 Edge SetUpCube::reverseEdge(Edge reversing){
-	Edge tempEdge = Edge(reversing.getVertexB(),reversing.getVertexA());
+	Edge tempEdge;
+	//Edge tempEdge = Edge(reversing.getVertexB(),reversing.getVertexA());
 	return tempEdge;
 }
 
@@ -256,9 +254,9 @@ void SetUpCube::draw(){
 					glColor3f(0.0f,0.0f,1.0f); //Blue
 				}
 
-				glVertex3f(faceArray[0].getEdgeA()->getVertexA().getX(),faceArray[0].getEdgeA()->getVertexA().getY(),faceArray[0].getEdgeA()->getVertexA().getZ()); //
-				glVertex3f(faceArray[0].getEdgeA()->getVertexB().getX(),faceArray[0].getEdgeA()->getVertexB().getY(),faceArray[0].getEdgeA()->getVertexB().getZ());
-				glVertex3f(faceArray[0].getEdgeB()->getVertexB().getX(),faceArray[0].getEdgeB()->getVertexB().getY(),faceArray[0].getEdgeB()->getVertexB().getZ());
+				glVertex3f(faceArray[i].getEdgeA()->getVertexA()->getX(),faceArray[i].getEdgeA()->getVertexA()->getY(),faceArray[i].getEdgeA()->getVertexA()->getZ()); //
+				glVertex3f(faceArray[i].getEdgeA()->getVertexB()->getX(),faceArray[i].getEdgeA()->getVertexB()->getY(),faceArray[i].getEdgeA()->getVertexB()->getZ());
+				glVertex3f(faceArray[i].getEdgeB()->getVertexB()->getX(),faceArray[i].getEdgeB()->getVertexB()->getY(),faceArray[i].getEdgeB()->getVertexB()->getZ());
 
 				glEnd();
 			}

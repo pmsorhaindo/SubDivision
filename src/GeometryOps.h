@@ -69,12 +69,12 @@ public:
 	//pass by reference to save on the copying
 	Vertex edgeMidPoint(Edge e1);
 	Vertex getCentroid(Vertex v1, Vertex v2, Vertex v3);
-	Vertex getEdgePoint(Edge edg,Face*fptr,int iFaces);
+	Vertex getEdgePoint(Edge* edg,Face*fptr,int iFaces);
 	bool compareVertices(Vertex v1,Vertex v2);
 	twoFace getOtherFace(Edge e,Face*ptr,int iFaces);
 	eightEdge getIncidentEdges(Vertex v, Edge*ptr, int iEdges);
 	sixFace getAdjacentFaces(Vertex v, Face*ptr, int iFaces);
-	bool compareEdges(Edge* e1, Edge e2);
+	bool compareEdges(Edge* e1, Edge* e2);
 	std::string printUniqueVertices(Face f);
 	std::string vertexToString(Vertex v);
 	std::string floatToString(float val);

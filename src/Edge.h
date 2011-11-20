@@ -13,19 +13,20 @@ class Face;
 class Edge {
 
 private:
-	Vertex a;
-	Vertex b;
+	Vertex * a;
+	Vertex * b;
 	Face * joinsFace1;
 	Face * joinsFace2;
 	Vertex midPoint;
 	Vertex edgePoint;
+	bool reversed;
 
 public:
 	Edge();
-	Edge(Vertex newa, Vertex newb);
+	Edge(Vertex * newa, Vertex * newb);
 	virtual ~Edge();
-	Vertex getVertexA();
-	Vertex getVertexB();
+	Vertex * getVertexA();
+	Vertex * getVertexB();
 	void setJoinsFace(Face *a, Face *b);
 	Face * getFacesJoined1();
 	Face * getFacesJoined2();

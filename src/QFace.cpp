@@ -44,9 +44,9 @@ Edge QFace::getEdgeD(){
 
 Vertex QFace::calcCentroid(){
 	Vertex v;
-	float x=((this->a.getVertexA().getX()+this->a.getVertexA().getY()+this->a.getVertexA().getZ())/3.0f);
-	float y=((this->a.getVertexB().getX()+this->a.getVertexB().getY()+this->a.getVertexB().getZ())/3.0f);
-	float z=((this->b.getVertexA().getX()+this->b.getVertexA().getY()+this->b.getVertexA().getZ())/3.0f);
+	float x=((this->a.getVertexA()->getX()+this->a.getVertexA()->getY()+this->a.getVertexA()->getZ())/3.0f);
+	float y=((this->a.getVertexB()->getX()+this->a.getVertexB()->getY()+this->a.getVertexB()->getZ())/3.0f);
+	float z=((this->b.getVertexA()->getX()+this->b.getVertexA()->getY()+this->b.getVertexA()->getZ())/3.0f);
 	v = Vertex(x,y,z);
 	//std::cout <<"QFacepoint aax: "<< this->a.getVertexA().getX() << " aay: " << this->a.getVertexA().getY() << " aaz: " << this->a.getVertexA().getZ()<<endl;
 	//std::cout <<"QFacepoint abx: "<< this->a.getVertexB().getX() << " aby: " << this->a.getVertexB().getY() << " abz: " << this->a.getVertexB().getZ()<<endl;
@@ -55,9 +55,9 @@ Vertex QFace::calcCentroid(){
 }
 
 void QFace::setCentroid(){
-	float a1 = this->getEdgeA().getVertexA().getX()+this->getEdgeA().getVertexB().getX()+this->getEdgeB().getVertexB().getX();
-	float b1 = this->getEdgeA().getVertexA().getY()+this->getEdgeA().getVertexB().getY()+this->getEdgeB().getVertexB().getY();
-	float c1 = this->getEdgeA().getVertexA().getZ()+this->getEdgeA().getVertexB().getZ()+this->getEdgeB().getVertexB().getZ();
+	float a1 = this->getEdgeA().getVertexA()->getX()+this->getEdgeA().getVertexB()->getX()+this->getEdgeB().getVertexB()->getX();
+	float b1 = this->getEdgeA().getVertexA()->getY()+this->getEdgeA().getVertexB()->getY()+this->getEdgeB().getVertexB()->getY();
+	float c1 = this->getEdgeA().getVertexA()->getZ()+this->getEdgeA().getVertexB()->getZ()+this->getEdgeB().getVertexB()->getZ();
 	QFacePoint = Vertex((a1/3),(b1/3),(c1/3));
 }
 

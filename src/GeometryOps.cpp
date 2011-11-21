@@ -65,6 +65,7 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 			if(found==0){
 				found++;
 				otherFaces.faceOne=ptr[it];
+				cout << "%%firstFind Edge A facePoint: " << vertexToString(otherFaces.faceOne.getCentroid())<<endl;
 				//cout << "1aFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
 				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
 				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
@@ -73,6 +74,7 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 			{
 				found++;
 				otherFaces.faceTwo=ptr[it];
+				cout << "%%secondFind Edge A facePoint: " << vertexToString(otherFaces.faceTwo.getCentroid())<<endl;
 				//cout << "1bFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
 				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
 				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
@@ -89,6 +91,7 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 			if(found==0){
 				found++;
 				otherFaces.faceOne=ptr[it];
+				cout << "%%firstFind Edge B facePoint: " << vertexToString(otherFaces.faceOne.getCentroid())<<endl;
 				//cout << "2aFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
 				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
 				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
@@ -97,6 +100,7 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 			{
 				found++;
 				otherFaces.faceTwo=ptr[it];
+				cout << "%%secondFind Edge B facePoint: " << vertexToString(otherFaces.faceTwo.getCentroid())<<endl;
 				//cout << "2bFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
 				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
 				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
@@ -113,12 +117,14 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 			if(found==0){
 				found++;
 				otherFaces.faceOne=ptr[it];
+				cout << "%%firstFind Edge C facePoint: " << vertexToString(otherFaces.faceOne.getCentroid())<<endl;
 				//cout<<"yaaawwn! " <<endl;
 			}
 			else if (found==1)
 			{
 				found++;
-				otherFaces.faceOne=ptr[it];
+				otherFaces.faceTwo=ptr[it];
+				cout << "%%secondFind Edge C facePoint: " << vertexToString(otherFaces.faceTwo.getCentroid())<<endl;
 				//cout<<"yaaawwn!!!!! " <<endl;
 			}
 			else if (found==2)
@@ -128,7 +134,7 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 				otherFaces.faceTwo=ptr[it];
 			}
 		}
-	}*/
+	}
 	cout<< "testing found\n";
 	if (found!=2) cerr <<"finding faces problem!\n";
 	return otherFaces;

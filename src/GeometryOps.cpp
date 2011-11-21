@@ -35,7 +35,7 @@ Vertex GeometryOps::getCentroid(Vertex v1, Vertex v2, Vertex v3){
 	return v;
 }
 
-bool GeometryOps::compareVertices(Vertex v1,Vertex v2){
+bool GeometryOps::compareVertices(Vertex v1,Vertex  v2){
 	bool areSame = true;
 	if(v1.getX()!=v2.getX())
 		{areSame = false;}
@@ -65,7 +65,7 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 			if(found==0){
 				found++;
 				otherFaces.faceOne=ptr[it];
-				cout << "%%firstFind Edge A facePoint: " << vertexToString(otherFaces.faceOne.getCentroid())<<endl;
+				//cout << "%%firstFind Edge A facePoint: " << vertexToString(otherFaces.faceOne.getCentroid())<<endl;
 				//cout << "1aFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
 				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
 				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
@@ -74,7 +74,7 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 			{
 				found++;
 				otherFaces.faceTwo=ptr[it];
-				cout << "%%secondFind Edge A facePoint: " << vertexToString(otherFaces.faceTwo.getCentroid())<<endl;
+				//cout << "%%secondFind Edge A facePoint: " << vertexToString(otherFaces.faceTwo.getCentroid())<<endl;
 				//cout << "1bFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
 				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
 				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
@@ -91,7 +91,7 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 			if(found==0){
 				found++;
 				otherFaces.faceOne=ptr[it];
-				cout << "%%firstFind Edge B facePoint: " << vertexToString(otherFaces.faceOne.getCentroid())<<endl;
+				//cout << "%%firstFind Edge B facePoint: " << vertexToString(otherFaces.faceOne.getCentroid())<<endl;
 				//cout << "2aFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
 				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
 				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
@@ -100,7 +100,7 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 			{
 				found++;
 				otherFaces.faceTwo=ptr[it];
-				cout << "%%secondFind Edge B facePoint: " << vertexToString(otherFaces.faceTwo.getCentroid())<<endl;
+				//cout << "%%secondFind Edge B facePoint: " << vertexToString(otherFaces.faceTwo.getCentroid())<<endl;
 				//cout << "2bFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
 				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
 				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
@@ -117,14 +117,14 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 			if(found==0){
 				found++;
 				otherFaces.faceOne=ptr[it];
-				cout << "%%firstFind Edge C facePoint: " << vertexToString(otherFaces.faceOne.getCentroid())<<endl;
+				//cout << "%%firstFind Edge C facePoint: " << vertexToString(otherFaces.faceOne.getCentroid())<<endl;
 				//cout<<"yaaawwn! " <<endl;
 			}
 			else if (found==1)
 			{
 				found++;
 				otherFaces.faceTwo=ptr[it];
-				cout << "%%secondFind Edge C facePoint: " << vertexToString(otherFaces.faceTwo.getCentroid())<<endl;
+				//cout << "%%secondFind Edge C facePoint: " << vertexToString(otherFaces.faceTwo.getCentroid())<<endl;
 				//cout<<"yaaawwn!!!!! " <<endl;
 			}
 			else if (found==2)
@@ -135,7 +135,7 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 			}
 		}
 	}
-	cout<< "testing found\n";
+	//cout<< "testing found\n";
 	if (found!=2) cerr <<"finding faces problem!\n";
 	return otherFaces;
 }
@@ -215,10 +215,10 @@ GeometryOps::twoVert GeometryOps::multTwoVerts(Edge e,float factor){
 	return twoVertStruct;
 }
 
-bool GeometryOps::edgeContainsVertex(Edge e, Vertex v){
+bool GeometryOps::edgeContainsVertex(Edge e, Vertex * v){
 	bool doesContain=false;
-	if(compareVertices(*e.getVertexA(),v)) doesContain=true;
-	if(compareVertices(*e.getVertexB(),v)) doesContain=true;
+	if(compareVertices(*e.getVertexA(),*v)) doesContain=true;
+	if(compareVertices(*e.getVertexB(),*v)) doesContain=true;
 	return doesContain;
 }
 
@@ -237,8 +237,8 @@ Vertex GeometryOps::getEdgePoint(Edge* edg,Face*fptr,int i,Edge * eptr,int j){
 	Vertex edgePoint = Vertex();
 	GeometryOps::twoFace touchingFaces;
 	touchingFaces = getOtherFace(*edg,fptr,i);
-	cout << "\n ::pairs of faces::\n";
-	for(int k =0; k<j;k++)
+	//cout << "\n ::pairs of faces::\n";
+	/*for(int k =0; k<j;k++)
 	{
 		GeometryOps::twoFace meh;
 		meh = getOtherFace(eptr[k],fptr,i);
@@ -261,18 +261,18 @@ Vertex GeometryOps::getEdgePoint(Edge* edg,Face*fptr,int i,Edge * eptr,int j){
 		cout << k <<"th edge face 1 centroid: " << vertexToString(meh.faceOne.getCentroid())<<"\n";
 		cout << k <<"th edge face 2 centroid: " << vertexToString(meh.faceTwo.getCentroid())<<"\n";
 		}
-	}
+	}*/
 
-	cout<< "New EdgePoint: \t"<< vertexToString(*edg->getVertexA()) <<" + \n\t\t" << vertexToString(*edg->getVertexA()) << " + \n\t\t" <<
-			vertexToString(touchingFaces.faceOne.getCentroid()) << " + \n\t\t" << vertexToString(touchingFaces.faceTwo.getCentroid())<< "/4"<<endl;
+	/*cout<< "New EdgePoint: \t"<< vertexToString(*edg->getVertexA()) <<" + \n\t\t" << vertexToString(*edg->getVertexA()) << " + \n\t\t" <<
+			vertexToString(touchingFaces.faceOne.getCentroid()) << " + \n\t\t" << vertexToString(touchingFaces.faceTwo.getCentroid())<< "/4"<<endl;*/
 	//edgePoint=edg.getVertexA()+edg.getVertexB()+touchingFaces.faceOne.getCentroid()+touchingFaces.faceTwo.getCentroid();
 	edgePoint.add(*edg->getVertexA());
 	edgePoint.add(*edg->getVertexB());
 	edgePoint.add(touchingFaces.faceOne.getCentroid());
 	edgePoint.add(touchingFaces.faceTwo.getCentroid());
-	cout << "EdgePoint Added" << vertexToString(edgePoint)<<endl;
+	//cout << "EdgePoint Added" << vertexToString(edgePoint)<<endl;
 	edgePoint.div(4.0f);
-	cout << "Edgepoint: \t" << vertexToString(edgePoint)<<"\n"<<endl;
+	//cout << "Edgepoint: \t" << vertexToString(edgePoint)<<"\n"<<endl;
 	return edgePoint;
 }
 
@@ -336,7 +336,7 @@ GeometryOps::sixFace GeometryOps::getAdjacentFaces(Vertex v, Face*ptr, int i){
 	return adjFaces;
 }
 
-GeometryOps::eightEdge GeometryOps::getIncidentEdges(Vertex v, Edge*ptr, int iEdges){
+GeometryOps::eightEdge GeometryOps::getIncidentEdges(Vertex *v, Edge*ptr, int iEdges){
 	GeometryOps::eightEdge incEdges;
 	int found = 0;
 	for (int it=0;it<iEdges;it++)
@@ -400,7 +400,7 @@ Vertex GeometryOps::getQ(Vertex v, Face*ptr, int i){
 }
 
 Vertex GeometryOps::get2R(Vertex v, Edge*ptr, int i){
-	GeometryOps::eightEdge edges = getIncidentEdges(v,ptr,i);
+	GeometryOps::eightEdge edges = getIncidentEdges(&v,ptr,i);
 	Vertex newR;
 	if (edges.contains==2) newR = edges.edgeOne.getEdgeMidPoint()+edges.edgeTwo.getEdgeMidPoint();
 	if (edges.contains==3) newR = edges.edgeOne.getEdgeMidPoint()+edges.edgeTwo.getEdgeMidPoint()+edges.edgeThree.getEdgeMidPoint();
@@ -413,16 +413,16 @@ Vertex GeometryOps::get2R(Vertex v, Edge*ptr, int i){
 }
 
 Vertex GeometryOps::getSandStuff(Vertex v, Edge*ptr, int i){
-	GeometryOps::eightEdge edges = getIncidentEdges(v,ptr,i);
+	GeometryOps::eightEdge edges = getIncidentEdges(&v,ptr,i);
 	Vertex sAnd = v*(edges.contains-3);
 	return sAnd/edges.contains;
 }
 
-Vertex GeometryOps::generateNewVertexPoint(Vertex v, Face*facePtr, Edge*edgePtr, int faceSize, int edgeSize){
+Vertex GeometryOps::generateNewVertexPoint(Vertex * v, Face*facePtr, Edge*edgePtr, int faceSize, int edgeSize){
 	GeometryOps::eightEdge edges = getIncidentEdges(v,edgePtr,edgeSize);
-	Vertex jeden = getQ(v,facePtr,faceSize);
-	Vertex dwa = get2R(v,edgePtr,edgeSize);
-	Vertex trzy = getSandStuff(v,edgePtr,edgeSize);
+	Vertex jeden = getQ(*v,facePtr,faceSize);
+	Vertex dwa = get2R(*v,edgePtr,edgeSize);
+	Vertex trzy = getSandStuff(*v,edgePtr,edgeSize);
 	Vertex polishAverageOfVertices = (jeden+dwa+trzy)/edges.contains;
 	return polishAverageOfVertices;
 }

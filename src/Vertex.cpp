@@ -61,16 +61,16 @@ void Vertex::div(float val){
 }
 
 void Vertex::add(Vertex v){
-	cout << "Addition Test\n";
-	cout << "x:"<<x<<" + vx:"<<v.getX();
+	//cout << "Addition Test\n";
+	//cout << "x:"<<x<<" + vx:"<<v.getX();
 	x = x+v.getX();
-	cout << " = " << x<<endl;
-	cout << "y:"<<y<<" + vy:"<<v.getY();
+	//cout << " = " << x<<endl;
+	//cout << "y:"<<y<<" + vy:"<<v.getY();
 	y = y+v.getY();
-	cout << " = " << y<<endl;
-	cout << "z:"<<z<<" + vz:"<<v.getZ();
+	//cout << " = " << y<<endl;
+	//cout << "z:"<<z<<" + vz:"<<v.getZ();
 	z = z+v.getZ();
-	cout << " = " << z<<endl;
+	//cout << " = " << z<<endl;
 }
 
 Vertex Vertex::operator+(const Vertex &a) const

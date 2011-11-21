@@ -3,7 +3,7 @@
 // Author      : Mikey
 // Version     :
 // Copyright   : Experimental Code is Experimental, Steal and compile at your own risk
-// Description : Hello World in C++, Ansi-style
+// Description : Subdivision of a Unit Cube in C++, Ansi-style
 //============================================================================
 
 #include <GL/gl.h>
@@ -33,7 +33,7 @@ void display () {
 	// put the thing somewhere between the near and far clipping panes
 	glTranslatef(0.0f,0.0f,-100.0f);
 	// TODO: Drawing code goes here!!
-	// Don�t forget to swap the buffers
+	// Don't forget to swap the buffers
 	SetUpCube cube = SetUpCube();
 	Face = cube.getFaceArray();
 	**/
@@ -46,7 +46,7 @@ int main(int argc,char * * argv ) {
 	Uint32 height = 480 ;
 	Uint32 colour_depth = 16 ; // in bits
 	Uint32 delay = 1000/60; // in milliseconds
-	// Initialise SDL - when using C/C++ it � s common to have to
+	// Initialise SDL - when using C/C++ it's common to have to
 	// initialise libraries by calling a function with in them .
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO|SDL_INIT_TIMER) <0) {
 		cout << "Failed to initialise SDL: " << SDL_GetError ( ) << endl;

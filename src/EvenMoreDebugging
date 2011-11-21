@@ -1,0 +1,49 @@
+/** for(int i=0; i<sizeOfVertexArray; i++)
+	{
+		cout << "The vertex point for v" <<i <<" is: "<< gOps.vertexToString(gOps.generateNewVertexPoint(vertexArrayPtr[i],faceArrayPtr,edgeArrayPtr,sizeOfFaceArray,sizeOfEdgeArray))  << std::endl;
+	} **/
+
+	//for(int i=0;i<sizeOfEdgeArray;i++)
+	//{
+	//	Vertex temp= gOps.getEdgePoint(&edgeArrayPtr[i],faceArrayPtr,sizeOfFaceArray,edgeArrayPtr,sizeOfEdgeArray);
+	//	edgeArrayPtr[i].setEdgePoint(temp);
+	//}
+
+	//for(int i=0;i<sizeOfEdgeArray;i++)
+	//{
+	//	cout <<"***EdgePoint " << i << " = " << gOps.vertexToString(edgeArrayPtr[i].getEdgePoint())<<endl;
+	//}
+
+	/*cout<< "FaceCentroidList!\n";
+	for (int i=0; i<sizeOfFaceArray; i++)
+	{
+		cout << "face "<< i <<gOps.vertexToString(faceArrayPtr[i].getCentroid())<<"\n";
+	}*/
+
+	//for (int i=0; i<sizeOfEdgeArray; i++)
+	//	{
+	//		GeometryOps::twoFace yo = gOps.getOtherFace(edgeArrayPtr[i],faceArrayPtr,sizeOfFaceArray);
+	//		cout << "\n\n";
+	//		cout << "for edge " << i << "face 1 is: "<< gOps.printUniqueVertices(yo.faceOne)<<"\n";
+	//		cout << "for edge " << i << "face 2 is: "<< gOps.printUniqueVertices(yo.faceTwo)<<"\n";
+	//	}
+	
+	
+	
+		//Vertex EdgePointArray[18];
+	//for(int k=0;k<sizeOfEdgeArray;k++)
+	//{
+	//	Vertex temp= gOps.getEdgePoint(&edgeArrayPtr[k],faceArrayPtr,sizeOfFaceArray,edgeArrayPtr,sizeOfEdgeArray);
+	//	edgeArrayPtr[k].setEdgePoint(temp);
+	//	EdgePointArray[k] = temp;
+	//}
+
+		/*for (int i=0; i<18; i++)
+	{
+		cout<< "EdgePointArray"<<i<<": "<<gOps.vertexToString(EdgePointArray[i])<<"\n";
+	}*/
+
+	//cout << "Vertex v1 " << gOps.vertexToString(v1) << " + Vertex v2 " << gOps.vertexToString(v2)<<endl;
+	//cout << "with + = " << gOps.vertexToString((v1+v2))<<endl;
+	//(v1.add(v2));
+	//cout << "with add() = " << gOps.vertexToString(v1)<<endl;

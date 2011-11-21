@@ -72,7 +72,7 @@ public:
 	Vertex getEdgePoint(Edge* edg,Face*fptr,int iFaces,Edge * eptr,int j);
 	bool compareVertices(Vertex v1,Vertex v2);
 	twoFace getOtherFace(Edge e,Face*ptr,int iFaces);
-	eightEdge getIncidentEdges(Vertex v, Edge*ptr, int iEdges);
+	eightEdge getIncidentEdges(Vertex * v, Edge*ptr, int iEdges);
 	sixFace getAdjacentFaces(Vertex v, Face*ptr, int iFaces);
 	bool compareEdges(Edge* e1, Edge* e2);
 	std::string printUniqueVertices(Face f);
@@ -83,11 +83,11 @@ public:
 	twoVert multTwoVerts(Edge e,float factor);
 	Vertex multVert(Vertex v,float factor);
 	bool faceContainsVertex(Face f, Vertex v);
-	bool edgeContainsVertex(Edge e, Vertex v);
+	bool edgeContainsVertex(Edge e, Vertex * v);
 	Vertex getQ(Vertex v, Face*ptr, int i);
 	Vertex get2R(Vertex v, Edge*ptr, int i);
 	Vertex getSandStuff(Vertex v, Edge*ptr, int i);
-	Vertex generateNewVertexPoint(Vertex v, Face*facePtr, Edge*edgePtr, int faceSize, int edgeSize);
+	Vertex generateNewVertexPoint(Vertex * v, Face*facePtr, Edge*edgePtr, int faceSize, int edgeSize);
 	Vertex twoEdgesGetCommonVertex(Edge a, Edge b);
 	bool twoEdgesIsCommonVertex(Edge a, Edge b);
 	//int GeometryOps::matchIsFound(int found, twoFace twoFacestruct,);

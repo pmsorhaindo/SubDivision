@@ -15,6 +15,7 @@ using namespace std;
 
 SetUpCube::SetUpCube() {
 
+	cout<<"cube starts setting up!\n";
 	Vertex v1 = Vertex(-0.5f,-0.5f,0.5f);//Front anti clock wise bottom left to top left
 	Vertex v2 = Vertex(0.5f,-0.5f,0.5f);
 	Vertex v3 = Vertex(0.5f,0.5f,0.5f);
@@ -23,7 +24,7 @@ SetUpCube::SetUpCube() {
 	Vertex v6 = Vertex(0.5f,-0.5f,-0.5f);
 	Vertex v7 = Vertex(0.5f,0.5f,-0.5f);
 	Vertex v8 = Vertex(-0.5f,0.5f,-0.5f);
-
+	cout <<"Cube verts set\n";
 	Edge a = Edge(&v4,&v3); //top front
 	Edge b = Edge(&v3,&v7); //top right
 	Edge c = Edge(&v7,&v8); //top back
@@ -42,20 +43,21 @@ SetUpCube::SetUpCube() {
 	Edge p = Edge(&v5,&v7); // back middle
 	Edge q = Edge(&v4,&v5); // left middle
 	Edge r = Edge(&v3,&v6); // right middle
-
+	cout <<"Cube edges set\n";
 	//surface -> face
-	Face one = Face(c,reverseEdge(e),b); //top back g
-	Face two = Face(d,a,e); //top front g
-	Face three = Face(h,a,i); // front top g
-	Face four = Face(i,g,f); //front bottom g
-	Face five = Face(j,m,reverseEdge(g)); // bottom front g
-	Face six = Face(reverseEdge(m),l,k); //bottom back g
-	Face seven = Face(l,o,reverseEdge(p)); // back bottom g
-	Face eight = Face(n,p,c); //Back top
-	Face nine = Face(reverseEdge(d),n,reverseEdge(q)); // left top
-	Face ten = Face(q,reverseEdge(j),h); //left bottom
-	Face eleven = Face(reverseEdge(o),reverseEdge(r),b); // right top
-	Face twelve = Face(r,k,f); // right bottom
+	Face one = Face(&c,false,&e,true,&b,false); //top back g
+	Face two = Face(&d,false,&a,false,&e,false); //top front g
+	Face three = Face(&h,false,&a,false,&i,false); // front top g
+	Face four = Face(&i,false,&g,false,&f,false); //front bottom g
+	Face five = Face(&j,false,&m,false,&g,true); // bottom front g
+	Face six = Face(&m,true,&l,false,&k,false); //bottom back g
+	Face seven = Face(&l,false,&o,false,&p,true); // back bottom g
+	Face eight = Face(&n,false,&p,false,&c,false); //Back top
+	Face nine = Face(&d,true,&n,false,&q,true); // left top
+	Face ten = Face(&q,false,&j,true,&h,false); //left bottom
+	Face eleven = Face(&o,true,&r,true,&b,false); // right top
+	Face twelve = Face(&r,false,&k,false,&f,false); // right bottom
+	cout<< "cube Faces set up\n";
 
 	vertexArray[0] = v1;
 	vertexArray[1] = v2;
@@ -119,16 +121,30 @@ SetUpCube::SetUpCube() {
 		cout << "The vertex point for v" <<i <<" is: "<< gOps.vertexToString(gOps.generateNewVertexPoint(vertexArrayPtr[i],faceArrayPtr,edgeArrayPtr,sizeOfFaceArray,sizeOfEdgeArray))  << std::endl;
 	} **/
 
-	for(int i=0;i<sizeOfEdgeArray;i++)
+	//for(int i=0;i<sizeOfEdgeArray;i++)
+	//{
+	//	Vertex temp= gOps.getEdgePoint(&edgeArrayPtr[i],faceArrayPtr,sizeOfFaceArray,edgeArrayPtr,sizeOfEdgeArray);
+	//	edgeArrayPtr[i].setEdgePoint(temp);
+	//}
+
+	//for(int i=0;i<sizeOfEdgeArray;i++)
+	//{
+	//	cout <<"***EdgePoint " << i << " = " << gOps.vertexToString(edgeArrayPtr[i].getEdgePoint())<<endl;
+	//}
+
+	cout<< "FaceCentroidList!\n";
+	for (int i=0; i<sizeOfFaceArray; i++)
 	{
-		Vertex temp= gOps.getEdgePoint(&edgeArrayPtr[i],faceArrayPtr,sizeOfFaceArray);
-		edgeArrayPtr[i].setEdgePoint(temp);
+		cout << "face "<< i <<gOps.vertexToString(faceArrayPtr[i].getCentroid())<<"\n";
 	}
 
-	for(int i=0;i<sizeOfEdgeArray;i++)
-	{
-		cout <<"***EdgePoint " << i << " = " << gOps.vertexToString(edgeArrayPtr[i].getEdgePoint())<<endl;
-	}
+	//for (int i=0; i<sizeOfEdgeArray; i++)
+	//	{
+	//		GeometryOps::twoFace yo = gOps.getOtherFace(edgeArrayPtr[i],faceArrayPtr,sizeOfFaceArray);
+	//		cout << "\n\n";
+	//		cout << "for edge " << i << "face 1 is: "<< gOps.printUniqueVertices(yo.faceOne)<<"\n";
+	//		cout << "for edge " << i << "face 2 is: "<< gOps.printUniqueVertices(yo.faceTwo)<<"\n";
+	//	}
 
 	//MAKE NEW FACE EDGE VERTEX STRUCTURE¬!"!!!!!
 	//ok here we go..
@@ -141,7 +157,7 @@ SetUpCube::SetUpCube() {
 	Vertex EdgePointArray[18];
 	for(int k=0;k<sizeOfEdgeArray;k++)
 			{
-				Vertex temp= gOps.getEdgePoint(&edgeArrayPtr[k],faceArrayPtr,sizeOfFaceArray);
+				Vertex temp= gOps.getEdgePoint(&edgeArrayPtr[k],faceArrayPtr,sizeOfFaceArray,edgeArrayPtr,sizeOfEdgeArray);
 				edgeArrayPtr[k].setEdgePoint(temp);
 				EdgePointArray[k] = temp;
 			}
@@ -162,7 +178,7 @@ SetUpCube::SetUpCube() {
 
 		//faceArrayPtr[i].getEdgeA()->setEdgePoint(gOps.getEdgePoint(faceArrayPtr[i].getEdgeA(),faceArrayPtr,sizeOfFaceArray));
 		edgePointA = faceArrayPtr[i].getEdgeA()->getEdgePoint();
-		edgePointA = gOps.getEdgePoint(faceArrayPtr[i].getEdgeA(),faceArrayPtr,sizeOfFaceArray);
+		edgePointA = gOps.getEdgePoint(faceArrayPtr[i].getEdgeA(),faceArrayPtr,sizeOfFaceArray,edgeArrayPtr,sizeOfEdgeArray);
 		cout<<"filled with! " << gOps.vertexToString(edgePointA)<<endl;
 		if(!gOps.existsInNewVertexArray(edgePointA,newVertexArrayPtr,50))
 		{
@@ -171,7 +187,7 @@ SetUpCube::SetUpCube() {
 		}
 		else{cout<<"caught!\n";}
 		Vertex edgePointB;
-		faceArrayPtr[i].getEdgeB()->setEdgePoint(gOps.getEdgePoint(faceArrayPtr[i].getEdgeB(),faceArrayPtr,sizeOfFaceArray));
+		faceArrayPtr[i].getEdgeB()->setEdgePoint(gOps.getEdgePoint(faceArrayPtr[i].getEdgeB(),faceArrayPtr,sizeOfFaceArray,edgeArrayPtr,sizeOfEdgeArray));
 		edgePointB = faceArrayPtr[i].getEdgeB()->getEdgePoint();
 		//edgePointB = gOps.getEdgePoint(faceArrayPtr[i].getEdgeB(),faceArrayPtr,sizeOfFaceArray);
 		if(!gOps.existsInNewVertexArray(edgePointB,newVertexArrayPtr,50))
@@ -181,7 +197,7 @@ SetUpCube::SetUpCube() {
 		}
 		else{cout<<"caught!\n";}
 		Vertex edgePointC;
-		faceArrayPtr[i].getEdgeC()->setEdgePoint(gOps.getEdgePoint(faceArrayPtr[i].getEdgeC(),faceArrayPtr,sizeOfFaceArray));
+		faceArrayPtr[i].getEdgeC()->setEdgePoint(gOps.getEdgePoint(faceArrayPtr[i].getEdgeC(),faceArrayPtr,sizeOfFaceArray,edgeArrayPtr,sizeOfEdgeArray));
 		edgePointC = faceArrayPtr[i].getEdgeC()->getEdgePoint();
 		//edgePointC = gOps.getEdgePoint(faceArrayPtr[i].getEdgeC(),faceArrayPtr,sizeOfFaceArray);
 		if(!gOps.existsInNewVertexArray(edgePointC,newVertexArrayPtr,50))
@@ -198,18 +214,18 @@ SetUpCube::SetUpCube() {
 	cout << "face 1 attempt "<< newFaceArray[0].getEdgeA().getVertexA()->getX() <<endl;
 
 
-	for (int i =0; i<totalNewVerts; i++)
-	{
-		cout<< "New Shapes Vertex "<< i <<" "<< gOps.vertexToString(newVertexArray[i]) <<endl;
+	//for (int i =0; i<totalNewVerts; i++)
+	//{
+	//	cout<< "New Shapes Vertex "<< i <<" "<< gOps.vertexToString(newVertexArray[i]) <<endl;
 
-	}
+	//	}
 
 	cout <<"\n"<<endl;
 
-	for (int i=0; i<18; i++)
+	/*for (int i=0; i<18; i++)
 	{
 		cout<< "EdgePointArray"<<i<<": "<<gOps.vertexToString(EdgePointArray[i])<<"\n";
-	}
+	}*/
 
 	//cout << "Vertex v1 " << gOps.vertexToString(v1) << " + Vertex v2 " << gOps.vertexToString(v2)<<endl;
 	//cout << "with + = " << gOps.vertexToString((v1+v2))<<endl;

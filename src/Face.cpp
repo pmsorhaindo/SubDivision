@@ -14,22 +14,45 @@ Face::Face(){
 
 }
 
-Face::Face(Edge newa, Edge newb, Edge newc){
-	a=&newa;
-	b=&newb;
-	c=&newc;
+Face::Face(Edge * newa, Edge * newb, Edge * newc){
+	//cout << "inside Face\n";
+	a=newa;
+	//cout << "first Edge in face\n";
+	b=newb;
+	c=newc;
+	//cout <<"All edges set in Face\n";
 	setCentroid();
+	//cout << "centroid set\n";
 }
+
+Face::Face(Edge * newa, bool revAval, Edge * newb, bool revBval, Edge * newc, bool revCval){
+	//cout << "inside Face\n";
+	a=newa;
+	edgeAReversed = revAval;
+	//cout << "first Edge in face\n";
+	b=newb;
+	edgeBReversed = revBval;
+	c=newc;
+	edgeCReversed = revCval;
+	//cout <<"All edges set in Face\n";
+	setCentroid();
+	//cout << "centroid set\n";
+}
+
 
 Face::~Face() {
 	// TODO Auto-generated destructor stub
 }
 
 Edge* Face::getEdgeA(){
+	//cout << "getEdgeA\n";
+	//cout << a <<"\n";
 	return a;
 }
 
 Edge* Face::getEdgeB(){
+	//cout << "getEdgeB\n";
+	//cout << b << "\n";
 	return b;
 }
 
@@ -50,6 +73,11 @@ Vertex Face::calcCentroid(){
 }
 
 void Face::setCentroid(){
+	//cout << "in setCentroid\n";
+	//cout << "adding this" << this->getEdgeA()->getVertexA()->getX()<<"\n";
+	//cout << "this "<< this->getEdgeA()->getVertexB()->getX() <<"\n";
+	//cout << "oh noes\n";
+	//cout << "and this C "<< this->getEdgeC()->getVertexB()->getX() << "\n";
 	float a1 = this->getEdgeA()->getVertexA()->getX()+this->getEdgeA()->getVertexB()->getX()+this->getEdgeB()->getVertexB()->getX();
 	float b1 = this->getEdgeA()->getVertexA()->getY()+this->getEdgeA()->getVertexB()->getY()+this->getEdgeB()->getVertexB()->getY();
 	float c1 = this->getEdgeA()->getVertexA()->getZ()+this->getEdgeA()->getVertexB()->getZ()+this->getEdgeB()->getVertexB()->getZ();

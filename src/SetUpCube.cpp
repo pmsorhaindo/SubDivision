@@ -247,12 +247,75 @@ void SetUpCube::draw(){
 					glColor3f(0.0f,0.0f,1.0f); //Blue
 				}
 
-				glVertex3f(faceArray[i].getEdgeA()->getVertexA()->getX(),faceArray[i].getEdgeA()->getVertexA()->getY(),faceArray[i].getEdgeA()->getVertexA()->getZ()); //
-				glVertex3f(faceArray[i].getEdgeA()->getVertexB()->getX(),faceArray[i].getEdgeA()->getVertexB()->getY(),faceArray[i].getEdgeA()->getVertexB()->getZ());
-				glVertex3f(faceArray[i].getEdgeB()->getVertexB()->getX(),faceArray[i].getEdgeB()->getVertexB()->getY(),faceArray[i].getEdgeB()->getVertexB()->getZ());
+				/*//works
+				glVertex3f(0.5f,0.5f,-0.5f);
+				glVertex3f(-0.5f,0.5f,-0.5f);
+				glVertex3f(-0.5f,0.5f,-0.5f);
+
+				//***Face 1
+				glVertex3f(-0.5f,0.5f,-0.5f);
+				glVertex3f(-0.5f,0.5f,0.5f);
+				glVertex3f(0.5f,0.5f,0.5f);
+				//***Face 2
+				glVertex3f(0.5f,-0.5f,0.5f);
+				glVertex3f(-0.5f,0.5f,0.5f);
+				glVertex3f(0.5f,0.5f,0.5f);
+				//***Face 3
+				glVertex3f(0.5f,0.5f,0.5f);
+				glVertex3f(-0.5f,-0.5f,0.5f);
+				glVertex3f(0.5f,-0.5f,0.5f);
+				//***Face 4
+				glVertex3f(-0.5f,-0.5f,0.5f);
+				glVertex3f(-0.5f,-0.5f,-0.5f);
+				glVertex3f(0.5f,-0.5f,0.5f);
+				//***Face 5
+				glVertex3f(-0.5f,-0.5f,-0.5f);
+				glVertex3f(0.5f,-0.5f,0.5f);
+				glVertex3f(0.5f,-0.5f,-0.5f);
+				//***Face 6
+				glVertex3f(-0.5f,-0.5f,-0.5f);
+				glVertex3f(0.5f,-0.5f,-0.5f);
+				glVertex3f(0.5f,0.5f,-0.5f);
+				//***Face 7
+				glVertex3f(-0.5f,0.5f,-0.5f);
+				glVertex3f(-0.5f,-0.5f,-0.5f);
+				glVertex3f(0.5f,0.5f,-0.5f);
+				//***Face 8
+				glVertex3f(-0.5f,0.5f,-0.5f);
+				glVertex3f(-0.5f,0.5f,0.5f);
+				glVertex3f( -0.5f,-0.5f,-0.5f);
+				//***Face 9
+				glVertex3f(-0.5f,0.5f,0.5f);
+				glVertex3f(-0.5f,-0.5f,-0.5f);
+				glVertex3f(-0.5f,-0.5f,-0.5f);
+				//***Face 10
+				glVertex3f(0.5f,-0.5f,-0.5f);
+				glVertex3f(0.5f,0.5f,-0.5f);
+				glVertex3f(0.5f,-0.5f,-0.5f);
+				//***Face 11
+				glVertex3f(0.5f,0.5f,0.5f);
+				glVertex3f(0.5f,-0.5f,-0.5f);
+				glVertex3f(0.5f,-0.5f,0.5f);*/
+
+
+
+				//glVertex3f(faceArray[i].getEdgeA()->getVertexA()->getX(),faceArray[i].getEdgeA()->getVertexA()->getY(),faceArray[i].getEdgeA()->getVertexA()->getZ()); //
+				//glVertex3f(faceArray[i].getEdgeA()->getVertexB()->getX(),faceArray[i].getEdgeA()->getVertexB()->getY(),faceArray[i].getEdgeA()->getVertexB()->getZ());
+				//glVertex3f(faceArray[i].getEdgeB()->getVertexB()->getX(),faceArray[i].getEdgeB()->getVertexB()->getY(),faceArray[i].getEdgeB()->getVertexB()->getZ());
+
+				//fixed points -Crashes
+				//glVertex3f(faceArray[1].getEdgeA()->getVertexA()->getX(),faceArray[1].getEdgeA()->getVertexA()->getY(),faceArray[1].getEdgeA()->getVertexA()->getZ()); //
+				//glVertex3f(faceArray[1].getEdgeA()->getVertexB()->getX(),faceArray[1].getEdgeA()->getVertexB()->getY(),faceArray[1].getEdgeA()->getVertexB()->getZ());
+				//glVertex3f(faceArray[1].getEdgeB()->getVertexB()->getX(),faceArray[1].getEdgeB()->getVertexB()->getY(),faceArray[1].getEdgeB()->getVertexB()->getZ());
+
+				// no Z's
+				glVertex3f(0.0f,1.0f,0.0f); //
+				glVertex3f(faceArray[1].getEdgeA()->getVertexB()->getX(),faceArray[1].getEdgeA()->getVertexB()->getY(),0.0f);
+				glVertex3f(faceArray[1].getEdgeB()->getVertexB()->getX(),faceArray[1].getEdgeB()->getVertexB()->getY(),0.0f);
+
 
 				glEnd();
 			}
-		cout << "one draw?\n";
+		//cout << "one draw?\n";
 		rotAng += 0.2;
 }

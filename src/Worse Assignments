@@ -1,0 +1,168 @@
+	/*Vertex * v1 = new Vertex(-0.5f,-0.5f,0.5f);//Front anti clock wise bottom left to top left
+	Vertex * v2 = new Vertex(0.5f,-0.5f,0.5f);
+	Vertex * v3 = new Vertex(0.5f,0.5f,0.5f);
+	Vertex * v4 = new Vertex(-0.5f,0.5f,0.5f);
+	Vertex * v5 = new Vertex(-0.5f,-0.5f,-0.5f);//Back anti clockwise From bottom left to top left
+	Vertex * v6 = new Vertex(0.5f,-0.5f,-0.5f);
+	Vertex * v7 = new Vertex(0.5f,0.5f,-0.5f);
+	Vertex * v8 = new Vertex(-0.5f,0.5f,-0.5f);*/
+
+	cout <<"Cube verts set\n";
+
+	/*Edge * a = new Edge(&v4,&v3); //top front
+	Edge * b = new Edge(&v3,&v7); //top right
+	Edge * c = new Edge(&v7,&v8); //top back
+	Edge * d = new Edge(&v8,&v4); //top left
+	Edge * e = new Edge(&v3,&v8); //top middle
+	Edge * f = new Edge(&v2,&v3); //front right
+	Edge * g = new Edge(&v1,&v2); // front bottom
+	Edge * h = new Edge(&v1,&v4); //front left
+	Edge * i = new Edge(&v3,&v1); // front middle
+	Edge * j = new Edge(&v1,&v5); //bottom left
+	Edge * k = new Edge(&v6,&v2); //bottom right
+	Edge * l = new Edge(&v5,&v6); //bottom back
+	Edge * m = new Edge(&v5,&v2); // bottom middle
+	Edge * n = new Edge(&v8,&v5); // back left
+	Edge * o = new Edge(&v6,&v7); // back right
+	Edge * p = new Edge(&v5,&v7); // back middle
+	Edge * q = new Edge(&v4,&v5); // left middle
+	Edge * r = new Edge(&v3,&v6); // right middle*/
+	cout <<"Cube edges set\n";
+	//surface -> face
+	
+	
+	//print outs
+	
+	/*//works
+				glVertex3f(0.5f,0.5f,-0.5f);
+				glVertex3f(-0.5f,0.5f,-0.5f);
+				glVertex3f(-0.5f,0.5f,-0.5f);
+
+				//Face 1
+				glVertex3f(-0.5f,0.5f,-0.5f);
+				glVertex3f(-0.5f,0.5f,0.5f);
+				glVertex3f(0.5f,0.5f,0.5f);
+				//Face 2
+				glVertex3f(0.5f,-0.5f,0.5f);
+				glVertex3f(-0.5f,0.5f,0.5f);
+				glVertex3f(0.5f,0.5f,0.5f);
+				//Face 3
+				glVertex3f(0.5f,0.5f,0.5f);
+				glVertex3f(-0.5f,-0.5f,0.5f);
+				glVertex3f(0.5f,-0.5f,0.5f);
+				//Face 4
+				glVertex3f(-0.5f,-0.5f,0.5f);
+				glVertex3f(-0.5f,-0.5f,-0.5f);
+				glVertex3f(0.5f,-0.5f,0.5f);
+				//Face 5
+				glVertex3f(-0.5f,-0.5f,-0.5f);
+				glVertex3f(0.5f,-0.5f,0.5f);
+				glVertex3f(0.5f,-0.5f,-0.5f);
+				//Face 6
+				glVertex3f(-0.5f,-0.5f,-0.5f);
+				glVertex3f(0.5f,-0.5f,-0.5f);
+				glVertex3f(0.5f,0.5f,-0.5f);
+				//Face 7
+				glVertex3f(-0.5f,0.5f,-0.5f);
+				glVertex3f(-0.5f,-0.5f,-0.5f);
+				glVertex3f(0.5f,0.5f,-0.5f);
+				//Face 8
+				glVertex3f(-0.5f,0.5f,-0.5f);
+				glVertex3f(-0.5f,0.5f,0.5f);
+				glVertex3f( -0.5f,-0.5f,-0.5f);
+				//Face 9
+				glVertex3f(-0.5f,0.5f,0.5f);
+				glVertex3f(-0.5f,-0.5f,-0.5f);
+				glVertex3f(-0.5f,-0.5f,-0.5f);
+				//Face 10
+				glVertex3f(0.5f,-0.5f,-0.5f);
+				glVertex3f(0.5f,0.5f,-0.5f);
+				glVertex3f(0.5f,-0.5f,-0.5f);
+				//Face 11
+				glVertex3f(0.5f,0.5f,0.5f);
+				glVertex3f(0.5f,-0.5f,-0.5f);
+				glVertex3f(0.5f,-0.5f,0.5f);*/
+
+
+				//fixed points -Crashes
+				//glVertex3f(faceArray[1].getEdgeA()->getVertexA()->getX(),faceArray[1].getEdgeA()->getVertexA()->getY(),faceArray[1].getEdgeA()->getVertexA()->getZ()); //
+				//glVertex3f(faceArray[1].getEdgeA()->getVertexB()->getX(),faceArray[1].getEdgeA()->getVertexB()->getY(),faceArray[1].getEdgeA()->getVertexB()->getZ());
+				//glVertex3f(faceArray[1].getEdgeB()->getVertexB()->getX(),faceArray[1].getEdgeB()->getVertexB()->getY(),faceArray[1].getEdgeB()->getVertexB()->getZ());
+
+				/*Face * f = &faceArray[1];
+				Edge * eA = f->getEdgeA();
+				Edge * eB = f->getEdgeB();
+				Vertex * v1 = eA->getVertexA();
+				Vertex * v2 = eA->getVertexB();
+				Vertex * v3 = eB->getVertexB();
+
+				glVertex3f(v1->getX(),v1->getY(),v1->getZ());
+				glVertex3f(v2->getX(),v2->getY(),v2->getZ());
+				glVertex3f(v3->getX(),v3->getY(),v3->getZ());*/
+
+
+
+				// no Z's
+				//glVertex3f(faceArray[1].getEdgeA()->getVertexA()->getX(),faceArray[1].getEdgeA()->getVertexA()->getY(),faceArray[1].getEdgeA()->getVertexA()->getZ());
+				//glVertex3f(faceArray[1].getEdgeA()->getVertexB()->getX(),faceArray[1].getEdgeA()->getVertexB()->getY(),faceArray[1].getEdgeA()->getVertexB()->getZ());
+				//glVertex3f(faceArray[1].getEdgeB()->getVertexB()->getX(),faceArray[1].getEdgeB()->getVertexB()->getY(),faceArray[1].getEdgeB()->getVertexB()->getZ());
+
+	
+	
+	vertexArray[1] = v2;
+	vertexArray[2] = v3;
+	vertexArray[3] = v4;
+	vertexArray[4] = v5;
+	vertexArray[5] = v6;
+	vertexArray[6] = v7;
+	vertexArray[7] = v8;
+
+	edgeArray[0] = a;
+	edgeArray[1] = b;
+	edgeArray[2] = c;
+	edgeArray[3] = d;
+	edgeArray[4] = e;
+	edgeArray[5] = f;
+	edgeArray[6] = g;
+	edgeArray[7] = h;
+	edgeArray[8] = i;
+	edgeArray[9] = j;
+	edgeArray[10] = k;
+	edgeArray[11] = l;
+	edgeArray[12] = m;
+	edgeArray[13] = n;
+	edgeArray[14] = o;
+	edgeArray[15] = p;
+	edgeArray[16] = q;
+	edgeArray[17] = r;
+	
+	faceArray[0] = one;
+	faceArray[1] = two;
+	faceArray[2] = three;
+	faceArray[3] = four;
+	faceArray[4] = five;
+	faceArray[5] = six;
+	faceArray[6] = seven;
+	faceArray[7] = eight;
+	faceArray[8] = nine;
+	faceArray[9] = ten;
+	faceArray[10] = eleven;
+	faceArray[11] = twelve;
+	
+	int sizeOfEdgeArray = 18;
+	int sizeOfVertexArray = 8;
+	int sizeOfFaceArray = 12;
+
+	/*Face * one = new Face(&c,false,&e,true,&b,false); //top back g
+	Face * two = new Face(&d,false,&a,false,&e,false); //top front g
+	Face * three = new Face(&h,false,&a,false,&i,false); // front top g
+	Face * four = new Face(&i,false,&g,false,&f,false); //front bottom g
+	Face * five = new Face(&j,false,&m,false,&g,true); // bottom front g
+	Face * six = new Face(&m,true,&l,false,&k,false); //bottom back g
+	Face * seven = new Face(&l,false,&o,false,&p,true); // back bottom g
+	Face * eight = new Face(&n,false,&p,false,&c,false); //Back top
+	Face * nine = new Face(&d,true,&n,false,&q,true); // left top
+	Face * ten = new Face(&q,false,&j,true,&h,false); //left bottom
+	Face * eleven = new Face(&o,true,&r,true,&b,false); // right top
+	Face * twelve = new Face(&r,false,&k,false,&f,false); // right bottom */
+	

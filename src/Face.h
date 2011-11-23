@@ -32,6 +32,9 @@ public:
 	Vertex calcCentroid();
 	void setCentroid();
 	Vertex getCentroid();
+	bool getEdgeADirection();
+	bool getEdgeBDirection();
+	bool getEdgeCDirection();
 };
 
 #endif /* FACE_H_ */

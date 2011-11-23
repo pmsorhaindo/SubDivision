@@ -16,92 +16,55 @@ using namespace std;
 SetUpCube::SetUpCube() {
 
 	cout<<"cube starts setting up!\n";
-	Vertex v1 = Vertex(-0.5f,-0.5f,0.5f);//Front anti clock wise bottom left to top left
-	Vertex v2 = Vertex(0.5f,-0.5f,0.5f);
-	Vertex v3 = Vertex(0.5f,0.5f,0.5f);
-	Vertex v4 = Vertex(-0.5f,0.5f,0.5f);
-	Vertex v5 = Vertex(-0.5f,-0.5f,-0.5f);//Back anti clockwise From bottom left to top left
-	Vertex v6 = Vertex(0.5f,-0.5f,-0.5f);
-	Vertex v7 = Vertex(0.5f,0.5f,-0.5f);
-	Vertex v8 = Vertex(-0.5f,0.5f,-0.5f);
-	cout <<"Cube verts set\n";
-	Edge a = Edge(&v4,&v3); //top front
-	Edge b = Edge(&v3,&v7); //top right
-	Edge c = Edge(&v7,&v8); //top back
-	Edge d = Edge(&v8,&v4); //top left
-	Edge e = Edge(&v3,&v8); //top middle
-	Edge f = Edge(&v2,&v3); //front right
-	Edge g = Edge(&v1,&v2); // front bottom
-	Edge h = Edge(&v1,&v4); //front left
-	Edge i = Edge(&v3,&v1); // front middle
-	Edge j = Edge(&v1,&v5); //bottom left
-	Edge k = Edge(&v6,&v2); //bottom right
-	Edge l = Edge(&v5,&v6); //bottom back
-	Edge m = Edge(&v5,&v2); // bottom middle
-	Edge n = Edge(&v8,&v5); // back left
-	Edge o = Edge(&v6,&v7); // back right
-	Edge p = Edge(&v5,&v7); // back middle
-	Edge q = Edge(&v4,&v5); // left middle
-	Edge r = Edge(&v3,&v6); // right middle
-	cout <<"Cube edges set\n";
-	//surface -> face
-	Face one = Face(&c,false,&e,true,&b,false); //top back g
-	Face two = Face(&d,false,&a,false,&e,false); //top front g
-	Face three = Face(&h,false,&a,false,&i,false); // front top g
-	Face four = Face(&i,false,&g,false,&f,false); //front bottom g
-	Face five = Face(&j,false,&m,false,&g,true); // bottom front g
-	Face six = Face(&m,true,&l,false,&k,false); //bottom back g
-	Face seven = Face(&l,false,&o,false,&p,true); // back bottom g
-	Face eight = Face(&n,false,&p,false,&c,false); //Back top
-	Face nine = Face(&d,true,&n,false,&q,true); // left top
-	Face ten = Face(&q,false,&j,true,&h,false); //left bottom
-	Face eleven = Face(&o,true,&r,true,&b,false); // right top
-	Face twelve = Face(&r,false,&k,false,&f,false); // right bottom
+
+	vertexArray[0] = Vertex(-0.5f,-0.5f,0.5f);
+	vertexArray[1] = Vertex(0.5f,-0.5f,0.5f);
+	vertexArray[2] = Vertex(0.5f,0.5f,0.5f);
+	vertexArray[3] = Vertex(-0.5f,0.5f,0.5f);
+	vertexArray[4] = Vertex(-0.5f,-0.5f,-0.5f);
+	vertexArray[5] = Vertex(0.5f,-0.5f,-0.5f);
+	vertexArray[6] = Vertex(0.5f,0.5f,-0.5f);
+	vertexArray[7] = Vertex(-0.5f,0.5f,-0.5f);
+	cout<< "cube Vertices set up\n";
+
+	edgeArray[0] = Edge(&vertexArray[3],&vertexArray[2]); //top front a 1
+	edgeArray[1] = Edge(&vertexArray[2],&vertexArray[6]); //top front b 2
+	edgeArray[2] = Edge(&vertexArray[6],&vertexArray[7]); //top front c 3
+	edgeArray[3] = Edge(&vertexArray[7],&vertexArray[3]); //top front d 4
+	edgeArray[4] = Edge(&vertexArray[2],&vertexArray[7]); //top front e 5
+	edgeArray[5] = Edge(&vertexArray[1],&vertexArray[2]); //top front f 6
+	edgeArray[6] = Edge(&vertexArray[0],&vertexArray[1]); //top front g 7
+	edgeArray[7] = Edge(&vertexArray[0],&vertexArray[3]); //top front h 8
+	edgeArray[8] = Edge(&vertexArray[2],&vertexArray[0]); //top front i 9
+	edgeArray[9] = Edge(&vertexArray[0],&vertexArray[4]); //top front j 10
+	edgeArray[10] = Edge(&vertexArray[5],&vertexArray[1]); //top front k 11
+	edgeArray[11] = Edge(&vertexArray[4],&vertexArray[5]); //top front l 12
+	edgeArray[12] = Edge(&vertexArray[4],&vertexArray[1]); //top front m 13
+	edgeArray[13] = Edge(&vertexArray[7],&vertexArray[4]); //top front n 14
+	edgeArray[14] = Edge(&vertexArray[5],&vertexArray[6]); //top front o 15
+	edgeArray[15] = Edge(&vertexArray[4],&vertexArray[6]); //top front p 16
+	edgeArray[16] = Edge(&vertexArray[3],&vertexArray[4]); //top front q 17
+	edgeArray[17] = Edge(&vertexArray[2],&vertexArray[5]); //top front r 18
+	cout<< "cube Edges set up\n";
+
+	faceArray[0] = Face(&edgeArray[2],false,&edgeArray[4],true,&edgeArray[1],false); //top back g
+	faceArray[1] = Face(&edgeArray[3],false,&edgeArray[0],false,&edgeArray[4],false); //top front g
+	faceArray[2] = Face(&edgeArray[7],false,&edgeArray[0],false,&edgeArray[8],false); // front top g
+	faceArray[3] = Face(&edgeArray[8],false,&edgeArray[6],false,&edgeArray[5],false); //front bottom g
+	faceArray[4] = Face(&edgeArray[9],false,&edgeArray[12],false,&edgeArray[6],true); // bottom front g
+	faceArray[5] = Face(&edgeArray[12],true,&edgeArray[11],false,&edgeArray[10],false); //bottom back g
+	faceArray[6] = Face(&edgeArray[11],false,&edgeArray[14],false,&edgeArray[15],true); // back bottom g
+	faceArray[7] = Face(&edgeArray[13],false,&edgeArray[15],false,&edgeArray[2],false); //Back top
+	faceArray[8] = Face(&edgeArray[3],true,&edgeArray[13],false,&edgeArray[16],true); // left top
+	faceArray[9] = Face(&edgeArray[16],false,&edgeArray[9],true,&edgeArray[7],false); //left bottom
+	faceArray[10] = Face(&edgeArray[14],true,&edgeArray[17],true,&edgeArray[1],false); // right top
+	faceArray[11] = Face(&edgeArray[17],false,&edgeArray[10],false,&edgeArray[5],false); // right bottom
 	cout<< "cube Faces set up\n";
 
-	vertexArray[0] = v1;
-	vertexArray[1] = v2;
-	vertexArray[2] = v3;
-	vertexArray[3] = v4;
-	vertexArray[4] = v5;
-	vertexArray[5] = v6;
-	vertexArray[6] = v7;
-	vertexArray[7] = v8;
+	int sizeOfEdgeArray = 18;
 	int sizeOfVertexArray = 8;
-
-	faceArray[0] = one;
-	faceArray[1] = two;
-	faceArray[2] = three;
-	faceArray[3] = four;
-	faceArray[4] = five;
-	faceArray[5] = six;
-	faceArray[6] = seven;
-	faceArray[7] = eight;
-	faceArray[8] = nine;
-	faceArray[9] = ten;
-	faceArray[10] = eleven;
-	faceArray[11] = twelve;
 	int sizeOfFaceArray = 12;
 
-	edgeArray[0] = a;
-	edgeArray[1] = b;
-	edgeArray[2] = c;
-	edgeArray[3] = d;
-	edgeArray[4] = e;
-	edgeArray[5] = f;
-	edgeArray[6] = g;
-	edgeArray[7] = h;
-	edgeArray[8] = i;
-	edgeArray[9] = j;
-	edgeArray[10] = k;
-	edgeArray[11] = l;
-	edgeArray[12] = m;
-	edgeArray[13] = n;
-	edgeArray[14] = o;
-	edgeArray[15] = p;
-	edgeArray[16] = q;
-	edgeArray[17] = r;
-	int sizeOfEdgeArray = 18;
 
 	//angle variable to rotate the cube.
 	rotAng = 0.0f;
@@ -118,8 +81,8 @@ SetUpCube::SetUpCube() {
 
 	//MAKE NEW FACE EDGE VERTEX STRUCTURE¬!"!!!!!
 	//ok here we go..
-	QFace newFaceArray[50];// this is bad will link lists fix this?! faces will always be 4*more
-	Edge newEdgeArray[50]; //
+	//QFace newFaceArray[50];// this is bad will link lists fix this?! faces will always be 4*more
+	//Edge newEdgeArray[50]; //
 	Vertex newVertexArray[50];
 	Vertex *newVertexArrayPtr = newVertexArray;
 
@@ -135,27 +98,24 @@ SetUpCube::SetUpCube() {
 		totalNewVerts++;
 
 		Vertex edgePointA = Vertex(1.0f,2.0f,3.0f);
-		//cout<<"filled?\n";
-
-		//faceArrayPtr[i].getEdgeA()->setEdgePoint(gOps.getEdgePoint(faceArrayPtr[i].getEdgeA(),faceArrayPtr,sizeOfFaceArray));
 		edgePointA = faceArrayPtr[i].getEdgeA()->getEdgePoint();
 		edgePointA = gOps.getEdgePoint(faceArrayPtr[i].getEdgeA(),faceArrayPtr,sizeOfFaceArray,edgeArrayPtr,sizeOfEdgeArray);
-		//cout<<"filled with! " << gOps.vertexToString(edgePointA)<<endl;
+
 		if(!gOps.existsInNewVertexArray(edgePointA,newVertexArrayPtr,50))
 		{
 			newVertexArray[totalNewVerts] = edgePointA;
 			totalNewVerts++;
 		}
-		//else{cout<<"caught!\n";}
+
 		Vertex edgePointB;
 		faceArrayPtr[i].getEdgeB()->setEdgePoint(gOps.getEdgePoint(faceArrayPtr[i].getEdgeB(),faceArrayPtr,sizeOfFaceArray,edgeArrayPtr,sizeOfEdgeArray));
 		edgePointB = faceArrayPtr[i].getEdgeB()->getEdgePoint();
-		//edgePointB = gOps.getEdgePoint(faceArrayPtr[i].getEdgeB(),faceArrayPtr,sizeOfFaceArray);
 		if(!gOps.existsInNewVertexArray(edgePointB,newVertexArrayPtr,50))
 		{
 			newVertexArray[totalNewVerts] = edgePointB;
 			totalNewVerts++;
 		}
+
 		//else{cout<<"caught!\n";}
 		Vertex edgePointC;
 		faceArrayPtr[i].getEdgeC()->setEdgePoint(gOps.getEdgePoint(faceArrayPtr[i].getEdgeC(),faceArrayPtr,sizeOfFaceArray,edgeArrayPtr,sizeOfEdgeArray));
@@ -196,7 +156,6 @@ SetUpCube::SetUpCube() {
 	for (int i =0; i<totalNewVerts; i++)
 	{
 		cout<< "New Shapes Vertex "<< i <<" "<< gOps.vertexToString(newVertexArray[i]) <<endl;
-
 	}
 
 	cout <<"\n"<<endl;
@@ -247,72 +206,19 @@ void SetUpCube::draw(){
 					glColor3f(0.0f,0.0f,1.0f); //Blue
 				}
 
-				/*//works
-				glVertex3f(0.5f,0.5f,-0.5f);
-				glVertex3f(-0.5f,0.5f,-0.5f);
-				glVertex3f(-0.5f,0.5f,-0.5f);
-
-				//***Face 1
-				glVertex3f(-0.5f,0.5f,-0.5f);
-				glVertex3f(-0.5f,0.5f,0.5f);
-				glVertex3f(0.5f,0.5f,0.5f);
-				//***Face 2
-				glVertex3f(0.5f,-0.5f,0.5f);
-				glVertex3f(-0.5f,0.5f,0.5f);
-				glVertex3f(0.5f,0.5f,0.5f);
-				//***Face 3
-				glVertex3f(0.5f,0.5f,0.5f);
-				glVertex3f(-0.5f,-0.5f,0.5f);
-				glVertex3f(0.5f,-0.5f,0.5f);
-				//***Face 4
-				glVertex3f(-0.5f,-0.5f,0.5f);
-				glVertex3f(-0.5f,-0.5f,-0.5f);
-				glVertex3f(0.5f,-0.5f,0.5f);
-				//***Face 5
-				glVertex3f(-0.5f,-0.5f,-0.5f);
-				glVertex3f(0.5f,-0.5f,0.5f);
-				glVertex3f(0.5f,-0.5f,-0.5f);
-				//***Face 6
-				glVertex3f(-0.5f,-0.5f,-0.5f);
-				glVertex3f(0.5f,-0.5f,-0.5f);
-				glVertex3f(0.5f,0.5f,-0.5f);
-				//***Face 7
-				glVertex3f(-0.5f,0.5f,-0.5f);
-				glVertex3f(-0.5f,-0.5f,-0.5f);
-				glVertex3f(0.5f,0.5f,-0.5f);
-				//***Face 8
-				glVertex3f(-0.5f,0.5f,-0.5f);
-				glVertex3f(-0.5f,0.5f,0.5f);
-				glVertex3f( -0.5f,-0.5f,-0.5f);
-				//***Face 9
-				glVertex3f(-0.5f,0.5f,0.5f);
-				glVertex3f(-0.5f,-0.5f,-0.5f);
-				glVertex3f(-0.5f,-0.5f,-0.5f);
-				//***Face 10
-				glVertex3f(0.5f,-0.5f,-0.5f);
-				glVertex3f(0.5f,0.5f,-0.5f);
-				glVertex3f(0.5f,-0.5f,-0.5f);
-				//***Face 11
-				glVertex3f(0.5f,0.5f,0.5f);
-				glVertex3f(0.5f,-0.5f,-0.5f);
-				glVertex3f(0.5f,-0.5f,0.5f);*/
+				if(faceArray[i].getEdgeADirection())
+				{
+					glVertex3f(faceArray[i].getEdgeA()->getVertexB()->getX(),faceArray[i].getEdgeA()->getVertexB()->getY(),faceArray[i].getEdgeA()->getVertexB()->getZ());
+					glVertex3f(faceArray[i].getEdgeA()->getVertexA()->getX(),faceArray[i].getEdgeA()->getVertexA()->getY(),faceArray[i].getEdgeA()->getVertexA()->getZ()); //
+				}
+				else
+				{
+					glVertex3f(faceArray[i].getEdgeA()->getVertexA()->getX(),faceArray[i].getEdgeA()->getVertexA()->getY(),faceArray[i].getEdgeA()->getVertexA()->getZ());
+					glVertex3f(faceArray[i].getEdgeA()->getVertexB()->getX(),faceArray[i].getEdgeA()->getVertexB()->getY(),faceArray[i].getEdgeA()->getVertexB()->getZ());
+				}
 
 
-
-				//glVertex3f(faceArray[i].getEdgeA()->getVertexA()->getX(),faceArray[i].getEdgeA()->getVertexA()->getY(),faceArray[i].getEdgeA()->getVertexA()->getZ()); //
-				//glVertex3f(faceArray[i].getEdgeA()->getVertexB()->getX(),faceArray[i].getEdgeA()->getVertexB()->getY(),faceArray[i].getEdgeA()->getVertexB()->getZ());
-				//glVertex3f(faceArray[i].getEdgeB()->getVertexB()->getX(),faceArray[i].getEdgeB()->getVertexB()->getY(),faceArray[i].getEdgeB()->getVertexB()->getZ());
-
-				//fixed points -Crashes
-				//glVertex3f(faceArray[1].getEdgeA()->getVertexA()->getX(),faceArray[1].getEdgeA()->getVertexA()->getY(),faceArray[1].getEdgeA()->getVertexA()->getZ()); //
-				//glVertex3f(faceArray[1].getEdgeA()->getVertexB()->getX(),faceArray[1].getEdgeA()->getVertexB()->getY(),faceArray[1].getEdgeA()->getVertexB()->getZ());
-				//glVertex3f(faceArray[1].getEdgeB()->getVertexB()->getX(),faceArray[1].getEdgeB()->getVertexB()->getY(),faceArray[1].getEdgeB()->getVertexB()->getZ());
-
-				// no Z's
-				glVertex3f(0.0f,1.0f,0.0f); //
-				glVertex3f(faceArray[1].getEdgeA()->getVertexB()->getX(),faceArray[1].getEdgeA()->getVertexB()->getY(),0.0f);
-				glVertex3f(faceArray[1].getEdgeB()->getVertexB()->getX(),faceArray[1].getEdgeB()->getVertexB()->getY(),0.0f);
-
+				glVertex3f(faceArray[i].getEdgeB()->getVertexB()->getX(),faceArray[i].getEdgeB()->getVertexB()->getY(),faceArray[i].getEdgeB()->getVertexB()->getZ());
 
 				glEnd();
 			}

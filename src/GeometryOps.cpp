@@ -59,25 +59,16 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 	int found=0;
 	for (int it=0;it<i;it++)
 	{
-		//cout << ptr[it].getCentroid().getX() <<endl;
 		if(compareEdges(ptr[it].getEdgeA(),&e))
 		{
 			if(found==0){
 				found++;
 				otherFaces.faceOne=ptr[it];
-				//cout << "%%firstFind Edge A facePoint: " << vertexToString(otherFaces.faceOne.getCentroid())<<endl;
-				//cout << "1aFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
-				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
-				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
 			}
 			else if (found==1)
 			{
 				found++;
 				otherFaces.faceTwo=ptr[it];
-				//cout << "%%secondFind Edge A facePoint: " << vertexToString(otherFaces.faceTwo.getCentroid())<<endl;
-				//cout << "1bFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
-				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
-				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
 			}
 			else if (found==2)
 			{
@@ -91,19 +82,12 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 			if(found==0){
 				found++;
 				otherFaces.faceOne=ptr[it];
-				//cout << "%%firstFind Edge B facePoint: " << vertexToString(otherFaces.faceOne.getCentroid())<<endl;
-				//cout << "2aFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
-				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
-				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
 			}
 			else if (found==1)
 			{
 				found++;
 				otherFaces.faceTwo=ptr[it];
-				//cout << "%%secondFind Edge B facePoint: " << vertexToString(otherFaces.faceTwo.getCentroid())<<endl;
-				//cout << "2bFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
-				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
-				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
+
 			}
 			else if (found==2)
 			{
@@ -117,15 +101,11 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 			if(found==0){
 				found++;
 				otherFaces.faceOne=ptr[it];
-				//cout << "%%firstFind Edge C facePoint: " << vertexToString(otherFaces.faceOne.getCentroid())<<endl;
-				//cout<<"yaaawwn! " <<endl;
 			}
 			else if (found==1)
 			{
 				found++;
 				otherFaces.faceTwo=ptr[it];
-				//cout << "%%secondFind Edge C facePoint: " << vertexToString(otherFaces.faceTwo.getCentroid())<<endl;
-				//cout<<"yaaawwn!!!!! " <<endl;
 			}
 			else if (found==2)
 			{
@@ -135,7 +115,6 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 			}
 		}
 	}
-	//cout<< "testing found\n";
 	if (found!=2) cerr <<"finding faces problem!\n";
 	return otherFaces;
 }
@@ -237,35 +216,7 @@ Vertex GeometryOps::getEdgePoint(Edge* edg,Face*fptr,int i,Edge * eptr,int j){
 	Vertex edgePoint = Vertex();
 	GeometryOps::twoFace touchingFaces;
 	touchingFaces = getOtherFace(*edg,fptr,i);
-	//cout << "\n ::pairs of faces::\n";
-	/*for(int k =0; k<j;k++)
-	{
-		GeometryOps::twoFace meh;
-		meh = getOtherFace(eptr[k],fptr,i);
-		if (k == 1)
-		{
-			cout << k <<"st edge face 1 centroid: " << vertexToString(meh.faceOne.getCentroid())<<"\n";
-			cout << k <<"st edge face 2 centroid: " << vertexToString(meh.faceTwo.getCentroid())<<"\n";
-		}
-		else if (k==2)
-		{
-			cout << k <<"nd edge face 1 centroid: " << vertexToString(meh.faceOne.getCentroid())<<"\n";
-			cout << k <<"nd edge face 2 centroid: " << vertexToString(meh.faceTwo.getCentroid())<<"\n";
-		}
-		else if (k==3)
-		{
-			cout << k <<"rd edge face 1 centroid: " << vertexToString(meh.faceOne.getCentroid())<<"\n";
-			cout << k <<"rd edge face 2 centroid: " << vertexToString(meh.faceTwo.getCentroid())<<"\n";
-		}
-		else{
-		cout << k <<"th edge face 1 centroid: " << vertexToString(meh.faceOne.getCentroid())<<"\n";
-		cout << k <<"th edge face 2 centroid: " << vertexToString(meh.faceTwo.getCentroid())<<"\n";
-		}
-	}*/
 
-	/*cout<< "New EdgePoint: \t"<< vertexToString(*edg->getVertexA()) <<" + \n\t\t" << vertexToString(*edg->getVertexA()) << " + \n\t\t" <<
-			vertexToString(touchingFaces.faceOne.getCentroid()) << " + \n\t\t" << vertexToString(touchingFaces.faceTwo.getCentroid())<< "/4"<<endl;*/
-	//edgePoint=edg.getVertexA()+edg.getVertexB()+touchingFaces.faceOne.getCentroid()+touchingFaces.faceTwo.getCentroid();
 	edgePoint.add(*edg->getVertexA());
 	edgePoint.add(*edg->getVertexB());
 	edgePoint.add(touchingFaces.faceOne.getCentroid());

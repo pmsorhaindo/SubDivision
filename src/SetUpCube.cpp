@@ -12,7 +12,7 @@
 #include <iostream>
 
 using namespace std;
-
+//TODO Rename from SetupCube?
 SetUpCube::SetUpCube() {
 
 	cout<<"cube starts setting up!\n";
@@ -70,11 +70,11 @@ SetUpCube::SetUpCube() {
 	rotAng = 0.0f;
 
 	//assign pointers to arrays
-	Vertex * vertexArrayPtr;
+	//Vertex * vertexArrayPtr;
 	vertexArrayPtr = vertexArray;
-	Face * faceArrayPtr;
+	//Face * faceArrayPtr;
 	faceArrayPtr = faceArray;
-	Edge * edgeArrayPtr;
+	//Edge * edgeArrayPtr;
 	edgeArrayPtr = edgeArray;
 
 	GeometryOps gOps = GeometryOps();
@@ -122,6 +122,16 @@ SetUpCube::SetUpCube() {
 			totalNewVerts++;
 		}
 
+		Vertex newV1 = gOps.generateNewVertexPoint(faceArrayPtr[i].getEdgeA()->getVertexB(),faceArrayPtr,edgeArrayPtr,sizeOfFaceArray,sizeOfEdgeArray);
+				 if(!gOps.existsInNewVertexArray(newV1,newVertexArrayPtr,50))
+				 {
+					 newVertexArray[totalNewVerts] = newV1;
+					 totalNewVerts++;
+				 }
+
+		//Edge newE1 = Edge(edgePointA,newV1);
+
+
 		Vertex edgePointB;
 		faceArrayPtr[i].getEdgeB()->setEdgePoint(gOps.getEdgePoint(faceArrayPtr[i].getEdgeB(),faceArrayPtr,sizeOfFaceArray,edgeArrayPtr,sizeOfEdgeArray));
 		edgePointB = faceArrayPtr[i].getEdgeB()->getEdgePoint();
@@ -141,18 +151,13 @@ SetUpCube::SetUpCube() {
 			newVertexArray[totalNewVerts] = edgePointC;
 			totalNewVerts++;
 		}
-		 Vertex newV1 = gOps.generateNewVertexPoint(faceArrayPtr[i].getEdgeA()->getVertexA(),faceArrayPtr,edgeArrayPtr,sizeOfFaceArray,sizeOfEdgeArray);
-		 if(!gOps.existsInNewVertexArray(newV1,newVertexArrayPtr,50))
-		 {
-			 newVertexArray[totalNewVerts] = newV1;
-			 totalNewVerts++;
-		 }
-		 Vertex newV2 = gOps.generateNewVertexPoint(faceArrayPtr[i].getEdgeA()->getVertexB(),faceArrayPtr,edgeArrayPtr,sizeOfFaceArray,sizeOfEdgeArray);
+		 Vertex newV2 = gOps.generateNewVertexPoint(faceArrayPtr[i].getEdgeA()->getVertexA(),faceArrayPtr,edgeArrayPtr,sizeOfFaceArray,sizeOfEdgeArray);
 		 if(!gOps.existsInNewVertexArray(newV2,newVertexArrayPtr,50))
 		 {
 			 newVertexArray[totalNewVerts] = newV2;
 			 totalNewVerts++;
 		 }
+
 		 Vertex newV3 = gOps.generateNewVertexPoint(faceArrayPtr[i].getEdgeB()->getVertexA(),faceArrayPtr,edgeArrayPtr,sizeOfFaceArray,sizeOfEdgeArray);
 		 if(!gOps.existsInNewVertexArray(newV3,newVertexArrayPtr,50))
 		 {

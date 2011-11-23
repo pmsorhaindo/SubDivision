@@ -12,10 +12,12 @@ Catmull::Catmull() {
 
 }
 
-Catmull::Catmull(Vertex * vArray, Edge * eArray, Face * fArray){
-	SetUpCube unitCube  = SetUpCube();
-	unitCube.getFaceArray();
+Catmull::Catmull(int v, int e, int f){
 	//TODO split setUpCube!
+	Face faceArray[f];
+	Edge edgeArray[e];
+	Vertex vertexArray[v];
+
 }
 
 Catmull::~Catmull() {

@@ -20,6 +20,9 @@ private:
 	Edge edgeArray[18];
 	Vertex vertexArray[8];
 	float rotAng;
+	Vertex * vertexArrayPtr;
+	Face * faceArrayPtr;
+	Edge * edgeArrayPtr;
 
 public:
 	SetUpCube();

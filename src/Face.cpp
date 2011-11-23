@@ -48,11 +48,11 @@ Edge* Face::getEdgeA(){
 	//cout << "getEdgeA\n";
 	//cout << a <<"\n";
 
-	if(edgeAReversed==true)
+	/*if(edgeAReversed==true)
 	{
 		Edge * tempEdge = new Edge(a->getVertexB(),a->getVertexA());
 		return tempEdge;
-	} //BAD MEMORY LEAKING CODE :(
+	} //BAD MEMORY LEAKING CODE :(*/
 
 	return a;
 }
@@ -61,7 +61,7 @@ Edge* Face::getEdgeB(){
 	//cout << "getEdgeB\n";
 	//cout << b << "\n";
 
-	if(edgeBReversed==true)
+	/*if(edgeBReversed==true)
 		{
 		Edge * tempEdge = new Edge(b->getVertexB(),b->getVertexA());
 			return tempEdge;
@@ -73,7 +73,7 @@ Edge* Face::getEdgeB(){
 
 Edge* Face::getEdgeC(){
 
-	if(edgeCReversed==true)
+	/*if(edgeCReversed==true)
 			{
 				Edge * tempEdge = new Edge(c->getVertexB(),c->getVertexA());
 				return tempEdge;

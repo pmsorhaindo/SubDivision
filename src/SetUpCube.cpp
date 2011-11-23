@@ -192,7 +192,7 @@ void SetUpCube::draw(){
 		glTranslatef(0.0f,0.0f,-5.0f);
 		glRotatef(rotAng,0.0f,0.5f,1.0);
 
-		for(int i = 0; i<12;i++)
+		for(int i=0;i<12;i++)
 			{
 				glBegin(GL_TRIANGLES);
 				//OpenGL must be counter clockwise!
@@ -217,9 +217,14 @@ void SetUpCube::draw(){
 					glVertex3f(faceArray[i].getEdgeA()->getVertexB()->getX(),faceArray[i].getEdgeA()->getVertexB()->getY(),faceArray[i].getEdgeA()->getVertexB()->getZ());
 				}
 
-
-				glVertex3f(faceArray[i].getEdgeB()->getVertexB()->getX(),faceArray[i].getEdgeB()->getVertexB()->getY(),faceArray[i].getEdgeB()->getVertexB()->getZ());
-
+				if(faceArray[i].getEdgeBDirection())
+				{
+					glVertex3f(faceArray[i].getEdgeB()->getVertexA()->getX(),faceArray[i].getEdgeB()->getVertexA()->getY(),faceArray[i].getEdgeB()->getVertexA()->getZ());
+				}
+				else
+				{
+					glVertex3f(faceArray[i].getEdgeB()->getVertexB()->getX(),faceArray[i].getEdgeB()->getVertexB()->getY(),faceArray[i].getEdgeB()->getVertexB()->getZ());
+				}
 				glEnd();
 			}
 		//cout << "one draw?\n";

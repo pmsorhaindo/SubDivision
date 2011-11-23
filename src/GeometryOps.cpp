@@ -67,6 +67,7 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 			}
 			else if (found==1)
 			{
+				cout << "got a Two Face\n";
 				found++;
 				otherFaces.faceTwo=ptr[it];
 			}
@@ -85,6 +86,7 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 			}
 			else if (found==1)
 			{
+				cout << "got a Two Face\n";
 				found++;
 				otherFaces.faceTwo=ptr[it];
 
@@ -104,6 +106,7 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 			}
 			else if (found==1)
 			{
+				cout << "got a Two Face\n";
 				found++;
 				otherFaces.faceTwo=ptr[it];
 			}

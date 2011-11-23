@@ -13,23 +13,31 @@ class QFace {
 
 
 private:
-	Edge a;
-	Edge b;
-	Edge c;
-	Edge d;
+	Edge *a;
+	Edge *b;
+	Edge *c;
+	Edge *d;
 	Vertex QFacePoint;
+	bool edgeAReversed;
+	bool edgeBReversed;
+	bool edgeCReversed;
+	bool edgeDReversed;
 
 public:
 	QFace();
-	QFace(Edge newA, Edge newB, Edge newC, Edge newD);
+	QFace(Edge * newA, bool revA, Edge * newB, bool revB, Edge * newC, bool revC, Edge * newD, bool revD);
 	virtual ~QFace();
-	Edge getEdgeA();
-	Edge getEdgeB();
-	Edge getEdgeC();
-	Edge getEdgeD();
+	Edge * getEdgeA();
+	Edge * getEdgeB();
+	Edge * getEdgeC();
+	Edge * getEdgeD();
 	Vertex calcCentroid();
 	void setCentroid();
 	Vertex getCentroid();
+	bool getEdgeADirection();
+	bool getEdgeBDirection();
+	bool getEdgeCDirection();
+	bool getEdgeDDirection();
 };
 
 #endif /* QFACE_H_ */

@@ -122,7 +122,7 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 	return otherFaces;
 }
 
-bool GeometryOps::compareEdges(Edge* e1, Edge* e2){
+bool GeometryOps::compareEdges(Edge *e1, Edge* e2){
 	bool areSame = false;
 	if (
 		(compareVertices(*e1->getVertexA(),*e2->getVertexA())

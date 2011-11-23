@@ -81,8 +81,8 @@ SetUpCube::SetUpCube() {
 
 	//MAKE NEW FACE EDGE VERTEX STRUCTURE¬!"!!!!!
 	//ok here we go..
-	//QFace newFaceArray[50];// this is bad will link lists fix this?! faces will always be 4*more
-	//Edge newEdgeArray[50]; //
+	QFace newFaceArray[50];// this is bad will link lists fix this?! faces will always be 4*more
+	Edge newEdgeArray[50]; //
 	Vertex newVertexArray[50];
 	Vertex *newVertexArrayPtr = newVertexArray;
 
@@ -90,6 +90,21 @@ SetUpCube::SetUpCube() {
 	int totalNewVerts = 0;
 	int totalNewEdges = 0;
 	int totalNewFaces = 0;
+
+	/**SOLUTION?
+	For each face
+	Take two edges
+	take their edge points for point on newFace
+	and the new Vertex for the 4th point on the face
+	addToVertex Array if not existing in VertexArray
+	Repeat twice (3x more on next iteratations) more for the next two Pair of edges on the face.
+	Repeat for all faces.**/
+
+	/*Pass the class to create new arrays the current amount of vertices faces and edges
+	 * in the current structure so it will generate the right size of array. The array stored in this new class
+	 * will ensure things don't get deleted.
+	 */
+
 	for (int i=0; i<sizeOfFaceArray; i++)
 	{
 		Vertex facep;
@@ -97,7 +112,7 @@ SetUpCube::SetUpCube() {
 		newVertexArray[totalNewVerts] = facep;
 		totalNewVerts++;
 
-		Vertex edgePointA = Vertex(1.0f,2.0f,3.0f);
+		Vertex edgePointA;
 		edgePointA = faceArrayPtr[i].getEdgeA()->getEdgePoint();
 		edgePointA = gOps.getEdgePoint(faceArrayPtr[i].getEdgeA(),faceArrayPtr,sizeOfFaceArray,edgeArrayPtr,sizeOfEdgeArray);
 
@@ -147,7 +162,7 @@ SetUpCube::SetUpCube() {
 		 //else{cout<<"caught!\n";}
 	}
 
-	cout << "Yay! total new Faces = " << totalNewFaces <<endl;
+	/*cout << "Yay! total new Faces = " << totalNewFaces <<endl;
 	cout << "Yay! total new Edges = " << totalNewEdges <<endl;
 	cout << "Yay! total new Verts = " << totalNewVerts <<endl;
 	//cout << "face 1 attempt "<< newFaceArray[0].getEdgeA().getVertexA()->getX() <<endl;
@@ -166,7 +181,7 @@ SetUpCube::SetUpCube() {
 		cout << " first : " << faceArray[i].getEdgeA()->getVertexA()->getX()<< "::"<< faceArray[i].getEdgeA()->getVertexA()->getY() << "::" <<faceArray[i].getEdgeA()->getVertexA()->getZ()<<endl;
 		cout << " second : " << faceArray[i].getEdgeA()->getVertexB()->getX()<< "::"<< faceArray[i].getEdgeA()->getVertexB()->getY() << "::" <<faceArray[i].getEdgeA()->getVertexB()->getZ()<<endl;
 		cout << " third : " << faceArray[i].getEdgeB()->getVertexB()->getX()<< "::"<< faceArray[i].getEdgeB()->getVertexB()->getY() << "::" <<faceArray[i].getEdgeB()->getVertexB()->getZ()<<endl;
-	}
+	}*/
 
 }
 

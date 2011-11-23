@@ -241,5 +241,9 @@ for (int i=0; i<sizeOfFaceArray; i++)
 				cout<< "New Shapes Vertex "<< j <<" "<< gOps.vertexToString(newVertexArray[j]) <<endl;
 			}**/
 		//cin.get();
-
 	}
+	
+	//std::cout <<"QFacepoint aax: "<< this->a.getVertexA().getX() << " aay: " << this->a.getVertexA().getY() << " aaz: " << this->a.getVertexA().getZ()<<endl;
+	//std::cout <<"QFacepoint abx: "<< this->a.getVertexB().getX() << " aby: " << this->a.getVertexB().getY() << " abz: " << this->a.getVertexB().getZ()<<endl;
+	//std::cout <<"QFacepoint bbx: "<< this->c.getVertexA().getX() << " bby: " << this->c.getVertexA().getY() << " bbz: " << this->c.getVertexA().getZ()<<endl;
+	

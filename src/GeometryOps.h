@@ -74,7 +74,7 @@ public:
 	twoFace getOtherFace(Edge e,Face*ptr,int iFaces);
 	eightEdge getIncidentEdges(Vertex * v, Edge*ptr, int iEdges);
 	sixFace getAdjacentFaces(Vertex v, Face*ptr, int iFaces);
-	bool compareEdges(Edge* e1, Edge* e2);
+	bool compareEdges(Edge *e1, Edge* e2);
 	std::string printUniqueVertices(Face f);
 	std::string vertexToString(Vertex v);
 	std::string floatToString(float val);

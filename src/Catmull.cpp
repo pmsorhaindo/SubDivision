@@ -18,6 +18,14 @@ Catmull::Catmull(int v, int e, int f){
 	Edge edgeArray[e];
 	Vertex vertexArray[v];
 
+	//assign pointers to arrays
+	//Vertex * vertexArrayPtr;
+	vertexArrayPtr = vertexArray;
+	//Face * faceArrayPtr;
+	faceArrayPtr = faceArray;
+	//Edge * edgeArrayPtr;
+	edgeArrayPtr = edgeArray;
+
 }
 
 Catmull::~Catmull() {

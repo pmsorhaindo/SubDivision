@@ -435,3 +435,13 @@ bool GeometryOps::existsInNewVertexArray(Vertex v, Vertex*vertexPtr,int vertexAr
 	}
 	return exists;
 }
+
+int GeometryOps::whereInNewVertexArray(Vertex v, Vertex*vertexPtr,int vertexArraySize){
+	for(int i=0; i<vertexArraySize; i++)
+		{
+			if(compareVertices(v,vertexPtr[i])){
+				return i;
+			}
+		}
+	return -1;
+}

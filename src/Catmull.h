@@ -14,16 +14,18 @@ class Catmull {
 private:
 	Vertex * vertexArrayPtr;
 	Edge * edgeArrayPtr;
-	Face * faceArrayPtr;
-	Face faceArray[];
+	QFace * faceArrayPtr;
+	QFace faceArray[];
 	Edge edgeArray[];
 	Vertex vertexArray[];
+	float rotAng;
 
 public:
 	Catmull();
-	Catmull(int passedVertices, int passedEdges, int passedFaces);
+	Catmull(int passedVertices, int passedEdges, int passedFaces, Vertex *ova, Edge *oea, Face *ofa);
 	Catmull(Vertex * vArray, Edge * eArray, Face * fArray);
 	virtual ~Catmull();
+	void draw();
 };
 
 #endif /* CATMULL_H_ */

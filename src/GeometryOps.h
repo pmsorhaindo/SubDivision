@@ -94,6 +94,7 @@ public:
 	bool existsInNewFaceArray(Face f, Face*facePtr,int faceArraySize);
 	bool existsInNewEdgeArray(Edge f, Edge*edgePtr,int edgeArraySize);
 	bool existsInNewVertexArray(Vertex v, Vertex*vertexPtr,int vertexArraySize);
+	int whereInNewVertexArray(Vertex v, Vertex*vertexPtr,int vertexArraySize);
 };
 
 #endif /* GEOMETRYOPS_H_ */

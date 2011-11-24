@@ -29,6 +29,8 @@ public:
 	virtual ~SetUpCube();
 	Edge reverseEdge(Edge e);
 	Face * getFaceArray();
+	Edge * getEdgeArray();
+	Vertex * getVertexArray();
 	void draw();
 };
 

@@ -11,10 +11,13 @@
 #include <SDL/SDL.h>
 #include <iostream>
 #include "SetUpCube.h"
+#include "Catmull.h"
 using namespace std;
 
 #define RUN_GRAPHICS_DISPLAY 0x00 ;
 SetUpCube * cube = new SetUpCube;
+Catmull * nextCube = new Catmull;
+Catmull * nextNextCube = new Catmull;
 
 Uint32 display (Uint32 interval , void *param) {
 	SDL_Event event;
@@ -37,7 +40,8 @@ void display () {
 	SetUpCube cube = SetUpCube();
 	Face = cube.getFaceArray();
 	**/
-	cube->draw();
+	//cube->draw();
+	nextCube->draw();
 	SDL_GL_SwapBuffers();
 }
 int main(int argc,char * * argv ) {

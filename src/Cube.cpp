@@ -16,7 +16,7 @@ using namespace std;
 
 #define RUN_GRAPHICS_DISPLAY 0x00 ;
 SetUpCube * cube = new SetUpCube;
-Catmull * nextCube = new Catmull;
+Catmull * nextCube = new Catmull(8, 12, 6, cube->returnVertexArrayPtr(), cube->returnEdgeArrayPtr(), cube->returnFaceArrayPtr());
 Catmull * nextNextCube = new Catmull;
 
 Uint32 display (Uint32 interval , void *param) {
@@ -40,8 +40,8 @@ void display () {
 	SetUpCube cube = SetUpCube();
 	Face = cube.getFaceArray();
 	**/
-	//cube->draw();
-	nextCube->draw();
+	cube->draw();
+	//nextCube->draw();
 	SDL_GL_SwapBuffers();
 }
 int main(int argc,char * * argv ) {

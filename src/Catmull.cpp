@@ -21,9 +21,9 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 	QFace faceArray[(f*3)];
 	Edge edgeArray[e*3];
 	Vertex vertexArray[v*3];
-	int sizeOfFaceArray;
-	int sizeOfEdgeArray;
-	int sizeOfVertexArray;
+	int sizeOfFaceArray = 0;
+	int sizeOfEdgeArray = 0;
+	int sizeOfVertexArray = 0;
 
 	Vertex * oldVertexArray = ova;
 	Edge * oldEdgeArray = oea;
@@ -43,18 +43,29 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 	edgeArrayPtr = edgeArray;
 	rotAng = 0.0f;
 
-	for (int i=0; i<sizeOfFaceArray; i++)
+	for (int i=0; i<sizeOfOldFaceArray; i++)
 	{
 		Vertex facep;
-		facep = oldFaceArray[i].getCentroid();
+		int facePointIndex;
+		int newEdgeAIndex, newEdgeBIndex, newEdgeCIndex, newEdgeDIndex;
+		int edgePointAIndex,edgePointBIndex,edgePointCIndex;
+		int newVertPointAIndex, newVertPointBIndex, newVertPointCIndex;
+
+		if (gOps.existsInNewVertexArray(oldFaceArray[i].getCentroid(),vertexArrayPtr,sizeOfVertexArray))
+		{
 		vertexArray[sizeOfVertexArray] = facep;
 		sizeOfVertexArray++;
+		}
+		else
+		{
+			cerr << "this shouldn't happen\n";
+			cout << "offending Vertex is -> " << gOps.vertexToString(oldFaceArray[i].getCentroid()) << "\n";
+			facePointIndex = gOps.whereInNewVertexArray(facep,vertexArrayPtr,sizeOfVertexArray);
+		}
 
 		Vertex edgePointA;
-		int edgePointAIndex;
 		edgePointA = oldFaceArray[i].getEdgeA()->getEdgePoint();
 		edgePointA = gOps.getEdgePoint(oldFaceArray[i].getEdgeA(),oldFaceArray,sizeOfOldFaceArray,oldEdgeArray,sizeOfOldEdgeArray);
-
 		if(!gOps.existsInNewVertexArray(edgePointA,vertexArray,v))
 		{
 			vertexArray[sizeOfVertexArray] = edgePointA;
@@ -63,64 +74,82 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 		}
 		else
 		{
-			//gOps.whereInNewVertexArray(edgePointA,vertexArray,v)
-			//edgePointAIndex = where exists vertex func pls!
+			edgePointAIndex = gOps.whereInNewVertexArray(edgePointA,vertexArray,v);
 		}
-
-		Vertex newV1 = gOps.generateNewVertexPoint(oldFaceArray[i].getEdgeA()->getVertexB(),oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
-				 if(!gOps.existsInNewVertexArray(newV1,vertexArray,v))
-				 {
-					 vertexArray[sizeOfVertexArray] = newV1;
-					 sizeOfVertexArray++;
-
-					 //TODO RUN A CHECK FIRSTTT!!! PLSEASE TO SAVE YOURSELF
-					 // to check edge doesn't already exist.
-					 int newEdgeIndex;
-					 edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointAIndex],&vertexArray[sizeOfVertexArray]);
-					 sizeOfEdgeArray++;
-				 }
-				 else
-				 {
-					 edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointAIndex],&vertexArray[gOps.whereInNewVertexArray(edgePointA,vertexArray,v)]);
-				 }
-
-
-
 
 		Vertex edgePointB;
-		oldFaceArray[i].getEdgeB()->setEdgePoint(gOps.getEdgePoint(oldFaceArray[i].getEdgeB(),oldFaceArray,sizeOfOldFaceArray,oldEdgeArray,sizeOfOldEdgeArray));
 		edgePointB = oldFaceArray[i].getEdgeB()->getEdgePoint();
-		if(!gOps.existsInNewVertexArray(edgePointB,vertexArrayPtr,v))
+		edgePointB = gOps.getEdgePoint(oldFaceArray[i].getEdgeB(),oldFaceArray,sizeOfOldFaceArray,oldEdgeArray,sizeOfOldEdgeArray);
+		if(!gOps.existsInNewVertexArray(edgePointB,vertexArray,v))
 		{
 			vertexArray[sizeOfVertexArray] = edgePointB;
+			edgePointBIndex=sizeOfVertexArray;
 			sizeOfVertexArray++;
 		}
+		else
+		{
+			edgePointBIndex = gOps.whereInNewVertexArray(edgePointB,vertexArray,v);
+		}
 
-		//else{cout<<"caught!\n";}
 		Vertex edgePointC;
-		oldFaceArray[i].getEdgeC()->setEdgePoint(gOps.getEdgePoint(oldFaceArray[i].getEdgeC(),oldFaceArray,sizeOfOldFaceArray,oldEdgeArray,sizeOfOldEdgeArray));
-		edgePointC = faceArrayPtr[i].getEdgeC()->getEdgePoint();
-		//edgePointC = gOps.getEdgePoint(faceArrayPtr[i].getEdgeC(),faceArrayPtr,sizeOfFaceArray);
-		if(!gOps.existsInNewVertexArray(edgePointC,vertexArrayPtr,v))
+		edgePointC = oldFaceArray[i].getEdgeB()->getEdgePoint();
+		edgePointC = gOps.getEdgePoint(oldFaceArray[i].getEdgeC(),oldFaceArray,sizeOfOldFaceArray,oldEdgeArray,sizeOfOldEdgeArray);
+		if(!gOps.existsInNewVertexArray(edgePointC,vertexArray,v))
 		{
 			vertexArray[sizeOfVertexArray] = edgePointC;
+			edgePointCIndex=sizeOfVertexArray;
 			sizeOfVertexArray++;
 		}
-		 Vertex newV2 = gOps.generateNewVertexPoint(oldFaceArray[i].getEdgeA()->getVertexA(),oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
-		 if(!gOps.existsInNewVertexArray(newV2,vertexArrayPtr,v))
-		 {
-			 vertexArray[sizeOfVertexArray] = newV2;
-			 sizeOfVertexArray++;
-		 }
+		else
+		{
+			edgePointCIndex = gOps.whereInNewVertexArray(edgePointC,vertexArray,v);
+		}
 
-		 Vertex newV3 = gOps.generateNewVertexPoint(oldFaceArray[i].getEdgeB()->getVertexA(),oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
-		 if(!gOps.existsInNewVertexArray(newV3,vertexArrayPtr,50))
-		 {
-			 vertexArray[sizeOfVertexArray] = newV3;
-			 sizeOfVertexArray++;
-		 }
+
+
+		Vertex newV1 = gOps.generateNewVertexPoint(oldFaceArray[i].getEdgeA()->getVertexA(),oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
+		if(!gOps.existsInNewVertexArray(newV1,vertexArray,v))
+		{
+			vertexArray[sizeOfVertexArray] = newV1;
+			newVertPointAIndex = sizeOfVertexArray;
+			sizeOfVertexArray++;
+		}
+		else
+		{
+			newVertPointAIndex = gOps.whereInNewVertexArray(newV1,vertexArray,v);
+		}
+
+		Vertex newV2 = gOps.generateNewVertexPoint(oldFaceArray[i].getEdgeB()->getVertexA(),oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
+		if(!gOps.existsInNewVertexArray(newV2,vertexArray,v))
+		{
+			vertexArray[sizeOfVertexArray] = newV2;
+			newVertPointBIndex = sizeOfVertexArray;
+			sizeOfVertexArray++;
+		}
+		else
+		{
+			newVertPointBIndex = gOps.whereInNewVertexArray(newV2,vertexArray,v);
+		}
+
+		Vertex newV3 = gOps.generateNewVertexPoint(oldFaceArray[i].getEdgeC()->getVertexA(),oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
+		if(!gOps.existsInNewVertexArray(newV3,vertexArray,v))
+		{
+			vertexArray[sizeOfVertexArray] = newV3;
+			newVertPointCIndex = sizeOfVertexArray;
+			sizeOfVertexArray++;
+		}
+		else
+		{
+			newVertPointCIndex = gOps.whereInNewVertexArray(newV3,vertexArray,v);
+		}
+
+		//Edge newV1 ->
+		//edgeArray[sizeOfEdgeArray] = Edge()
+		//faceArray[sizeOfFaceArray] = QFace(&edgeArray[newEdgeAIndex],false,&edgeArray[newEdgeBIndex],false,&edgeArray[newEdgeCIndex],false,&edgeArray[newEdgeDIndex],false);
 		 //else{cout<<"caught!\n";}
 	}
+
+	cout << "sizeOfVertexArray is: " << sizeOfVertexArray <<"\n";
 
 }
 

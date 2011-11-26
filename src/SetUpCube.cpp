@@ -239,14 +239,29 @@ void SetUpCube::draw(){
 
 				if(faceArray[i].getEdgeBDirection())
 				{
-					glVertex3f(faceArray[i].getEdgeB()->getVertexA()->getX(),faceArray[i].getEdgeB()->getVertexA()->getY(),faceArray[i].getEdgeB()->getVertexA()->getZ());
+					glVertex3f(faceArray[i].getEdgeC()->getVertexB()->getX(),faceArray[i].getEdgeB()->getVertexA()->getY(),faceArray[i].getEdgeB()->getVertexA()->getZ());
 				}
 				else
 				{
-					glVertex3f(faceArray[i].getEdgeB()->getVertexB()->getX(),faceArray[i].getEdgeB()->getVertexB()->getY(),faceArray[i].getEdgeB()->getVertexB()->getZ());
+					glVertex3f(faceArray[i].getEdgeC()->getVertexA()->getX(),faceArray[i].getEdgeB()->getVertexB()->getY(),faceArray[i].getEdgeB()->getVertexB()->getZ());
 				}
 				glEnd();
 			}
 		//cout << "one draw?\n";
 		rotAng += 0.2;
+}
+
+Face * SetUpCube::returnFaceArrayPtr()
+{
+	return faceArrayPtr;
+}
+
+Edge * SetUpCube::returnEdgeArrayPtr()
+{
+	return edgeArrayPtr;
+}
+
+Vertex * SetUpCube::returnVertexArrayPtr()
+{
+	return vertexArrayPtr;
 }

@@ -32,6 +32,9 @@ public:
 	Edge * getEdgeArray();
 	Vertex * getVertexArray();
 	void draw();
+	Vertex * returnVertexArrayPtr();
+	Edge * returnEdgeArrayPtr();
+	Face * returnFaceArrayPtr();
 };
 
 #endif /* SETUPCUBE_H_ */

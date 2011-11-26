@@ -81,8 +81,6 @@ SetUpCube::SetUpCube() {
 
 	//MAKE NEW FACE EDGE VERTEX STRUCTURE¬!"!!!!!
 	//ok here we go..
-	QFace newFaceArray[50];// this is bad will link lists fix this?! faces will always be 4*more
-	Edge newEdgeArray[50]; //
 	Vertex newVertexArray[50];
 	Vertex *newVertexArrayPtr = newVertexArray;
 
@@ -105,7 +103,7 @@ SetUpCube::SetUpCube() {
 	 * will ensure things don't get deleted.
 	 */
 
-	for (int i=0; i<sizeOfFaceArray; i++)
+	/*for (int i=0; i<sizeOfFaceArray; i++)
 	{
 		Vertex facep;
 		facep = faceArrayPtr[i].getCentroid();
@@ -165,7 +163,7 @@ SetUpCube::SetUpCube() {
 			 totalNewVerts++;
 		 }
 		 //else{cout<<"caught!\n";}
-	}
+	}*/
 
 	/*cout << "Yay! total new Faces = " << totalNewFaces <<endl;
 	cout << "Yay! total new Edges = " << totalNewEdges <<endl;
@@ -178,14 +176,19 @@ SetUpCube::SetUpCube() {
 		cout<< "New Shapes Vertex "<< i <<" "<< gOps.vertexToString(newVertexArray[i]) <<endl;
 	}
 
-	cout <<"\n"<<endl;
+	cout <<"\n"<<endl;*/
 
-	for (int i = 0; i<12; i++)
+	/*for (int i = 0; i<12; i++)
 	{
 		cout << "***Face " << i <<endl;
 		cout << " first : " << faceArray[i].getEdgeA()->getVertexA()->getX()<< "::"<< faceArray[i].getEdgeA()->getVertexA()->getY() << "::" <<faceArray[i].getEdgeA()->getVertexA()->getZ()<<endl;
 		cout << " second : " << faceArray[i].getEdgeA()->getVertexB()->getX()<< "::"<< faceArray[i].getEdgeA()->getVertexB()->getY() << "::" <<faceArray[i].getEdgeA()->getVertexB()->getZ()<<endl;
 		cout << " third : " << faceArray[i].getEdgeB()->getVertexB()->getX()<< "::"<< faceArray[i].getEdgeB()->getVertexB()->getY() << "::" <<faceArray[i].getEdgeB()->getVertexB()->getZ()<<endl;
+	}*/
+
+	/*for(int i=0;i<sizeOfEdgeArray;i++)
+	{
+		cout <<"***EdgePoint " << i << " = " << gOps.vertexToString(edgeArrayPtr[i].getEdgePoint())<<endl;
 	}*/
 
 }

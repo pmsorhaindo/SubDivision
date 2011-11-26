@@ -51,30 +51,33 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 		int edgePointAIndex,edgePointBIndex,edgePointCIndex;
 		int newVertPointAIndex, newVertPointBIndex, newVertPointCIndex;
 
-		if (gOps.existsInNewVertexArray(oldFaceArray[i].getCentroid(),vertexArrayPtr,sizeOfVertexArray))
+		//cout << "gonna compare centroid " << gOps.vertexToString(oldFaceArray[i].getCentroid()) <<endl;
+		if (!gOps.existsInNewVertexArray(oldFaceArray[i].getCentroid(),vertexArrayPtr,sizeOfVertexArray))
 		{
-		vertexArray[sizeOfVertexArray] = facep;
+		vertexArray[sizeOfVertexArray] =  oldFaceArray[i].getCentroid();
+		facePointIndex = sizeOfVertexArray;
 		sizeOfVertexArray++;
 		}
 		else
 		{
 			cerr << "this shouldn't happen\n";
 			cout << "offending Vertex is -> " << gOps.vertexToString(oldFaceArray[i].getCentroid()) << "\n";
-			facePointIndex = gOps.whereInNewVertexArray(facep,vertexArrayPtr,sizeOfVertexArray);
+			facePointIndex = gOps.whereInNewVertexArray(oldFaceArray[i].getCentroid(),vertexArrayPtr,sizeOfVertexArray);
 		}
 
 		Vertex edgePointA;
-		edgePointA = oldFaceArray[i].getEdgeA()->getEdgePoint();
 		edgePointA = gOps.getEdgePoint(oldFaceArray[i].getEdgeA(),oldFaceArray,sizeOfOldFaceArray,oldEdgeArray,sizeOfOldEdgeArray);
+		cout << "edgey A comes to the mix "<< gOps.vertexToString(oldFaceArray[i].getEdgeA()->getEdgePoint()) << endl;
 		if(!gOps.existsInNewVertexArray(edgePointA,vertexArray,v))
 		{
 			vertexArray[sizeOfVertexArray] = edgePointA;
 			edgePointAIndex = sizeOfVertexArray;
 			sizeOfVertexArray++;
 		}
-		else
+		/*else
 		{
 			edgePointAIndex = gOps.whereInNewVertexArray(edgePointA,vertexArray,v);
+			cout << "epa in Index "<< edgePointAIndex << "\n";
 		}
 
 		Vertex edgePointB;
@@ -89,6 +92,7 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 		else
 		{
 			edgePointBIndex = gOps.whereInNewVertexArray(edgePointB,vertexArray,v);
+			cout << "epb in Index "<< edgePointBIndex << "\n";
 		}
 
 		Vertex edgePointC;
@@ -96,6 +100,7 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 		edgePointC = gOps.getEdgePoint(oldFaceArray[i].getEdgeC(),oldFaceArray,sizeOfOldFaceArray,oldEdgeArray,sizeOfOldEdgeArray);
 		if(!gOps.existsInNewVertexArray(edgePointC,vertexArray,v))
 		{
+
 			vertexArray[sizeOfVertexArray] = edgePointC;
 			edgePointCIndex=sizeOfVertexArray;
 			sizeOfVertexArray++;
@@ -103,8 +108,8 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 		else
 		{
 			edgePointCIndex = gOps.whereInNewVertexArray(edgePointC,vertexArray,v);
+			cout << "epc in Index "<< edgePointCIndex << "\n";
 		}
-
 
 
 		Vertex newV1 = gOps.generateNewVertexPoint(oldFaceArray[i].getEdgeA()->getVertexA(),oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
@@ -143,13 +148,47 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 			newVertPointCIndex = gOps.whereInNewVertexArray(newV3,vertexArray,v);
 		}
 
+		cout << "VertexArrayIndex's\n";
+		cout << "edgePointAIndex "<< edgePointAIndex <<"\n";
+		cout << "edgePointBIndex " << edgePointBIndex <<"\n";
+		cout << "edgePointCIndex " << edgePointCIndex << "\n";
+		cout << "facePointIndex " << facePointIndex << "\n";
+		cout << "newVertPointAIndex " << newVertPointAIndex <<"\n";
+		cout << "newVertPointBIndex " << newVertPointBIndex <<"\n";
+		cout << "newVertPointCIndex " << newVertPointCIndex <<"\n";
+		cout << "\n";
 		//Edge newV1 ->
-		//edgeArray[sizeOfEdgeArray] = Edge()
-		//faceArray[sizeOfFaceArray] = QFace(&edgeArray[newEdgeAIndex],false,&edgeArray[newEdgeBIndex],false,&edgeArray[newEdgeCIndex],false,&edgeArray[newEdgeDIndex],false);
-		 //else{cout<<"caught!\n";}
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointAIndex],&vertexArray[newVertPointAIndex]);
+		newEdgeAIndex = sizeOfEdgeArray;
+		sizeOfEdgeArray++;
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[newVertPointAIndex],&vertexArray[edgePointBIndex]);
+		newEdgeBIndex = sizeOfEdgeArray;
+		sizeOfEdgeArray++;
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointBIndex],&vertexArray[facePointIndex]);
+		newEdgeCIndex = sizeOfEdgeArray;
+		sizeOfEdgeArray++;
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[facePointIndex],&vertexArray[edgePointAIndex]);
+		newEdgeDIndex = sizeOfEdgeArray;
+		sizeOfEdgeArray++;
+
+		cout <<"help me?\n";
+		faceArray[sizeOfFaceArray] = QFace(&edgeArray[newEdgeAIndex],false,&edgeArray[newEdgeBIndex],false,&edgeArray[newEdgeCIndex],false,&edgeArray[newEdgeDIndex],false);
+		 //else{cout<<"caught!\n";}*/
 	}
 
-	cout << "sizeOfVertexArray is: " << sizeOfVertexArray <<"\n";
+	/*cout << "sizeOfVertexArray is: " << sizeOfVertexArray <<"\n";
+
+	cout << "\n newVertArray in Catmull\n";
+	for (int j=0; j<sizeOfVertexArray; j++)
+	{
+		cout<< "Vertex " << j << " "<<gOps.vertexToString(vertexArray[j])<<endl;
+	}
+
+	cout << "size of EdgeArray " << sizeOfEdgeArray << "\n";*/
+
+	GeometryOps::twoFace twoFaceStorage = gOps.getOtherFace(oea[2],ofa,f);
+	cout<< "edge Array " << gOps.printUniqueVertices(twoFaceStorage.faceOne) <<"\n";
+	//cout<< "edge Array" << gOps.printUniqueVertices(twoFaceStorage.faceTwo) <<"\n";
 
 }
 

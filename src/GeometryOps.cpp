@@ -59,6 +59,7 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 	int found=0;
 	for (int it=0;it<i;it++)
 	{
+		edgeToString(e);
 		if(compareEdges(ptr[it].getEdgeA(),&e))
 		{
 			if(found==0){
@@ -67,7 +68,7 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 			}
 			else if (found==1)
 			{
-				cout << "got a Two Face\n";
+				//cout << "got a Two Face\n";
 				found++;
 				otherFaces.faceTwo=ptr[it];
 			}
@@ -86,7 +87,7 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 			}
 			else if (found==1)
 			{
-				cout << "got a Two Face\n";
+				//cout << "got a Two Face\n";
 				found++;
 				otherFaces.faceTwo=ptr[it];
 
@@ -106,7 +107,7 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 			}
 			else if (found==1)
 			{
-				cout << "got a Two Face\n";
+				//cout << "got a Two Face\n";
 				found++;
 				otherFaces.faceTwo=ptr[it];
 			}
@@ -119,6 +120,7 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 		}
 	}
 	if (found!=2) cerr <<"finding faces problem!\n";
+	if (found==1) cerr <<"not Enough problem!\n";
 	return otherFaces;
 }
 
@@ -443,5 +445,6 @@ int GeometryOps::whereInNewVertexArray(Vertex v, Vertex*vertexPtr,int vertexArra
 				return i;
 			}
 		}
+	cout << "dropped fail." << endl;
 	return -1;
 }

@@ -15,9 +15,12 @@ private:
 	Vertex * vertexArrayPtr;
 	Edge * edgeArrayPtr;
 	QFace * faceArrayPtr;
-	QFace faceArray[];
-	Edge edgeArray[];
-	Vertex vertexArray[];
+	QFace * faceArray;
+	Edge * edgeArray;
+	Vertex * vertexArray;
+	int sizeOfFaceArray;
+	int sizeOfEdgeArray;
+	int sizeOfVertexArray;
 	float rotAng;
 
 public:

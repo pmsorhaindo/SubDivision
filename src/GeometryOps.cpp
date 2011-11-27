@@ -59,20 +59,20 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 	int found=0;
 	for (int it=0;it<i;it++)
 	{
-		cout<<"arrrghh: "<<edgeToString(e)<<endl;
-		cout<<"hmmmmmm: "<<edgeToString(*ptr[it].getEdgeA())<<endl;
-		cout<<"hmmmmmm: "<<edgeToString(*ptr[it].getEdgeB())<<endl;
-		cout<<"hmmmmmm: "<<edgeToString(*ptr[it].getEdgeC())<<endl;
+		//cout<<"arrrghh: "<<edgeToString(e)<<endl;
+		//cout<<"hmmmmmm: "<<edgeToString(*ptr[it].getEdgeA())<<endl;
+		//cout<<"hmmmmmm: "<<edgeToString(*ptr[it].getEdgeB())<<endl;
+		//cout<<"hmmmmmm: "<<edgeToString(*ptr[it].getEdgeC())<<endl;
 		if(compareEdges(ptr[it].getEdgeA(),&e))
 		{
 			if(found==0){
-				cout<<"got a Face\n";
+				//cout<<"got a Face\n";
 				found++;
 				otherFaces.faceOne=ptr[it];
 			}
 			else if (found==1)
 			{
-				cout << "got a Two Face\n";
+				//cout << "got a Two Face\n";
 				found++;
 				otherFaces.faceTwo=ptr[it];
 			}
@@ -86,13 +86,13 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 		if(compareEdges(ptr[it].getEdgeB(),&e))
 		{
 			if(found==0){
-				cout<<"got a Face\n";
+				//cout<<"got a Face\n";
 				found++;
 				otherFaces.faceOne=ptr[it];
 			}
 			else if (found==1)
 			{
-				cout << "got a Two Face\n";
+				//cout << "got a Two Face\n";
 				found++;
 				otherFaces.faceTwo=ptr[it];
 
@@ -107,13 +107,13 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 		if(compareEdges(ptr[it].getEdgeC(),&e))
 		{
 			if(found==0){
-				cout<<"got a Face\n";
+				//cout<<"got a Face\n";
 				found++;
 				otherFaces.faceOne=ptr[it];
 			}
 			else if (found==1)
 			{
-				cout << "got a Two Face\n";
+				//cout << "got a Two Face\n";
 				found++;
 				otherFaces.faceTwo=ptr[it];
 			}

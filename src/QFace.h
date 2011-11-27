@@ -38,6 +38,10 @@ public:
 	bool getEdgeBDirection();
 	bool getEdgeCDirection();
 	bool getEdgeDDirection();
+	Vertex * getPointA();
+	Vertex * getPointB();
+	Vertex * getPointC();
+	Vertex * getPointD();
 };
 
 #endif /* QFACE_H_ */

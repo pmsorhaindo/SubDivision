@@ -43,18 +43,31 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 	edgeArrayPtr = edgeArray;
 	rotAng = 0.0f;
 
-	/*cout << "Size of old Edge Array = " <<sizeOfOldEdgeArray <<"\n"; // size of Old edge Array was wrong hardcoded 12 ;/
+	/*
+	 *VERIFIED
+	 * cout << "Size of old Edge Array = " <<sizeOfOldEdgeArray <<"\n"; // size of Old edge Array was wrong hardcoded 12 ;/
 
 	for (int i=0; i<sizeOfOldEdgeArray; i++)
 	{
 		cout << "Edge " << i << "'s midpoint is: " << gOps.vertexToString(oldEdgeArray[i].getEdgeMidPoint()) << "\n";
 	}*/ // Edge midpoints were messed up not dividing by 2 and negating wtf?
 
-	/*cout << "size of Old Face Array" << sizeOfOldFaceArray << "\n";
+	/*
+	 * VERIFIED
+	 * cout << "size of Old Face Array" << sizeOfOldFaceArray << "\n";*/
 
-	for (int i = 0; i< sizeOfOldFaceArray; i++ )
+	/*for (int i = 0; i< sizeOfOldFaceArray; i++ )
 	{
 		cout << "Face " << i << "'s Face point is: " << gOps.vertexToString(oldFaceArray[i].getCentroid())<<"\n";
+	}
+
+	cout << "Size of old Edge Array = " <<sizeOfOldEdgeArray <<"\n";
+
+	for (int i=0; i<sizeOfOldFaceArray; i++)
+	{
+		Vertex edgpt = gOps.getEdgePoint(oldFaceArray[i].getEdgeA(),oldFaceArray,sizeOfOldFaceArray,oldEdgeArray,sizeOfOldEdgeArray);
+		cout << "The new edgepoint at " <<  i << " is: " << gOps.vertexToString(edgpt) << "\n";
+		cout << "test" << "\n";
 	}*/
 
 	for (int i=0; i<sizeOfOldFaceArray; i++)
@@ -68,9 +81,10 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 		//cout << "gonna compare centroid " << gOps.vertexToString(oldFaceArray[i].getCentroid()) <<endl;
 		if (!gOps.existsInNewVertexArray(oldFaceArray[i].getCentroid(),vertexArrayPtr,sizeOfVertexArray))
 		{
-		vertexArray[sizeOfVertexArray] =  oldFaceArray[i].getCentroid();
-		facePointIndex = sizeOfVertexArray;
-		sizeOfVertexArray++;
+			//cout << sizeOfVertexArray << " this is unique? " << gOps.vertexToString(oldFaceArray[i].getCentroid()) <<"\n";
+			vertexArray[sizeOfVertexArray] =  oldFaceArray[i].getCentroid();
+			facePointIndex = sizeOfVertexArray;
+			sizeOfVertexArray++;
 		}
 		else
 		{
@@ -81,87 +95,92 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 
 		Vertex edgePointA;
 		edgePointA = gOps.getEdgePoint(oldFaceArray[i].getEdgeA(),oldFaceArray,sizeOfOldFaceArray,oldEdgeArray,sizeOfOldEdgeArray);
-		if(!gOps.existsInNewVertexArray(edgePointA,vertexArray,v))
+		if(!gOps.existsInNewVertexArray(edgePointA,vertexArrayPtr,sizeOfVertexArray))
 		{
+			//cout << sizeOfVertexArray << "this is unique? " << gOps.vertexToString(edgePointA) <<"\n";
 			vertexArray[sizeOfVertexArray] = edgePointA;
 			edgePointAIndex = sizeOfVertexArray;
 			sizeOfVertexArray++;
 		}
 		else
 		{
-			edgePointAIndex = gOps.whereInNewVertexArray(edgePointA,vertexArray,v);
+			edgePointAIndex = gOps.whereInNewVertexArray(edgePointA,vertexArrayPtr,sizeOfVertexArray);
 			cout << "epa in Index "<< edgePointAIndex << "\n";
 		}
 
 		Vertex edgePointB;
 		edgePointB = oldFaceArray[i].getEdgeB()->getEdgePoint();
 		edgePointB = gOps.getEdgePoint(oldFaceArray[i].getEdgeB(),oldFaceArray,sizeOfOldFaceArray,oldEdgeArray,sizeOfOldEdgeArray);
-		if(!gOps.existsInNewVertexArray(edgePointB,vertexArray,v))
+		if(!gOps.existsInNewVertexArray(edgePointB,vertexArrayPtr,sizeOfVertexArray))
 		{
+			//cout << sizeOfVertexArray << "this is unique? " << gOps.vertexToString(edgePointB) <<"\n";
 			vertexArray[sizeOfVertexArray] = edgePointB;
 			edgePointBIndex=sizeOfVertexArray;
 			sizeOfVertexArray++;
 		}
 		else
 		{
-			edgePointBIndex = gOps.whereInNewVertexArray(edgePointB,vertexArray,v);
+			edgePointBIndex = gOps.whereInNewVertexArray(edgePointB,vertexArrayPtr,sizeOfVertexArray);
 			cout << "epb in Index "<< edgePointBIndex << "\n";
 		}
 
 		Vertex edgePointC;
 		edgePointC = oldFaceArray[i].getEdgeB()->getEdgePoint();
 		edgePointC = gOps.getEdgePoint(oldFaceArray[i].getEdgeC(),oldFaceArray,sizeOfOldFaceArray,oldEdgeArray,sizeOfOldEdgeArray);
-		if(!gOps.existsInNewVertexArray(edgePointC,vertexArray,v))
+		if(!gOps.existsInNewVertexArray(edgePointC,vertexArrayPtr,sizeOfVertexArray))
 		{
-
+			//cout << sizeOfVertexArray << "this is unique? " << gOps.vertexToString(edgePointC) <<"\n";
 			vertexArray[sizeOfVertexArray] = edgePointC;
 			edgePointCIndex=sizeOfVertexArray;
 			sizeOfVertexArray++;
 		}
 		else
 		{
-			edgePointCIndex = gOps.whereInNewVertexArray(edgePointC,vertexArray,v);
+			edgePointCIndex = gOps.whereInNewVertexArray(edgePointC,vertexArrayPtr,sizeOfVertexArray);
 			cout << "epc in Index "<< edgePointCIndex << "\n";
 		}
 
 
 		Vertex newV1 = gOps.generateNewVertexPoint(oldFaceArray[i].getEdgeA()->getVertexA(),oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
-		if(!gOps.existsInNewVertexArray(newV1,vertexArray,v))
+		if(!gOps.existsInNewVertexArray(newV1,vertexArrayPtr,sizeOfVertexArray))
 		{
+			//cout << sizeOfVertexArray << "this is unique? " << gOps.vertexToString(newV1) <<"\n";
 			vertexArray[sizeOfVertexArray] = newV1;
 			newVertPointAIndex = sizeOfVertexArray;
 			sizeOfVertexArray++;
 		}
 		else
 		{
-			newVertPointAIndex = gOps.whereInNewVertexArray(newV1,vertexArray,v);
+			newVertPointAIndex = gOps.whereInNewVertexArray(newV1,vertexArrayPtr,sizeOfVertexArray);
 		}
 
 		Vertex newV2 = gOps.generateNewVertexPoint(oldFaceArray[i].getEdgeB()->getVertexA(),oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
-		if(!gOps.existsInNewVertexArray(newV2,vertexArray,v))
+		if(!gOps.existsInNewVertexArray(newV2,vertexArrayPtr,sizeOfVertexArray))
 		{
+			//cout << sizeOfVertexArray << "this is unique? " << gOps.vertexToString(newV2) <<"\n";
 			vertexArray[sizeOfVertexArray] = newV2;
 			newVertPointBIndex = sizeOfVertexArray;
 			sizeOfVertexArray++;
 		}
 		else
 		{
-			newVertPointBIndex = gOps.whereInNewVertexArray(newV2,vertexArray,v);
+			newVertPointBIndex = gOps.whereInNewVertexArray(newV2,vertexArrayPtr,sizeOfVertexArray);
 		}
 
 		Vertex newV3 = gOps.generateNewVertexPoint(oldFaceArray[i].getEdgeC()->getVertexA(),oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
-		if(!gOps.existsInNewVertexArray(newV3,vertexArray,v))
+		if(!gOps.existsInNewVertexArray(newV3,vertexArrayPtr,sizeOfVertexArray))
 		{
+			//cout << sizeOfVertexArray << "this is unique? " << gOps.vertexToString(newV3) <<"\n";
 			vertexArray[sizeOfVertexArray] = gOps.generateNewVertexPoint(oldFaceArray[i].getEdgeC()->getVertexA(),oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
 			newVertPointCIndex = sizeOfVertexArray;
 			sizeOfVertexArray++;
 		}
 		else
 		{
-			newVertPointCIndex = gOps.whereInNewVertexArray(newV3,vertexArray,v);
+			newVertPointCIndex = gOps.whereInNewVertexArray(newV3,vertexArrayPtr,sizeOfVertexArray);
 		}
 
-		cout << "VertexArrayIndex's\n";
+		/*cout << "VertexArrayIndex's\n";
 		cout << "edgePointAIndex "<< edgePointAIndex <<"\n";
 		cout << "edgePointBIndex " << edgePointBIndex <<"\n";
 		cout << "edgePointCIndex " << edgePointCIndex << "\n";
@@ -169,8 +188,9 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 		cout << "newVertPointAIndex " << newVertPointAIndex <<"\n";
 		cout << "newVertPointBIndex " << newVertPointBIndex <<"\n";
 		cout << "newVertPointCIndex " << newVertPointCIndex <<"\n";
-		cout << "\n";
+		cout << "\n";*/
 		//Edge newV1 ->
+
 		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointAIndex],&vertexArray[newVertPointAIndex]);
 		newEdgeAIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
@@ -211,11 +231,11 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 		newEdgeLIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
 
-		faceArray[sizeOfFaceArray] = QFace(&edgeArray[newEdgeAIndex],true,&edgeArray[newEdgeBIndex],false,&edgeArray[newEdgeCIndex],false,&edgeArray[newEdgeDIndex],false);
+		faceArray[sizeOfFaceArray] = QFace(&edgeArray[newEdgeAIndex],false,&edgeArray[newEdgeBIndex],false,&edgeArray[newEdgeCIndex],false,&edgeArray[newEdgeDIndex],false);
 		sizeOfFaceArray++;
-		faceArray[sizeOfFaceArray] = QFace(&edgeArray[newEdgeEIndex],false,&edgeArray[newEdgeFIndex],true,&edgeArray[newEdgeGIndex],false,&edgeArray[newEdgeHIndex],false);
+		faceArray[sizeOfFaceArray] = QFace(&edgeArray[newEdgeEIndex],false,&edgeArray[newEdgeFIndex],false,&edgeArray[newEdgeGIndex],false,&edgeArray[newEdgeHIndex],false);
 		sizeOfFaceArray++;
-		faceArray[sizeOfFaceArray] = QFace(&edgeArray[newEdgeIIndex],false,&edgeArray[newEdgeJIndex],false,&edgeArray[newEdgeKIndex],true,&edgeArray[newEdgeLIndex],false);
+		faceArray[sizeOfFaceArray] = QFace(&edgeArray[newEdgeIIndex],false,&edgeArray[newEdgeJIndex],false,&edgeArray[newEdgeKIndex],false,&edgeArray[newEdgeLIndex],false);
 		sizeOfFaceArray++;
 
 		//else{cout<<"caught!\n";}
@@ -226,11 +246,11 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 	//cout<< "edge Array test 1: " << gOps.printUniqueVertices(twoFaceStorage.faceOne) <<"\n";
 	//cout<< "edge Array test 2: " << gOps.printUniqueVertices(twoFaceStorage.faceTwo) <<"\n";
 	cout << "sizeOfVertexArray " << sizeOfVertexArray<<endl;
-	cout << "sizeOfEdgeArray " << sizeOfEdgeArray<<endl;
+	/*cout << "sizeOfEdgeArray " << sizeOfEdgeArray<<endl;
 	cout << "sizeOfFaceArray " << sizeOfFaceArray<<endl;
 	cout <<"x: "<<faceArray[0].getEdgeA()->getVertexA()->getX();
 	cout << " y: " << faceArray[0].getEdgeA()->getVertexA()->getY();
-	cout << " z: " <<faceArray[0].getEdgeA()->getVertexA()->getZ()<<endl;
+	cout << " z: " <<faceArray[0].getEdgeA()->getVertexA()->getZ()<<endl;*/
 	//glVertex3f(faceArray[0].getEdgeB()->getVertexA()->getX(),faceArray[0].getEdgeB()->getVertexA()->getY(),faceArray[0].getEdgeB()->getVertexA()->getZ());
 	//glVertex3f(faceArray[0].getEdgeC()->getVertexA()->getX(),faceArray[0].getEdgeC()->getVertexA()->getY(),faceArray[0].getEdgeC()->getVertexA()->getZ()); //
 	//glVertex3f(faceArray[0].getEdgeD()->getVertexA()->getX(),faceArray[0].getEdgeD()->getVertexA()->getY(),faceArray[0].getEdgeD()->getVertexA()->getZ());
@@ -268,10 +288,10 @@ void Catmull::draw(){
 				glColor3f(0.0f,0.0f,1.0f); //Blue
 			}
 
-			glVertex3f(faceArray[i].getEdgeA()->getVertexA()->getX(),faceArray[i].getEdgeA()->getVertexA()->getY(),faceArray[i].getEdgeA()->getVertexA()->getZ());
-			glVertex3f(faceArray[i].getEdgeB()->getVertexA()->getX(),faceArray[i].getEdgeB()->getVertexA()->getY(),faceArray[i].getEdgeB()->getVertexA()->getZ());
-			glVertex3f(faceArray[i].getEdgeC()->getVertexA()->getX(),faceArray[i].getEdgeC()->getVertexA()->getY(),faceArray[i].getEdgeC()->getVertexA()->getZ());
-			glVertex3f(faceArray[i].getEdgeD()->getVertexA()->getX(),faceArray[i].getEdgeD()->getVertexA()->getY(),faceArray[i].getEdgeD()->getVertexA()->getZ());
+			glVertex3f(faceArray[i].getPointA()->getX(),faceArray[i].getPointA()->getY(),faceArray[i].getPointA()->getZ());
+			glVertex3f(faceArray[i].getPointB()->getX(),faceArray[i].getPointB()->getY(),faceArray[i].getPointB()->getZ());
+			glVertex3f(faceArray[i].getPointC()->getX(),faceArray[i].getPointC()->getY(),faceArray[i].getPointC()->getZ());
+			glVertex3f(faceArray[i].getPointD()->getX(),faceArray[i].getPointD()->getY(),faceArray[i].getPointD()->getZ());
 
 			glEnd();
 		}

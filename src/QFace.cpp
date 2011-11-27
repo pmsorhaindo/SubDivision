@@ -84,6 +84,42 @@ bool QFace::getEdgeDDirection(){
 	return edgeCReversed;
 }
 
+Vertex * QFace::getPointA()
+{
+	if(!edgeAReversed)
+	{
+		return this->a->getVertexA();
+	}
+	return this->a->getVertexB();
+}
+
+Vertex * QFace::getPointB()
+{
+	if(!edgeBReversed)
+		{
+			return this->b->getVertexA();
+		}
+		return this->b->getVertexB();
+}
+
+Vertex * QFace::getPointC()
+{
+	if(!edgeCReversed)
+			{
+				return this->c->getVertexA();
+			}
+			return this->c->getVertexB();
+}
+
+Vertex * QFace::getPointD()
+{
+	if(!edgeDReversed)
+			{
+				return this->d->getVertexA();
+			}
+			return this->d->getVertexB();
+}
+
 
 
 

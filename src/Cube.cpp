@@ -16,7 +16,7 @@ using namespace std;
 
 #define RUN_GRAPHICS_DISPLAY 0x00 ;
 SetUpCube * cube = new SetUpCube;
-Catmull * nextCube = new Catmull(8, 12, 12, cube->returnVertexArrayPtr(), cube->returnEdgeArrayPtr(), cube->returnFaceArrayPtr());
+Catmull * nextCube = new Catmull(8, 18, 12, cube->returnVertexArrayPtr(), cube->returnEdgeArrayPtr(), cube->returnFaceArrayPtr());
 Catmull * nextNextCube = new Catmull;
 
 Uint32 display (Uint32 interval , void *param) {

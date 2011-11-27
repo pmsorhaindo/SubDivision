@@ -43,11 +43,25 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 	edgeArrayPtr = edgeArray;
 	rotAng = 0.0f;
 
+	/*cout << "Size of old Edge Array = " <<sizeOfOldEdgeArray <<"\n"; // size of Old edge Array was wrong hardcoded 12 ;/
+
+	for (int i=0; i<sizeOfOldEdgeArray; i++)
+	{
+		cout << "Edge " << i << "'s midpoint is: " << gOps.vertexToString(oldEdgeArray[i].getEdgeMidPoint()) << "\n";
+	}*/ // Edge midpoints were messed up not dividing by 2 and negating wtf?
+
+	/*cout << "size of Old Face Array" << sizeOfOldFaceArray << "\n";
+
+	for (int i = 0; i< sizeOfOldFaceArray; i++ )
+	{
+		cout << "Face " << i << "'s Face point is: " << gOps.vertexToString(oldFaceArray[i].getCentroid())<<"\n";
+	}*/
+
 	for (int i=0; i<sizeOfOldFaceArray; i++)
 	{
 		Vertex facep;
 		int facePointIndex;
-		int newEdgeAIndex, newEdgeBIndex, newEdgeCIndex, newEdgeDIndex;
+		int newEdgeAIndex,newEdgeBIndex,newEdgeCIndex,newEdgeDIndex,newEdgeEIndex,newEdgeFIndex,newEdgeGIndex,newEdgeHIndex,newEdgeIIndex,newEdgeJIndex,newEdgeKIndex,newEdgeLIndex;
 		int edgePointAIndex,edgePointBIndex,edgePointCIndex;
 		int newVertPointAIndex, newVertPointBIndex, newVertPointCIndex;
 
@@ -67,7 +81,6 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 
 		Vertex edgePointA;
 		edgePointA = gOps.getEdgePoint(oldFaceArray[i].getEdgeA(),oldFaceArray,sizeOfOldFaceArray,oldEdgeArray,sizeOfOldEdgeArray);
-		cout << "edgey A comes to the mix "<< gOps.vertexToString(oldFaceArray[i].getEdgeA()->getEdgePoint()) << endl;
 		if(!gOps.existsInNewVertexArray(edgePointA,vertexArray,v))
 		{
 			vertexArray[sizeOfVertexArray] = edgePointA;
@@ -171,21 +184,42 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 		newEdgeDIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
 
-		faceArray[sizeOfFaceArray] = QFace(&edgeArray[newEdgeAIndex],false,&edgeArray[newEdgeBIndex],false,&edgeArray[newEdgeCIndex],false,&edgeArray[newEdgeDIndex],false);
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointBIndex],&vertexArray[newVertPointBIndex]);
+		newEdgeEIndex = sizeOfEdgeArray;
+		sizeOfEdgeArray++;
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[newVertPointBIndex],&vertexArray[edgePointCIndex]);
+		newEdgeFIndex = sizeOfEdgeArray;
+		sizeOfEdgeArray++;
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointCIndex],&vertexArray[facePointIndex]);
+		newEdgeGIndex = sizeOfEdgeArray;
+		sizeOfEdgeArray++;
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[facePointIndex],&vertexArray[edgePointBIndex]);
+		newEdgeHIndex = sizeOfEdgeArray;
+		sizeOfEdgeArray++;
+
+
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointCIndex],&vertexArray[newVertPointCIndex]);
+		newEdgeIIndex = sizeOfEdgeArray;
+		sizeOfEdgeArray++;
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[newVertPointCIndex],&vertexArray[edgePointAIndex]);
+		newEdgeJIndex = sizeOfEdgeArray;
+		sizeOfEdgeArray++;
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointAIndex],&vertexArray[facePointIndex]);
+		newEdgeKIndex = sizeOfEdgeArray;
+		sizeOfEdgeArray++;
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[facePointIndex],&vertexArray[edgePointCIndex]);
+		newEdgeLIndex = sizeOfEdgeArray;
+		sizeOfEdgeArray++;
+
+		faceArray[sizeOfFaceArray] = QFace(&edgeArray[newEdgeAIndex],true,&edgeArray[newEdgeBIndex],false,&edgeArray[newEdgeCIndex],false,&edgeArray[newEdgeDIndex],false);
+		sizeOfFaceArray++;
+		faceArray[sizeOfFaceArray] = QFace(&edgeArray[newEdgeEIndex],false,&edgeArray[newEdgeFIndex],true,&edgeArray[newEdgeGIndex],false,&edgeArray[newEdgeHIndex],false);
+		sizeOfFaceArray++;
+		faceArray[sizeOfFaceArray] = QFace(&edgeArray[newEdgeIIndex],false,&edgeArray[newEdgeJIndex],false,&edgeArray[newEdgeKIndex],true,&edgeArray[newEdgeLIndex],false);
 		sizeOfFaceArray++;
 
 		//else{cout<<"caught!\n";}
 	}
-
-	cout << "sizeOfVertexArray is: " << sizeOfVertexArray <<"\n";
-
-	cout << "\n newVertArray in Catmull\n";
-	for (int j=0; j<sizeOfVertexArray; j++)
-	{
-		cout<< "Vertex " << j << " "<<gOps.vertexToString(vertexArray[j])<<endl;
-	}
-
-	cout << "size of EdgeArray " << sizeOfEdgeArray << "\n";
 
 	//cout<< "sizeOfOldFaceArray " << sizeOfOldFaceArray<<endl;
 	//GeometryOps::twoFace twoFaceStorage = gOps.getOtherFace(oea[2],ofa,f);
@@ -200,6 +234,12 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 	//glVertex3f(faceArray[0].getEdgeB()->getVertexA()->getX(),faceArray[0].getEdgeB()->getVertexA()->getY(),faceArray[0].getEdgeB()->getVertexA()->getZ());
 	//glVertex3f(faceArray[0].getEdgeC()->getVertexA()->getX(),faceArray[0].getEdgeC()->getVertexA()->getY(),faceArray[0].getEdgeC()->getVertexA()->getZ()); //
 	//glVertex3f(faceArray[0].getEdgeD()->getVertexA()->getX(),faceArray[0].getEdgeD()->getVertexA()->getY(),faceArray[0].getEdgeD()->getVertexA()->getZ());
+
+	cout << "\n newVertArray in Catmull\n";
+	for (int j=0; j<sizeOfVertexArray; j++)
+	{
+		cout<< "Vertex " << j << " "<<gOps.vertexToString(vertexArray[j])<<endl;
+	}
 }
 
 Catmull::~Catmull() {
@@ -219,18 +259,20 @@ void Catmull::draw(){
 			glBegin(GL_QUADS);
 			//OpenGL must be counter clockwise!
 
-			/*if(i%2==1)
+			if(i%2==1)
 			{
 				glColor3f(1.0f,0.0f,0.0f); //Red
 			}
 			else
 			{
 				glColor3f(0.0f,0.0f,1.0f); //Blue
-			}*/
-				glVertex3f(faceArray[i].getEdgeA()->getVertexA()->getX(),faceArray[i].getEdgeA()->getVertexA()->getY(),faceArray[i].getEdgeA()->getVertexA()->getZ());
-				glVertex3f(faceArray[i].getEdgeB()->getVertexA()->getX(),faceArray[i].getEdgeB()->getVertexA()->getY(),faceArray[i].getEdgeB()->getVertexA()->getZ());
-				glVertex3f(faceArray[i].getEdgeC()->getVertexA()->getX(),faceArray[i].getEdgeC()->getVertexA()->getY(),faceArray[i].getEdgeC()->getVertexA()->getZ()); //
-				glVertex3f(faceArray[i].getEdgeD()->getVertexA()->getX(),faceArray[i].getEdgeD()->getVertexA()->getY(),faceArray[i].getEdgeD()->getVertexA()->getZ());
+			}
+
+			glVertex3f(faceArray[i].getEdgeA()->getVertexA()->getX(),faceArray[i].getEdgeA()->getVertexA()->getY(),faceArray[i].getEdgeA()->getVertexA()->getZ());
+			glVertex3f(faceArray[i].getEdgeB()->getVertexA()->getX(),faceArray[i].getEdgeB()->getVertexA()->getY(),faceArray[i].getEdgeB()->getVertexA()->getZ());
+			glVertex3f(faceArray[i].getEdgeC()->getVertexA()->getX(),faceArray[i].getEdgeC()->getVertexA()->getY(),faceArray[i].getEdgeC()->getVertexA()->getZ());
+			glVertex3f(faceArray[i].getEdgeD()->getVertexA()->getX(),faceArray[i].getEdgeD()->getVertexA()->getY(),faceArray[i].getEdgeD()->getVertexA()->getZ());
+
 			glEnd();
 		}
 	//cout << "one draw?\n";

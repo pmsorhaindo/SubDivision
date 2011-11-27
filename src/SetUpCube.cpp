@@ -27,24 +27,24 @@ SetUpCube::SetUpCube() {
 	vertexArray[7] = Vertex(-0.5f,0.5f,-0.5f);
 	cout<< "cube Vertices set up\n";
 
-	edgeArray[0] = Edge(&vertexArray[3],&vertexArray[2]); //top front a 1
-	edgeArray[1] = Edge(&vertexArray[2],&vertexArray[6]); //top front b 2
-	edgeArray[2] = Edge(&vertexArray[6],&vertexArray[7]); //top front c 3
-	edgeArray[3] = Edge(&vertexArray[7],&vertexArray[3]); //top front d 4
-	edgeArray[4] = Edge(&vertexArray[2],&vertexArray[7]); //top front e 5
-	edgeArray[5] = Edge(&vertexArray[1],&vertexArray[2]); //top front f 6
-	edgeArray[6] = Edge(&vertexArray[0],&vertexArray[1]); //top front g 7
-	edgeArray[7] = Edge(&vertexArray[0],&vertexArray[3]); //top front h 8
-	edgeArray[8] = Edge(&vertexArray[2],&vertexArray[0]); //top front i 9
-	edgeArray[9] = Edge(&vertexArray[0],&vertexArray[4]); //top front j 10
-	edgeArray[10] = Edge(&vertexArray[5],&vertexArray[1]); //top front k 11
-	edgeArray[11] = Edge(&vertexArray[4],&vertexArray[5]); //top front l 12
-	edgeArray[12] = Edge(&vertexArray[4],&vertexArray[1]); //top front m 13
-	edgeArray[13] = Edge(&vertexArray[7],&vertexArray[4]); //top front n 14
-	edgeArray[14] = Edge(&vertexArray[5],&vertexArray[6]); //top front o 15
-	edgeArray[15] = Edge(&vertexArray[4],&vertexArray[6]); //top front p 16
-	edgeArray[16] = Edge(&vertexArray[3],&vertexArray[4]); //top front q 17
-	edgeArray[17] = Edge(&vertexArray[2],&vertexArray[5]); //top front r 18
+	edgeArray[0] = Edge(&vertexArray[3],&vertexArray[2]); // a 1
+	edgeArray[1] = Edge(&vertexArray[2],&vertexArray[6]); // b 2
+	edgeArray[2] = Edge(&vertexArray[6],&vertexArray[7]); // c 3
+	edgeArray[3] = Edge(&vertexArray[7],&vertexArray[3]); // d 4
+	edgeArray[4] = Edge(&vertexArray[2],&vertexArray[7]); // e 5
+	edgeArray[5] = Edge(&vertexArray[1],&vertexArray[2]); // f 6
+	edgeArray[6] = Edge(&vertexArray[0],&vertexArray[1]); // g 7
+	edgeArray[7] = Edge(&vertexArray[0],&vertexArray[3]); // h 8
+	edgeArray[8] = Edge(&vertexArray[2],&vertexArray[0]); // i 9
+	edgeArray[9] = Edge(&vertexArray[0],&vertexArray[4]); // j 10
+	edgeArray[10] = Edge(&vertexArray[5],&vertexArray[1]); // k 11
+	edgeArray[11] = Edge(&vertexArray[4],&vertexArray[5]); // l 12
+	edgeArray[12] = Edge(&vertexArray[4],&vertexArray[1]); // m 13
+	edgeArray[13] = Edge(&vertexArray[7],&vertexArray[4]); // n 14
+	edgeArray[14] = Edge(&vertexArray[5],&vertexArray[6]); // o 15
+	edgeArray[15] = Edge(&vertexArray[4],&vertexArray[6]); // p 16
+	edgeArray[16] = Edge(&vertexArray[3],&vertexArray[4]); // q 17
+	edgeArray[17] = Edge(&vertexArray[2],&vertexArray[5]); // r 18
 	cout<< "cube Edges set up\n";
 
 	faceArray[0] = Face(&edgeArray[2],false,&edgeArray[4],true,&edgeArray[1],false); //top back g

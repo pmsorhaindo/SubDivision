@@ -96,13 +96,52 @@ Vertex Face::calcCentroid(){
 
 void Face::setCentroid(){
 	//cout << "in setCentroid\n";
-	//cout << "adding this" << this->getEdgeA()->getVertexA()->getX()<<"\n";
-	//cout << "this "<< this->getEdgeA()->getVertexB()->getX() <<"\n";
-	//cout << "oh noes\n";
-	//cout << "and this C "<< this->getEdgeC()->getVertexB()->getX() << "\n";
-	float a1 = this->getEdgeA()->getVertexA()->getX()+this->getEdgeA()->getVertexB()->getX()+this->getEdgeB()->getVertexB()->getX();
-	float b1 = this->getEdgeA()->getVertexA()->getY()+this->getEdgeA()->getVertexB()->getY()+this->getEdgeB()->getVertexB()->getY();
-	float c1 = this->getEdgeA()->getVertexA()->getZ()+this->getEdgeA()->getVertexB()->getZ()+this->getEdgeB()->getVertexB()->getZ();
+	//cout << "adding this " << this->getEdgeA()->getVertexA()->getX()<<"\n";
+	//cout << "this "<< this->getEdgeB()->getVertexA()->getX() <<"\n";
+	//cout << "and this C "<< this->getEdgeC()->getVertexA()->getX() << "\n";
+	float ax,ay,az,bx,by,bz,cx,cy,cz;
+	if (!this->getEdgeADirection())
+	{
+		ax = this->getEdgeA()->getVertexA()->getX();
+		ay = this->getEdgeA()->getVertexA()->getY();
+		az = this->getEdgeA()->getVertexA()->getZ();
+	}
+	else
+	{
+		ax = this->getEdgeA()->getVertexB()->getX();
+		ay = this->getEdgeA()->getVertexB()->getY();
+		az = this->getEdgeA()->getVertexB()->getZ();
+	}
+
+	if (!this->getEdgeBDirection())
+	{
+		bx = this->getEdgeB()->getVertexA()->getX();
+		by = this->getEdgeB()->getVertexA()->getY();
+		bz = this->getEdgeB()->getVertexA()->getZ();
+	}
+	else
+	{
+		bx = this->getEdgeB()->getVertexB()->getX();
+		by = this->getEdgeB()->getVertexB()->getY();
+		bz = this->getEdgeB()->getVertexB()->getZ();
+	}
+
+	if (!this->getEdgeCDirection())
+	{
+		cx = this->getEdgeC()->getVertexA()->getX();
+		cy = this->getEdgeC()->getVertexA()->getY();
+		cz = this->getEdgeC()->getVertexA()->getZ();
+	}
+	else
+	{
+		cx = this->getEdgeC()->getVertexB()->getX();
+		cy = this->getEdgeC()->getVertexB()->getY();
+		cz = this->getEdgeC()->getVertexB()->getZ();
+	}
+
+	float a1 = ax+bx+cx;
+	float b1 = ay+by+cy;
+	float c1 = az+bz+cz;
 	facePoint = Vertex((a1/3),(b1/3),(c1/3));
 }
 

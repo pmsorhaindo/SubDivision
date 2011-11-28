@@ -52,23 +52,45 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 		cout << "Edge " << i << "'s midpoint is: " << gOps.vertexToString(oldEdgeArray[i].getEdgeMidPoint()) << "\n";
 	}*/ // Edge midpoints were messed up not dividing by 2 and negating wtf?
 
+
 	/*
 	 * VERIFIED
-	 * cout << "size of Old Face Array" << sizeOfOldFaceArray << "\n";*/
+	 * cout << "size of Old Face Array" << sizeOfOldFaceArray << "\n";
 
-	/*for (int i = 0; i< sizeOfOldFaceArray; i++ )
+	for (int i = 0; i< sizeOfOldFaceArray; i++ )
 	{
 		cout << "Face " << i << "'s Face point is: " << gOps.vertexToString(oldFaceArray[i].getCentroid())<<"\n";
 	}
 
-	cout << "Size of old Edge Array = " <<sizeOfOldEdgeArray <<"\n";
+	cout << "Size of old Edge Array = " <<sizeOfOldEdgeArray <<"\n";*/
 
-	for (int i=0; i<sizeOfOldFaceArray; i++)
+	/*for (int i=0; i<sizeOfOldFaceArray; i++)
 	{
 		Vertex edgpt = gOps.getEdgePoint(oldFaceArray[i].getEdgeA(),oldFaceArray,sizeOfOldFaceArray,oldEdgeArray,sizeOfOldEdgeArray);
 		cout << "The new edgepoint at " <<  i << " is: " << gOps.vertexToString(edgpt) << "\n";
 		cout << "test" << "\n";
 	}*/
+
+	/*
+	 * Vertex Points Q style
+	 *
+	for (int i=0; i<sizeOfOldVertexArray; i++)
+	{
+		Vertex qPoint = gOps.getQ(oldVertexArray[i],oldFaceArray,sizeOfOldFaceArray);
+		cout << "Q at Point "<< i<< " is: " << gOps.vertexToString(qPoint) << "\n";
+	}*/
+
+	/*
+	 *
+	 *
+	 * for (int i=0; i<sizeOfOldVertexArray; i++)
+	{
+		Vertex rPoint = gOps.get2R(oldVertexArray[i],oldEdgeArray,sizeOfOldEdgeArray);
+		cout << "2R at Point "<< i<< " is: " << gOps.vertexToString(rPoint) << "\n";
+	}*/
+
+
+
 
 	for (int i=0; i<sizeOfOldFaceArray; i++)
 	{

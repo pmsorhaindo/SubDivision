@@ -245,6 +245,7 @@ GeometryOps::sixFace GeometryOps::getAdjacentFaces(Vertex v, Face*ptr, int i){
 	{
 		if(faceContainsVertex(ptr[it],v))
 		{
+			//cout << "Face At! : " << it << "\n";
 			if(found==0){
 				found++;
 				adjFaces.faceOne=ptr[it];
@@ -353,6 +354,7 @@ GeometryOps::eightEdge GeometryOps::getIncidentEdges(Vertex *v, Edge*ptr, int iE
 Vertex GeometryOps::getQ(Vertex v, Face*ptr, int i){
 	GeometryOps::sixFace faces = getAdjacentFaces(v,ptr,i);
 	Vertex newQ;
+	//cout << "Q six face contains: " << faces.contains << "\n";
 	if(faces.contains==3) newQ = faces.faceOne.getCentroid()+faces.faceTwo.getCentroid()+faces.faceThree.getCentroid();
 	if(faces.contains==4) newQ = faces.faceOne.getCentroid()+faces.faceTwo.getCentroid()+faces.faceThree.getCentroid()+faces.faceFour.getCentroid();
 	if(faces.contains==5) newQ = faces.faceOne.getCentroid()+faces.faceTwo.getCentroid()+faces.faceThree.getCentroid()+faces.faceFour.getCentroid()+faces.faceFive.getCentroid();
@@ -377,7 +379,7 @@ Vertex GeometryOps::get2R(Vertex v, Edge*ptr, int i){
 Vertex GeometryOps::getSandStuff(Vertex v, Edge*ptr, int i){
 	GeometryOps::eightEdge edges = getIncidentEdges(&v,ptr,i);
 	Vertex sAnd = v*(edges.contains-3);
-	return sAnd/edges.contains;
+	return sAnd;
 }
 
 Vertex GeometryOps::generateNewVertexPoint(Vertex * v, Face*facePtr, Edge*edgePtr, int faceSize, int edgeSize){
@@ -388,6 +390,7 @@ Vertex GeometryOps::generateNewVertexPoint(Vertex * v, Face*facePtr, Edge*edgePt
 	Vertex polishAverageOfVertices = (jeden+dwa+trzy)/edges.contains;
 	return polishAverageOfVertices;
 }
+
 Vertex GeometryOps::twoEdgesGetCommonVertex(Edge a, Edge b){
 	if(compareVertices(*a.getVertexA(),*b.getVertexA())){
 		return *a.getVertexA();

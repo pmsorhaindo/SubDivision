@@ -230,6 +230,7 @@ Vertex GeometryOps::getEdgePoint(Edge* edg,Face*fptr,int i,Edge * eptr,int j){
 
 	edgePoint.add(*edg->getVertexA());
 	edgePoint.add(*edg->getVertexB());
+	//edgePoint.add(edg->getEdgeMidPoint());
 	edgePoint.add(touchingFaces.faceOne.getCentroid());
 	edgePoint.add(touchingFaces.faceTwo.getCentroid());
 	//cout << "EdgePoint Added" << vertexToString(edgePoint)<<endl;
@@ -387,7 +388,7 @@ Vertex GeometryOps::generateNewVertexPoint(Vertex * v, Face*facePtr, Edge*edgePt
 	Vertex jeden = getQ(*v,facePtr,faceSize);
 	Vertex dwa = get2R(*v,edgePtr,edgeSize);
 	Vertex trzy = getSandStuff(*v,edgePtr,edgeSize);
-	Vertex polishAverageOfVertices = (jeden+dwa+trzy)/edges.contains;
+	Vertex polishAverageOfVertices = ((jeden/edges.contains)+(dwa/edges.contains)+(trzy/edges.contains));
 	return polishAverageOfVertices;
 }
 

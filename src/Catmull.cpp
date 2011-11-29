@@ -45,52 +45,65 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 
 	/*
 	 *VERIFIED
-	 * cout << "Size of old Edge Array = " <<sizeOfOldEdgeArray <<"\n"; // size of Old edge Array was wrong hardcoded 12 ;/
+	 */cout << "Size of old Edge Array = " <<sizeOfOldEdgeArray <<"\n"; // size of Old edge Array was wrong hardcoded 12 ;/
 
 	for (int i=0; i<sizeOfOldEdgeArray; i++)
 	{
 		cout << "Edge " << i << "'s midpoint is: " << gOps.vertexToString(oldEdgeArray[i].getEdgeMidPoint()) << "\n";
-	}*/ // Edge midpoints were messed up not dividing by 2 and negating wtf?
+	} // Edge midpoints were messed up not dividing by 2 and negating wtf?
 
 
 	/*
 	 * VERIFIED
-	 * cout << "size of Old Face Array" << sizeOfOldFaceArray << "\n";
+	 */cout << "size of Old Face Array" << sizeOfOldFaceArray << "\n";
 
 	for (int i = 0; i< sizeOfOldFaceArray; i++ )
 	{
 		cout << "Face " << i << "'s Face point is: " << gOps.vertexToString(oldFaceArray[i].getCentroid())<<"\n";
 	}
 
-	cout << "Size of old Edge Array = " <<sizeOfOldEdgeArray <<"\n";*/
+	cout << "Size of old Edge Array = " <<sizeOfOldEdgeArray <<"\n";
 
-	/*for (int i=0; i<sizeOfOldFaceArray; i++)
+	for (int i=0; i<sizeOfOldEdgeArray; i++)
 	{
-		Vertex edgpt = gOps.getEdgePoint(oldFaceArray[i].getEdgeA(),oldFaceArray,sizeOfOldFaceArray,oldEdgeArray,sizeOfOldEdgeArray);
+		Vertex edgpt = gOps.getEdgePoint(&oldEdgeArray[i],oldFaceArray,sizeOfOldFaceArray,oldEdgeArray,sizeOfOldEdgeArray);
 		cout << "The new edgepoint at " <<  i << " is: " << gOps.vertexToString(edgpt) << "\n";
-		cout << "test" << "\n";
-	}*/
+		//cout << "test" << "\n";
+	}
 
 	/*
 	 * Vertex Points Q style
-	 *
-	for (int i=0; i<sizeOfOldVertexArray; i++)
+	 */
+	/*for (int i=0; i<sizeOfOldVertexArray; i++)
 	{
 		Vertex qPoint = gOps.getQ(oldVertexArray[i],oldFaceArray,sizeOfOldFaceArray);
 		cout << "Q at Point "<< i<< " is: " << gOps.vertexToString(qPoint) << "\n";
 	}*/
-
+	cout <<endl;
 	/*
-	 *
+	 * 2 R's looking good!
 	 *
 	 * for (int i=0; i<sizeOfOldVertexArray; i++)
 	{
 		Vertex rPoint = gOps.get2R(oldVertexArray[i],oldEdgeArray,sizeOfOldEdgeArray);
 		cout << "2R at Point "<< i<< " is: " << gOps.vertexToString(rPoint) << "\n";
 	}*/
+	 //cout<<endl;
+	/*
+	 * S points looking good!
+	 * for (int i=0; i<sizeOfOldVertexArray; i++)
+	{
+		Vertex sPoint = gOps.getSandStuff(oldVertexArray[i],oldEdgeArray,sizeOfOldEdgeArray);
+		cout << "S at Point "<< i<< " is: " << gOps.vertexToString(sPoint) << "\n";
+	}*/
 
 
-
+	cout<<endl;
+	for (int i=0; i<sizeOfOldVertexArray; i++)
+	{
+		Vertex newPoint = gOps.generateNewVertexPoint(&oldVertexArray[i],oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
+		cout << "New Vertex at Point "<< i<< " is: " << gOps.vertexToString(newPoint) << "\n";
+	}
 
 	for (int i=0; i<sizeOfOldFaceArray; i++)
 	{
@@ -213,43 +226,43 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 		cout << "\n";*/
 		//Edge newV1 ->
 
-		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointAIndex],&vertexArray[newVertPointAIndex]);
+
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[newVertPointAIndex],&vertexArray[edgePointCIndex]);
 		newEdgeAIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
-		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[newVertPointAIndex],&vertexArray[edgePointBIndex]);
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointCIndex],&vertexArray[facePointIndex]);
 		newEdgeBIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
-		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointBIndex],&vertexArray[facePointIndex]);
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[facePointIndex],&vertexArray[edgePointAIndex]);
 		newEdgeCIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
-		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[facePointIndex],&vertexArray[edgePointAIndex]);
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointAIndex],&vertexArray[newVertPointAIndex]);
 		newEdgeDIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
 
-		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointBIndex],&vertexArray[newVertPointBIndex]);
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[newVertPointBIndex],&vertexArray[edgePointAIndex]);
 		newEdgeEIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
-		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[newVertPointBIndex],&vertexArray[edgePointCIndex]);
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointAIndex],&vertexArray[facePointIndex]);
 		newEdgeFIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
-		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointCIndex],&vertexArray[facePointIndex]);
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[facePointIndex],&vertexArray[edgePointBIndex]);
 		newEdgeGIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
-		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[facePointIndex],&vertexArray[edgePointBIndex]);
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointBIndex],&vertexArray[newVertPointBIndex]);
 		newEdgeHIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
 
-
-		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointCIndex],&vertexArray[newVertPointCIndex]);
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[newVertPointCIndex],&vertexArray[edgePointBIndex]);
 		newEdgeIIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
-		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[newVertPointCIndex],&vertexArray[edgePointAIndex]);
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointBIndex],&vertexArray[facePointIndex]);
 		newEdgeJIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
-		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointAIndex],&vertexArray[facePointIndex]);
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[facePointIndex],&vertexArray[edgePointCIndex]);
 		newEdgeKIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
-		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[facePointIndex],&vertexArray[edgePointCIndex]);
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointCIndex],&vertexArray[newVertPointCIndex]);
 		newEdgeLIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
 
@@ -294,7 +307,16 @@ void Catmull::draw(){
 		glLoadIdentity();
 		// put the thing somewhere between the near and far clipping panes
 		glTranslatef(0.0f,0.0f,-5.0f);
-		glRotatef(rotAng,0.0f,0.5f,1.0);
+		glRotatef(rotAng,0.0f,0.1f,0.);
+
+		/*for (int i = 0; i <sizeOfFaceArray; i++)
+		{
+		cout << " ---- face " << i << " drawn at: " <<endl;
+		cout << "x: " << faceArray[i].getPointA()->getX() << " y: "<< faceArray[i].getPointA()->getY() << " z: " << faceArray[i].getPointA()->getZ()<< "\n";
+		cout << "x: " << faceArray[i].getPointB()->getX() << " y: "<< faceArray[i].getPointB()->getY() << " z: " << faceArray[i].getPointB()->getZ()<< "\n";
+		cout << "x: " << faceArray[i].getPointC()->getX() << " y: "<< faceArray[i].getPointC()->getY() << " z: " << faceArray[i].getPointC()->getZ()<< "\n";
+		cout << "x: " << faceArray[i].getPointD()->getX() << " y: "<< faceArray[i].getPointD()->getY() << " z: " << faceArray[i].getPointD()->getZ()<< "\n\n";
+		}*/
 
 		for(int i=0;i<sizeOfFaceArray;i++)
 		{
@@ -315,8 +337,37 @@ void Catmull::draw(){
 			glVertex3f(faceArray[i].getPointC()->getX(),faceArray[i].getPointC()->getY(),faceArray[i].getPointC()->getZ());
 			glVertex3f(faceArray[i].getPointD()->getX(),faceArray[i].getPointD()->getY(),faceArray[i].getPointD()->getZ());
 
+
+			glEnd();
+
+			glBegin(GL_LINES);
+			//OpenGL must be counter clockwise!
+
+			if(i%2==1)
+			{
+				glColor3f(1.0f,0.0f,0.0f); //Red
+			}
+			else
+			{
+				glColor3f(0.0f,0.0f,1.0f); //Blue
+			}
+
+			//glVertex3f(faceArray[i].getPointA()->getX(),faceArray[i].getPointA()->getY(),faceArray[i].getPointA()->getZ());
+			//glVertex3f(faceArray[i].getPointB()->getX(),faceArray[i].getPointB()->getY(),faceArray[i].getPointB()->getZ());
+			//glVertex3f(faceArray[i].getPointC()->getX(),faceArray[i].getPointC()->getY(),faceArray[i].getPointC()->getZ());
+			//glVertex3f(faceArray[i].getPointD()->getX(),faceArray[i].getPointD()->getY(),faceArray[i].getPointD()->getZ());
+
+			//glVertex3f(0,0.416667,-0.416667);
+			//glVertex3f(0.291667,0.291667,-0.395833);
+			//glVertex3f(0.291667,0.291667,-0.395833);
+			//glVertex3f(0,0.5,0);
+			//glVertex3f(0,0.5,0);
+			//glVertex3f(0.166667,0.5,-0.166667);
+			//glColor3f(0.0f,0.0f,1.0f);
+			//glVertex3f(0.166667,0.5,-0.166667);
+			//glVertex3f(0,0.416667,-0.416667);
 			glEnd();
 		}
 	//cout << "one draw?\n";
-	rotAng += 0.2;
+	rotAng += 0.8;
 }

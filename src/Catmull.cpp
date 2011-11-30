@@ -329,7 +329,7 @@ void Catmull::draw(){
 			}
 			else
 			{
-				glColor3f(0.0f,0.0f,1.0f); //Blue
+				//glColor3f(0.0f,0.0f,1.0f); //Blue
 			}
 
 			glVertex3f(faceArray[i].getPointA()->getX(),faceArray[i].getPointA()->getY(),faceArray[i].getPointA()->getZ());

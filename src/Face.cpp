@@ -161,6 +161,33 @@ bool Face::getEdgeCDirection(){
 	return edgeCReversed;
 }
 
+Vertex * Face::getPointA()
+{
+	if(!edgeAReversed)
+	{
+		return this->a->getVertexA();
+	}
+	return this->a->getVertexB();
+}
+
+Vertex * Face::getPointB()
+{
+	if(!edgeBReversed)
+		{
+			return this->b->getVertexA();
+		}
+		return this->b->getVertexB();
+}
+
+Vertex * Face::getPointC()
+{
+	if(!edgeCReversed)
+			{
+				return this->c->getVertexA();
+			}
+			return this->c->getVertexB();
+}
+
 
 
 

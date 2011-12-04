@@ -235,6 +235,7 @@ Vertex GeometryOps::getEdgePoint(Edge* edg,Face*fptr,int i,Edge * eptr,int j){
 	edgePoint.add(touchingFaces.faceTwo.getCentroid());
 	//cout << "EdgePoint Added" << vertexToString(edgePoint)<<endl;
 	edgePoint.div(4.0f);
+	//edgePoint.div(3.0f);
 	//cout << "Edgepoint: \t" << vertexToString(edgePoint)<<"\n"<<endl;
 	return edgePoint;
 }

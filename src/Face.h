@@ -35,6 +35,9 @@ public:
 	bool getEdgeADirection();
 	bool getEdgeBDirection();
 	bool getEdgeCDirection();
+	Vertex * getPointA();
+	Vertex * getPointB();
+	Vertex * getPointC();
 };
 
 #endif /* FACE_H_ */

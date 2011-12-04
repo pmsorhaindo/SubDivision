@@ -17,7 +17,7 @@ Catmull::Catmull() {
 }
 
 Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
-	//TODO split setUpCube!
+	//TODO split The Stich up Process
 	faceArray = new QFace[1000];
 	edgeArray = new Edge[1000];
 	vertexArray = new Vertex[1000];
@@ -176,11 +176,11 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 		}
 
 
-		Vertex newV1 = gOps.generateNewVertexPoint(oldFaceArray[i].getEdgeA()->getVertexA(),oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
+		Vertex newV1 = gOps.generateNewVertexPoint(oldFaceArray[i].getPointA(),oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
 		if(!gOps.existsInNewVertexArray(newV1,vertexArrayPtr,sizeOfVertexArray))
 		{
 			//cout << sizeOfVertexArray << "this is unique? " << gOps.vertexToString(newV1) <<"\n";
-			vertexArray[sizeOfVertexArray] = newV1;
+			vertexArray[sizeOfVertexArray] = gOps.generateNewVertexPoint(oldFaceArray[i].getPointA(),oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
 			newVertPointAIndex = sizeOfVertexArray;
 			sizeOfVertexArray++;
 		}
@@ -189,11 +189,11 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 			newVertPointAIndex = gOps.whereInNewVertexArray(newV1,vertexArrayPtr,sizeOfVertexArray);
 		}
 
-		Vertex newV2 = gOps.generateNewVertexPoint(oldFaceArray[i].getEdgeB()->getVertexA(),oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
+		Vertex newV2 = gOps.generateNewVertexPoint(oldFaceArray[i].getPointB(),oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
 		if(!gOps.existsInNewVertexArray(newV2,vertexArrayPtr,sizeOfVertexArray))
 		{
 			//cout << sizeOfVertexArray << "this is unique? " << gOps.vertexToString(newV2) <<"\n";
-			vertexArray[sizeOfVertexArray] = newV2;
+			vertexArray[sizeOfVertexArray] = gOps.generateNewVertexPoint(oldFaceArray[i].getPointB(),oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
 			newVertPointBIndex = sizeOfVertexArray;
 			sizeOfVertexArray++;
 		}
@@ -202,11 +202,11 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 			newVertPointBIndex = gOps.whereInNewVertexArray(newV2,vertexArrayPtr,sizeOfVertexArray);
 		}
 
-		Vertex newV3 = gOps.generateNewVertexPoint(oldFaceArray[i].getEdgeC()->getVertexA(),oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
+		Vertex newV3 = gOps.generateNewVertexPoint(oldFaceArray[i].getPointC(),oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
 		if(!gOps.existsInNewVertexArray(newV3,vertexArrayPtr,sizeOfVertexArray))
 		{
 			//cout << sizeOfVertexArray << "this is unique? " << gOps.vertexToString(newV3) <<"\n";
-			vertexArray[sizeOfVertexArray] = gOps.generateNewVertexPoint(oldFaceArray[i].getEdgeC()->getVertexA(),oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
+			vertexArray[sizeOfVertexArray] = gOps.generateNewVertexPoint(oldFaceArray[i].getPointC(),oldFaceArray,oldEdgeArray,sizeOfOldFaceArray,sizeOfOldEdgeArray);
 			newVertPointCIndex = sizeOfVertexArray;
 			sizeOfVertexArray++;
 		}
@@ -309,14 +309,14 @@ void Catmull::draw(){
 		glTranslatef(0.0f,0.0f,-5.0f);
 		glRotatef(rotAng,0.0f,0.1f,0.);
 
-		/*for (int i = 0; i <sizeOfFaceArray; i++)
+		for (int i = 0; i <sizeOfFaceArray; i++)
 		{
 		cout << " ---- face " << i << " drawn at: " <<endl;
 		cout << "x: " << faceArray[i].getPointA()->getX() << " y: "<< faceArray[i].getPointA()->getY() << " z: " << faceArray[i].getPointA()->getZ()<< "\n";
 		cout << "x: " << faceArray[i].getPointB()->getX() << " y: "<< faceArray[i].getPointB()->getY() << " z: " << faceArray[i].getPointB()->getZ()<< "\n";
 		cout << "x: " << faceArray[i].getPointC()->getX() << " y: "<< faceArray[i].getPointC()->getY() << " z: " << faceArray[i].getPointC()->getZ()<< "\n";
 		cout << "x: " << faceArray[i].getPointD()->getX() << " y: "<< faceArray[i].getPointD()->getY() << " z: " << faceArray[i].getPointD()->getZ()<< "\n\n";
-		}*/
+		}
 
 		for(int i=0;i<sizeOfFaceArray;i++)
 		{
@@ -329,7 +329,7 @@ void Catmull::draw(){
 			}
 			else
 			{
-				//glColor3f(0.0f,0.0f,1.0f); //Blue
+				glColor3f(1.0f,0.0f,1.0f); //Blue
 			}
 
 			glVertex3f(faceArray[i].getPointA()->getX(),faceArray[i].getPointA()->getY(),faceArray[i].getPointA()->getZ());

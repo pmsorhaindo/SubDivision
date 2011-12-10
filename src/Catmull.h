@@ -15,9 +15,11 @@ private:
 	Vertex * vertexArrayPtr;
 	Edge * edgeArrayPtr;
 	QFace * faceArrayPtr;
+
 	QFace * faceArray;
 	Edge * edgeArray;
 	Vertex * vertexArray;
+
 	int sizeOfFaceArray;
 	int sizeOfEdgeArray;
 	int sizeOfVertexArray;
@@ -27,8 +29,15 @@ public:
 	Catmull();
 	Catmull(int passedVertices, int passedEdges, int passedFaces, Vertex *ova, Edge *oea, Face *ofa);
 	Catmull(Vertex * vArray, Edge * eArray, Face * fArray);
+	Catmull(int passedVertices, int passedEdges, int passedFaces, Vertex *ova, Edge *oea, QFace *ofa);
 	virtual ~Catmull();
 	void draw();
+	int returnSizeOfVertexArray();
+	int returnSizeOfEdgeArray();
+	int returnSizeOfFaceArray();
+	Vertex * returnVertexArrayPtr();
+	Edge * returnEdgeArrayPtr();
+	QFace * returnFaceArrayPtr();
 };
 
 #endif /* CATMULL_H_ */

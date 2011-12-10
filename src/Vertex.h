@@ -21,9 +21,9 @@ public:
 	Vertex();
 	Vertex(float newX, float newY, float newZ);
 	virtual ~Vertex();
-	float getX();
-	float getY();
-	float getZ();
+	float getX() const;
+	float getY() const;
+	float getZ() const;
 	void setX(float f);
 	void setY(float f);
 	void setZ(float f);

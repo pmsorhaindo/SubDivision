@@ -14,7 +14,7 @@ QFace::QFace(){
 
 }
 
-QFace::QFace(Edge *newa, bool revAval, Edge * newb, bool revBval, Edge * newc, bool revCval, Edge * newd,  bool revDval){
+QFace::QFace(Edge * newa, bool revAval, Edge * newb, bool revBval, Edge * newc, bool revCval, Edge * newd,  bool revDval){
 	a=newa;
 	b=newb;
 	c=newc;
@@ -23,7 +23,7 @@ QFace::QFace(Edge *newa, bool revAval, Edge * newb, bool revBval, Edge * newc, b
 	edgeBReversed=revBval;
 	edgeCReversed=revCval;
 	edgeDReversed=revDval;
-	//setCentroid();
+	setCentroid();
 }
 
 QFace::~QFace() {

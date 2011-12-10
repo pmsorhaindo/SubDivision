@@ -17,8 +17,9 @@ using namespace std;
 #define RUN_GRAPHICS_DISPLAY 0x00 ;
 SetUpCube * cube = new SetUpCube;
 Catmull * nextCube = new Catmull(8, 18, 12, cube->returnVertexArrayPtr(), cube->returnEdgeArrayPtr(), cube->returnFaceArrayPtr());
-Catmull * nextNextCube = new Catmull;
-
+Catmull * nextNextCube = new Catmull(38,144,36,nextCube->returnVertexArrayPtr(),nextCube->returnEdgeArrayPtr(),nextCube->returnFaceArrayPtr());
+//Catmull * nextNextNextCube = new Catmull(173,432,108,nextNextCube->returnVertexArrayPtr(),nextNextCube->returnEdgeArrayPtr(),nextNextCube->returnFaceArrayPtr());
+//Catmull * nextNextNextNextCube = new Catmull(596,1296,324,nextNextNextCube->returnVertexArrayPtr(),nextNextNextCube->returnEdgeArrayPtr(),nextNextNextCube->returnFaceArrayPtr());
 Uint32 display (Uint32 interval , void *param) {
 	SDL_Event event;
 	event.type=SDL_USEREVENT;
@@ -41,7 +42,9 @@ void display () {
 	Face = cube.getFaceArray();
 	**/
 	//cube->draw();
-	nextCube->draw();
+	//nextCube->draw();
+	nextNextCube->draw();
+	//nextNextNextCube->draw();
 	SDL_GL_SwapBuffers();
 }
 int main(int argc,char * * argv ) {
@@ -89,6 +92,21 @@ int main(int argc,char * * argv ) {
 			display ();
 			break;
 		}
+			while( SDL_PollEvent( &event ) ){
+					/* We are only worried about SDL_KEYDOWN and SDL_KEYUP events */
+					switch( event.type ){
+					  case SDL_KEYDOWN:
+						printf( "Key press detected\n" );
+						break;
+
+					  case SDL_KEYUP:
+						printf( "Key release detected\n" );
+						break;
+
+					  default:
+						break;
+				}
+			}
 	}
 	return 0;
 }

@@ -26,15 +26,15 @@ Vertex::~Vertex() {
 	// TODO Auto-generated destructor stub
 }
 
-float Vertex::getX(){
+float Vertex::getX() const{
 	return x;
 }
 
-float Vertex::getY(){
+float Vertex::getY() const{
 	return y;
 }
 
-float Vertex::getZ(){
+float Vertex::getZ() const{
 	return z;
 }
 

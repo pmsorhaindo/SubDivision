@@ -133,6 +133,7 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 /*GeometryOps::twoQFace GeometryOps::getOtherFace(Edge e,QFace*ptr,int i){
 	GeometryOps::twoQFace otherFaces;
 	int found=0;
+	//cout<<"arrrghh: "<<edgeToString(e)<<endl;
 	for (int it=0;it<i;it++)
 	{
 		//cout<<"arrrghh: "<<edgeToString(e)<<endl;
@@ -146,7 +147,7 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 		//cout << "we have " <<vertexToString(*(e.getVertexA())) << " e?\n";
 		if(compareEdges(ptr[it].getEdgeA(),&e))
 		{
-			cout << "check" <<endl;
+			//cout << "check" <<endl;
 			if(found==0){
 				//cout<<"got a Face\n";
 				found++;
@@ -241,6 +242,7 @@ GeometryOps::twoQFace GeometryOps::getOtherFace(Edge e,QFace*ptr,int i){
 		//cout<<"hmmmmmm: "<<edgeToString(*ptr[it].getEdgeA())<<endl;
 		//cout<<"hmmmmmm: "<<edgeToString(*ptr[it].getEdgeB())<<endl;
 		//cout<<"hmmmmmm: "<<edgeToString(*ptr[it].getEdgeC())<<endl;
+		//cout<<"hmmmmmm: "<<edgeToString(*ptr[it].getEdgeD())<<endl;
 		if(compareEdges(ptr[it].getEdgeA(),&e))
 		{
 			if(found==0){
@@ -324,7 +326,11 @@ GeometryOps::twoQFace GeometryOps::getOtherFace(Edge e,QFace*ptr,int i){
 					}
 				}
 	}
-	if (found!=2) cout <<"!£$%^finding faces problem!\n";
+
+	if (found!=2){
+		cout <<"!£$%^finding faces problem!\n";
+		cout << edgeToString(e) << "\n";
+	}
 	if (found==1) cout <<"!£$%^not Enough problem!\n";
 	return otherFaces;
 }
@@ -334,9 +340,9 @@ bool GeometryOps::compareEdges(Edge *e1, Edge* e2){
 	if (
 		(compareVertices(*(e1->getVertexA()),*(e2->getVertexA()))
 				&&compareVertices(*(e1->getVertexB()),*(e2->getVertexB())))||
-				(compareVertices(*(e1->getVertexA()),*(e2->getVertexA()))
-						&&compareVertices(*(e1->getVertexB()),*(e2->getVertexB()))))
-	{
+				(compareVertices(*(e1->getVertexA()),*(e2->getVertexB()))
+						&&compareVertices(*(e1->getVertexB()),*(e2->getVertexA())))) // Bug of the year? Never use copy and paste ever!
+		{
 		areSame=true;
 	}
 	return areSame;
@@ -732,7 +738,7 @@ bool GeometryOps::twoEdgesIsCommonVertex(Edge a, Edge b){
 
 bool GeometryOps::existsInNewFaceArray(Face f, Face*facePtr,int faceArraySize){
 	bool exists = false;
-	//not needed
+	//TODO: not needed
 	return exists;
 }
 
@@ -767,4 +773,29 @@ int GeometryOps::whereInNewVertexArray(Vertex v, Vertex*vertexPtr,int vertexArra
 		}
 	cout << "dropped fail." << endl;
 	return -1;
+}
+
+Vertex GeometryOps::thirdPointInFace(Vertex v1,Vertex v2,Face f){
+
+	if(compareVertices(v1,*f.getEdgeA()->getVertexA())&&compareVertices(v2,*f.getEdgeB()->getVertexA())) return *f.getEdgeC()->getVertexA();
+	if(compareVertices(v2,*f.getEdgeA()->getVertexA())&&compareVertices(v1,*f.getEdgeB()->getVertexA())) return *f.getEdgeC()->getVertexA();
+	if(compareVertices(v1,*f.getEdgeB()->getVertexA())&&compareVertices(v2,*f.getEdgeC()->getVertexA())) return *f.getEdgeA()->getVertexA();
+	if(compareVertices(v2,*f.getEdgeB()->getVertexA())&&compareVertices(v1,*f.getEdgeC()->getVertexB())) return *f.getEdgeA()->getVertexA();
+	if(compareVertices(v1,*f.getEdgeC()->getVertexA())&&compareVertices(v2,*f.getEdgeA()->getVertexA())) return *f.getEdgeB()->getVertexA();
+	if(compareVertices(v2,*f.getEdgeC()->getVertexA())&&compareVertices(v1,*f.getEdgeA()->getVertexA())) return *f.getEdgeB()->getVertexA();
+	Vertex err = Vertex();
+	return err;
+}
+
+Vertex GeometryOps::getWings(Vertex e1, Vertex e2, Face * facePtr, int sizeOfFaceArray, Vertex opposingV){
+	//change to work with and edge and opposing Vertex
+	Vertex wing = Vertex();
+	Edge edge = Edge(&e1,&e2);
+	GeometryOps::twoFace facesBack = getOtherFace(edge,facePtr,sizeOfFaceArray);
+	if(faceContainsVertex(facesBack.faceOne, opposingV))
+	{
+		return thirdPointInFace(e1,e2,facesBack.faceTwo);
+	}
+
+	return thirdPointInFace(e1,e2,facesBack.faceOne);
 }

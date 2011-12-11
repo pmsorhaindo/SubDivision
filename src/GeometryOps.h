@@ -125,6 +125,8 @@ public:
 	bool existsInNewEdgeArray(Edge f, Edge*edgePtr,int edgeArraySize);
 	bool existsInNewVertexArray(Vertex v, Vertex*vertexPtr,int vertexArraySize);
 	int whereInNewVertexArray(Vertex v, Vertex*vertexPtr,int vertexArraySize);
+	Vertex thirdPointInFace(Vertex v1,Vertex v2,Face f);
+	Vertex getWings(Vertex e1, Vertex e2, Face * facePtr, int sizeOfFaceArray, Vertex opposingV);
 };
 
 #endif /* GEOMETRYOPS_H_ */

@@ -301,7 +301,7 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa){
 Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, QFace *ofa){
 	//TODO split The Stitch up Process
 	cout << "In Paris" <<endl;
-	faceArray = new QFace[f*3];
+	faceArray = new QFace[f*5];
 	edgeArray = new Edge[e*8];
 	vertexArray = new Vertex[v*10];
 	sizeOfFaceArray = 0;
@@ -328,20 +328,21 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, QFace *ofa){
 	 *VERIFIED
 	 */cout << "Size of old Edge Array = " <<sizeOfOldEdgeArray <<"\n"; // size of Old edge Array was wrong hardcoded 12 ;/
 
-	/*for (int i=0; i<sizeOfOldEdgeArray; i++)
+	for (int i=0; i<sizeOfOldEdgeArray; i++)
 	{
-		cout << "Edge " << i << "'s midpoint is: " << gOps.vertexToString(oldEdgeArray[i].getEdgeMidPoint()) << "\n";
-	} // Edge midpoints were messed up not dividing by 2 and negating wtf?*/
+		//cout << "Edge " << i << "'s midpoint is: " << gOps.vertexToString(oldEdgeArray[i].getEdgeMidPoint()) << "\n";
+		cout << "Edge " << i << " is v1: " << gOps.vertexToString(*oldEdgeArray[i].getVertexA()) << "\t\t and v2: " << gOps.vertexToString(*oldEdgeArray[i].getVertexB()) << "\n";
+	} // Edge midpoints were messed up not dividing by 2 and negating wtf?
 
 
 	/*
 	 * VERIFIED
-	 */cout << "size of Old Face Array " << sizeOfOldFaceArray << "\n";
+	 *cout << "size of Old Face Array " << sizeOfOldFaceArray << "\n";
 
 	for (int i = 0; i< sizeOfOldFaceArray; i++ )
 	{
 		cout << "Face " << i << "'s Face point is: " << gOps.vertexToString(oldFaceArray[i].getCentroid())<<"\n";
-	}
+	}*/
 
 	cout << "Size of old Edge Array = " <<sizeOfOldEdgeArray <<"\n";
 
@@ -349,7 +350,7 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, QFace *ofa){
 	{
 		//cout << "edgey!! " <<gOps.vertexToString(*oldEdgeArray[i].getVertexA())<<"\n";
 		//cout << "facey!! " <<gOps.vertexToString(*oldFaceArray[i].getEdgeA()->getVertexA())<<"\n";
-		Vertex edgpt = gOps.getEdgePoint(&oldEdgeArray[i],oldFaceArray,sizeOfOldFaceArray,oldEdgeArray,sizeOfOldEdgeArray);
+		//Vertex edgpt = gOps.getEdgePoint(&oldEdgeArray[i],oldFaceArray,sizeOfOldFaceArray,oldEdgeArray,sizeOfOldEdgeArray);
 		//cout << "The new edgepoint at " <<  i << " is: " << gOps.vertexToString(edgpt) << "\n";
 		//cout << "test" << "\n";
 	}
@@ -433,7 +434,7 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, QFace *ofa){
 			cout << "epc in Index "<< edgePointCIndex << "\n";
 		}
 
-
+		//check
 		Vertex edgePointD;
 		edgePointD = oldFaceArray[i].getEdgeB()->getEdgePoint();
 		edgePointD = gOps.getEdgePoint(oldFaceArray[i].getEdgeD(),oldFaceArray,sizeOfOldFaceArray,oldEdgeArray,sizeOfOldEdgeArray);
@@ -514,10 +515,10 @@ Catmull::Catmull(int v, int e, int f, Vertex *ova, Edge *oea, QFace *ofa){
 		//Edge newV1 ->
 
 
-		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[newVertPointAIndex],&vertexArray[edgePointCIndex]);
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[newVertPointAIndex],&vertexArray[edgePointDIndex]);
 		newEdgeAIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
-		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointCIndex],&vertexArray[facePointIndex]);
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[edgePointDIndex],&vertexArray[facePointIndex]);
 		newEdgeBIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
 		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[facePointIndex],&vertexArray[edgePointAIndex]);

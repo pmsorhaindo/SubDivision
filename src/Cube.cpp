@@ -12,14 +12,20 @@
 #include <iostream>
 #include "SetUpCube.h"
 #include "Catmull.h"
+#include "Butterfly.h"
+
 using namespace std;
 
 #define RUN_GRAPHICS_DISPLAY 0x00 ;
 SetUpCube * cube = new SetUpCube;
-Catmull * nextCube = new Catmull(8, 18, 12, cube->returnVertexArrayPtr(), cube->returnEdgeArrayPtr(), cube->returnFaceArrayPtr());
-Catmull * nextNextCube = new Catmull(38,144,36,nextCube->returnVertexArrayPtr(),nextCube->returnEdgeArrayPtr(),nextCube->returnFaceArrayPtr());
-//Catmull * nextNextNextCube = new Catmull(173,432,108,nextNextCube->returnVertexArrayPtr(),nextNextCube->returnEdgeArrayPtr(),nextNextCube->returnFaceArrayPtr());
-//Catmull * nextNextNextNextCube = new Catmull(596,1296,324,nextNextNextCube->returnVertexArrayPtr(),nextNextNextCube->returnEdgeArrayPtr(),nextNextNextCube->returnFaceArrayPtr());
+
+//Catmull * nextCube = new Catmull(8, 18, 12, cube->returnVertexArrayPtr(), cube->returnEdgeArrayPtr(), cube->returnFaceArrayPtr());
+//Catmull * nextNextCube = new Catmull(38,144,36,nextCube->returnVertexArrayPtr(),nextCube->returnEdgeArrayPtr(),nextCube->returnFaceArrayPtr());
+//Catmull * nextNextNextCube = new Catmull(146,576,144,nextNextCube->returnVertexArrayPtr(),nextNextCube->returnEdgeArrayPtr(),nextNextCube->returnFaceArrayPtr());
+//Catmull * nextNextNextNextCube = new Catmull(578,2304,576,nextNextNextCube->returnVertexArrayPtr(),nextNextNextCube->returnEdgeArrayPtr(),nextNextNextCube->returnFaceArrayPtr());
+
+Butterfly * nextBCube = new Butterfly(8,18,12,cube->returnVertexArrayPtr(),cube->returnEdgeArrayPtr(),cube->returnFaceArrayPtr());
+
 Uint32 display (Uint32 interval , void *param) {
 	SDL_Event event;
 	event.type=SDL_USEREVENT;
@@ -43,8 +49,9 @@ void display () {
 	**/
 	//cube->draw();
 	//nextCube->draw();
-	nextNextCube->draw();
+	//nextNextCube->draw();
 	//nextNextNextCube->draw();
+	//nextNextNextNextCube->draw();
 	SDL_GL_SwapBuffers();
 }
 int main(int argc,char * * argv ) {

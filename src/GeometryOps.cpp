@@ -56,6 +56,7 @@ string GeometryOps::floatToString(float val){
 
 GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 	GeometryOps::twoFace otherFaces;
+
 	int found=0;
 	for (int it=0;it<i;it++)
 	{
@@ -777,21 +778,46 @@ int GeometryOps::whereInNewVertexArray(Vertex v, Vertex*vertexPtr,int vertexArra
 
 Vertex GeometryOps::thirdPointInFace(Vertex v1,Vertex v2,Face f){
 
-	if(compareVertices(v1,*f.getEdgeA()->getVertexA())&&compareVertices(v2,*f.getEdgeB()->getVertexA())) return *f.getEdgeC()->getVertexA();
+	/*cout <<endl;
+	cout << "Face : " << printUniqueVertices(f) << "\n";
+	cout << "v1 : " << vertexToString(v1) << "\n";
+	cout << "v2 : " << vertexToString(v2) << "\n"; */
+
+	if( ( (compareVertices(v1,*f.getPointA())) && (compareVertices(v2,*f.getPointB())) ) ||
+			( (compareVertices(v2,*f.getPointA())) && (compareVertices(v1,*f.getPointB())) ) )
+	{
+		return *f.getPointC();
+	}
+
+	if( ( (compareVertices(v1,*f.getPointA())) && (compareVertices(v2,*f.getPointC())) ) ||
+			( (compareVertices(v2,*f.getPointA())) && (compareVertices(v1,*f.getPointC())) ) )
+	{
+		return *f.getPointB();
+	}
+	if( ( (compareVertices(v1,*f.getPointB())) && (compareVertices(v2,*f.getPointC())) ) ||
+			( (compareVertices(v2,*f.getPointB())) && (compareVertices(v1,*f.getPointC())) ) )
+	{
+		return *f.getPointA();
+	}
+
+
+	/*if(compareVertices(v1,*f.getEdgeA()->getVertexA())&&compareVertices(v2,*f.getEdgeB()->getVertexA())) return *f.getEdgeC()->getVertexA();
 	if(compareVertices(v2,*f.getEdgeA()->getVertexA())&&compareVertices(v1,*f.getEdgeB()->getVertexA())) return *f.getEdgeC()->getVertexA();
 	if(compareVertices(v1,*f.getEdgeB()->getVertexA())&&compareVertices(v2,*f.getEdgeC()->getVertexA())) return *f.getEdgeA()->getVertexA();
 	if(compareVertices(v2,*f.getEdgeB()->getVertexA())&&compareVertices(v1,*f.getEdgeC()->getVertexB())) return *f.getEdgeA()->getVertexA();
 	if(compareVertices(v1,*f.getEdgeC()->getVertexA())&&compareVertices(v2,*f.getEdgeA()->getVertexA())) return *f.getEdgeB()->getVertexA();
-	if(compareVertices(v2,*f.getEdgeC()->getVertexA())&&compareVertices(v1,*f.getEdgeA()->getVertexA())) return *f.getEdgeB()->getVertexA();
+	if(compareVertices(v2,*f.getEdgeC()->getVertexA())&&compareVertices(v1,*f.getEdgeA()->getVertexA())) return *f.getEdgeB()->getVertexA();*/
 	Vertex err = Vertex();
+	cout << "bleh!" << "\n";
 	return err;
 }
 
 Vertex GeometryOps::getWings(Vertex e1, Vertex e2, Face * facePtr, int sizeOfFaceArray, Vertex opposingV){
 	//change to work with and edge and opposing Vertex
 	Vertex wing = Vertex();
-	Edge edge = Edge(&e1,&e2);
+	Edge edge = Edge(&e2,&e1);
 	GeometryOps::twoFace facesBack = getOtherFace(edge,facePtr,sizeOfFaceArray);
+
 	if(faceContainsVertex(facesBack.faceOne, opposingV))
 	{
 		return thirdPointInFace(e1,e2,facesBack.faceTwo);

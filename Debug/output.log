@@ -2,5 +2,35 @@ cube starts setting up!
 cube Vertices set up
 cube Edges set up
 cube Faces set up
-resultv : x: 0 y: 1.25 z: -0.75
-!£$%^finding faces problem!
+Edge 0 toStr is: x: -0.5 y: 0.5 z: 0.5 x: 0.5 y: 0.5 z: 0.5
+Edge 1 toStr is: x: 0.5 y: 0.5 z: 0.5 x: 0.5 y: 0.5 z: -0.5
+Edge 2 toStr is: x: 0.5 y: 0.5 z: -0.5 x: -0.5 y: 0.5 z: -0.5
+Edge 3 toStr is: x: -0.5 y: 0.5 z: -0.5 x: -0.5 y: 0.5 z: 0.5
+Edge 4 toStr is: x: 0.5 y: 0.5 z: 0.5 x: -0.5 y: 0.5 z: -0.5
+Edge 5 toStr is: x: 0.5 y: -0.5 z: 0.5 x: 0.5 y: 0.5 z: 0.5
+Edge 6 toStr is: x: -0.5 y: -0.5 z: 0.5 x: 0.5 y: -0.5 z: 0.5
+Edge 7 toStr is: x: -0.5 y: -0.5 z: 0.5 x: -0.5 y: 0.5 z: 0.5
+Edge 8 toStr is: x: 0.5 y: 0.5 z: 0.5 x: -0.5 y: -0.5 z: 0.5
+Edge 9 toStr is: x: -0.5 y: -0.5 z: 0.5 x: -0.5 y: -0.5 z: -0.5
+Edge 10 toStr is: x: 0.5 y: -0.5 z: -0.5 x: 0.5 y: -0.5 z: 0.5
+Edge 11 toStr is: x: -0.5 y: -0.5 z: -0.5 x: 0.5 y: -0.5 z: -0.5
+Edge 12 toStr is: x: -0.5 y: -0.5 z: -0.5 x: 0.5 y: -0.5 z: 0.5
+Edge 13 toStr is: x: -0.5 y: 0.5 z: -0.5 x: -0.5 y: -0.5 z: -0.5
+Edge 14 toStr is: x: 0.5 y: -0.5 z: -0.5 x: 0.5 y: 0.5 z: -0.5
+Edge 15 toStr is: x: -0.5 y: -0.5 z: -0.5 x: 0.5 y: 0.5 z: -0.5
+Edge 16 toStr is: x: -0.5 y: 0.5 z: 0.5 x: -0.5 y: -0.5 z: -0.5
+Edge 17 toStr is: x: 0.5 y: 0.5 z: 0.5 x: 0.5 y: -0.5 z: -0.5
+
+valance1 = 6
+valance1 = 6
+points t1-t8
+t1x: 0.5 y: 0.5 z: 0.5
+t2x: 0.5 y: 0.5 z: -0.5
+t3x: -0.5 y: 0.5 z: -0.5
+t4x: 0.5 y: -0.5 z: -0.5
+t5x: -0.5 y: 0.5 z: 0.5
+t6x: 0.5 y: -0.5 z: 0.5
+t7x: -0.5 y: -0.5 z: -0.5
+t8x: -0.5 y: -0.5 z: -0.5
+resultv : x: 0.5625 y: 0.5625 z: -0.125
+

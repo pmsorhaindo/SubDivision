@@ -15,6 +15,7 @@ public:
 	Butterfly();
 	Butterfly(int v, int e, int f, Vertex *ova, Edge *oea, Face *ofa);
 	virtual ~Butterfly();
+	Vertex getNewEdgePoint(Edge * edgeToWork,Edge * oldEdges, int numberOfEdges, Face * oldFaces, int numberOfOldFaces);
 };
 
 #endif /* BUTTERFLY_H_ */

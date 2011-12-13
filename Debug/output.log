@@ -22,29 +22,17 @@ Edge 16 toStr is: x: -0.5 y: 0.5 z: 0.5 x: -0.5 y: -0.5 z: -0.5
 Edge 17 toStr is: x: 0.5 y: 0.5 z: 0.5 x: 0.5 y: -0.5 z: -0.5
 
 loop
-point3 Index 1
 loop
-point3 Index 1
 loop
-point3 Index 1
 loop
-point3 Index 1
 loop
-point3 Index 1
 loop
-point3 Index 1
 loop
-point3 Index 1
 loop
-point3 Index 1
 loop
-point3 Index 1
 loop
-point3 Index 1
 loop
-point3 Index 1
 loop
-point3 Index 1
 owch x: 0 y: 0.5 z: -0.5
 owch x: 0.0625 y: 0.75 z: 0.0625
 owch x: 0.5625 y: 0.5625 z: -0.125
@@ -73,50 +61,344 @@ owch x: -0.75 y: -0.0625 z: -0.0625
 owch x: 0.75 y: 0.0625 z: 0.0625
 
  ---- face 0 drawn at: 
-x: 0.0625 y: 0.75 z: 0.0625
+x: 0.5 y: 0.5 z: -0.5
 x: 0.5625 y: 0.5625 z: -0.125
 x: 0 y: 0.5 z: -0.5
  ---- face 1 drawn at: 
+x: -0.5 y: 0.5 z: -0.5
+x: 0 y: 0.5 z: -0.5
+x: 0.0625 y: 0.75 z: 0.0625
+ ---- face 2 drawn at: 
+x: 0.5 y: 0.5 z: 0.5
+x: 0.0625 y: 0.75 z: 0.0625
+x: 0.5625 y: 0.5625 z: -0.125
+ ---- face 3 drawn at: 
+x: 0 y: 0.5 z: -0.5
+x: 0.5625 y: 0.5625 z: -0.125
+x: 0.0625 y: 0.75 z: 0.0625
+ ---- face 4 drawn at: 
+x: -0.5 y: 0.5 z: -0.5
+x: 0.0625 y: 0.75 z: 0.0625
+x: -0.5 y: 0.5 z: 0
+ ---- face 5 drawn at: 
+x: -0.5 y: 0.5 z: 0.5
+x: -0.5 y: 0.5 z: 0
+x: -0.125 y: 0.5625 z: 0.5625
+ ---- face 6 drawn at: 
+x: -0.5 y: 0.5 z: 0.5
+x: -0.125 y: 0.5625 z: 0.5625
+x: 0.0625 y: 0.75 z: 0.0625
+ ---- face 7 drawn at: 
+x: -0.5 y: 0.5 z: 0
 x: 0.0625 y: 0.75 z: 0.0625
 x: -0.125 y: 0.5625 z: 0.5625
-x: -0.5 y: 0.5 z: 0
- ---- face 2 drawn at: 
-x: 0.0625 y: 0.75 z: 0.0625
+ ---- face 8 drawn at: 
+x: -0.5 y: -0.5 z: 0.5
 x: 0.0625 y: 0.0625 z: 0.75
 x: -0.5 y: 0 z: 0.5
- ---- face 3 drawn at: 
-x: 0.0625 y: 0.75 z: 0.0625
+ ---- face 9 drawn at: 
+x: -0.5 y: 0.5 z: 0.5
+x: -0.5 y: 0 z: 0.5
+x: -0.125 y: 0.5625 z: 0.5625
+ ---- face 10 drawn at: 
+x: -0.5 y: 0.5 z: 0.5
+x: -0.125 y: 0.5625 z: 0.5625
+x: 0.0625 y: 0.0625 z: 0.75
+ ---- face 11 drawn at: 
+x: -0.5 y: 0 z: 0.5
+x: 0.0625 y: 0.0625 z: 0.75
+x: -0.125 y: 0.5625 z: 0.5625
+ ---- face 12 drawn at: 
+x: 0.5 y: 0.5 z: 0.5
 x: 0.5625 y: -0.125 z: 0.5625
 x: 0.0625 y: 0.0625 z: 0.75
- ---- face 4 drawn at: 
-x: 0.0625 y: 0.75 z: 0.0625
-x: -0.0625 y: -0.75 z: -0.0625
+ ---- face 13 drawn at: 
+x: -0.5 y: -0.5 z: 0.5
+x: 0.0625 y: 0.0625 z: 0.75
+x: 0 y: -0.5 z: 0.5
+ ---- face 14 drawn at: 
+x: 0.5 y: -0.5 z: 0.5
+x: 0 y: -0.5 z: 0.5
+x: 0.5625 y: -0.125 z: 0.5625
+ ---- face 15 drawn at: 
+x: 0.0625 y: 0.0625 z: 0.75
+x: 0.5625 y: -0.125 z: 0.5625
+x: 0 y: -0.5 z: 0.5
+ ---- face 16 drawn at: 
+x: -0.5 y: -0.5 z: 0.5
+x: 0 y: -0.5 z: 0.5
 x: -0.5625 y: -0.5625 z: 0.125
- ---- face 5 drawn at: 
-x: 0.0625 y: 0.75 z: 0.0625
+ ---- face 17 drawn at: 
+x: -0.5 y: -0.5 z: -0.5
+x: -0.5625 y: -0.5625 z: 0.125
+x: -0.0625 y: -0.75 z: -0.0625
+ ---- face 18 drawn at: 
+x: -0.5 y: -0.5 z: -0.5
+x: -0.0625 y: -0.75 z: -0.0625
+x: 0 y: -0.5 z: 0.5
+ ---- face 19 drawn at: 
+x: -0.5625 y: -0.5625 z: 0.125
+x: 0 y: -0.5 z: 0.5
+x: -0.0625 y: -0.75 z: -0.0625
+ ---- face 20 drawn at: 
+x: 0.5 y: -0.5 z: 0.5
 x: 0.5 y: -0.5 z: 0
 x: -0.0625 y: -0.75 z: -0.0625
- ---- face 6 drawn at: 
-x: 0.0625 y: 0.75 z: 0.0625
+ ---- face 21 drawn at: 
+x: -0.5 y: -0.5 z: -0.5
+x: -0.0625 y: -0.75 z: -0.0625
+x: 0.125 y: -0.5625 z: -0.5625
+ ---- face 22 drawn at: 
+x: 0.5 y: -0.5 z: -0.5
+x: 0.125 y: -0.5625 z: -0.5625
+x: 0.5 y: -0.5 z: 0
+ ---- face 23 drawn at: 
+x: -0.0625 y: -0.75 z: -0.0625
+x: 0.5 y: -0.5 z: 0
+x: 0.125 y: -0.5625 z: -0.5625
+ ---- face 24 drawn at: 
+x: -0.5 y: -0.5 z: -0.5
 x: -0.0625 y: -0.0625 z: -0.75
 x: 0.125 y: -0.5625 z: -0.5625
- ---- face 7 drawn at: 
-x: 0.0625 y: 0.75 z: 0.0625
+ ---- face 25 drawn at: 
+x: 0.5 y: -0.5 z: -0.5
+x: 0.125 y: -0.5625 z: -0.5625
+x: 0.5 y: 0 z: -0.5
+ ---- face 26 drawn at: 
+x: 0.5 y: -0.5 z: -0.5
+x: 0.5 y: 0 z: -0.5
 x: -0.0625 y: -0.0625 z: -0.75
+ ---- face 27 drawn at: 
+x: 0.125 y: -0.5625 z: -0.5625
+x: -0.0625 y: -0.0625 z: -0.75
+x: 0.5 y: 0 z: -0.5
+ ---- face 28 drawn at: 
+x: -0.5 y: 0.5 z: -0.5
+x: 0 y: 0.5 z: -0.5
 x: -0.5625 y: 0.125 z: -0.5625
- ---- face 8 drawn at: 
-x: 0.0625 y: 0.75 z: 0.0625
+ ---- face 29 drawn at: 
+x: -0.5 y: -0.5 z: -0.5
+x: -0.5625 y: 0.125 z: -0.5625
+x: -0.0625 y: -0.0625 z: -0.75
+ ---- face 30 drawn at: 
+x: -0.5 y: -0.5 z: -0.5
+x: -0.0625 y: -0.0625 z: -0.75
+x: 0 y: 0.5 z: -0.5
+ ---- face 31 drawn at: 
+x: -0.5625 y: 0.125 z: -0.5625
+x: 0 y: 0.5 z: -0.5
+x: -0.0625 y: -0.0625 z: -0.75
+ ---- face 32 drawn at: 
+x: -0.5 y: 0.5 z: 0.5
 x: -0.75 y: -0.0625 z: -0.0625
 x: -0.5 y: 0.5 z: 0
- ---- face 9 drawn at: 
-x: 0.0625 y: 0.75 z: 0.0625
-x: -0.5625 y: -0.5625 z: 0.125
+ ---- face 33 drawn at: 
+x: -0.5 y: 0.5 z: -0.5
+x: -0.5 y: 0.5 z: 0
+x: -0.5625 y: 0.125 z: -0.5625
+ ---- face 34 drawn at: 
+x: -0.5 y: 0.5 z: -0.5
+x: -0.5625 y: 0.125 z: -0.5625
 x: -0.75 y: -0.0625 z: -0.0625
- ---- face 10 drawn at: 
-x: 0.0625 y: 0.75 z: 0.0625
-x: 0.75 y: 0.0625 z: 0.0625
+ ---- face 35 drawn at: 
+x: -0.5 y: 0.5 z: 0
+x: -0.75 y: -0.0625 z: -0.0625
+x: -0.5625 y: 0.125 z: -0.5625
+ ---- face 36 drawn at: 
+x: -0.5 y: 0.5 z: 0.5
+x: -0.5 y: 0 z: 0.5
+x: -0.75 y: -0.0625 z: -0.0625
+ ---- face 37 drawn at: 
+x: -0.5 y: -0.5 z: -0.5
+x: -0.75 y: -0.0625 z: -0.0625
+x: -0.5625 y: -0.5625 z: 0.125
+ ---- face 38 drawn at: 
+x: -0.5 y: -0.5 z: -0.5
+x: -0.5625 y: -0.5625 z: 0.125
+x: -0.5 y: 0 z: 0.5
+ ---- face 39 drawn at: 
+x: -0.75 y: -0.0625 z: -0.0625
+x: -0.5 y: 0 z: 0.5
+x: -0.5625 y: -0.5625 z: 0.125
+ ---- face 40 drawn at: 
+x: 0.5 y: 0.5 z: -0.5
+x: 0.5625 y: 0.5625 z: -0.125
 x: 0.5 y: 0 z: -0.5
- ---- face 11 drawn at: 
-x: 0.0625 y: 0.75 z: 0.0625
-x: 0.5 y: -0.5 z: 0
+ ---- face 41 drawn at: 
+x: 0.5 y: -0.5 z: -0.5
+x: 0.5 y: 0 z: -0.5
 x: 0.75 y: 0.0625 z: 0.0625
+ ---- face 42 drawn at: 
+x: 0.5 y: -0.5 z: -0.5
+x: 0.75 y: 0.0625 z: 0.0625
+x: 0.5625 y: 0.5625 z: -0.125
+ ---- face 43 drawn at: 
+x: 0.5 y: 0 z: -0.5
+x: 0.5625 y: 0.5625 z: -0.125
+x: 0.75 y: 0.0625 z: 0.0625
+ ---- face 44 drawn at: 
+x: 0.5 y: 0.5 z: 0.5
+x: 0.5625 y: -0.125 z: 0.5625
+x: 0.75 y: 0.0625 z: 0.0625
+ ---- face 45 drawn at: 
+x: 0.5 y: -0.5 z: -0.5
+x: 0.75 y: 0.0625 z: 0.0625
+x: 0.5 y: -0.5 z: 0
+ ---- face 46 drawn at: 
+x: 0.5 y: -0.5 z: -0.5
+x: 0.5 y: -0.5 z: 0
+x: 0.5625 y: -0.125 z: 0.5625
+ ---- face 47 drawn at: 
+x: 0.75 y: 0.0625 z: 0.0625
+x: 0.5625 y: -0.125 z: 0.5625
+x: 0.5 y: -0.5 z: 0
+Face Array has 48 inside.
+Edge Array has 144 inside.
+Vertex Array has 26 inside.
+Edge 0 toStr is: x: 0.5 y: 0.5 z: -0.5 x: 0.5625 y: 0.5625 z: -0.125
+Edge 1 toStr is: x: 0.5625 y: 0.5625 z: -0.125 x: 0 y: 0.5 z: -0.5
+Edge 2 toStr is: x: 0 y: 0.5 z: -0.5 x: 0.5 y: 0.5 z: -0.5
+Edge 3 toStr is: x: -0.5 y: 0.5 z: -0.5 x: 0 y: 0.5 z: -0.5
+Edge 4 toStr is: x: 0 y: 0.5 z: -0.5 x: 0.0625 y: 0.75 z: 0.0625
+Edge 5 toStr is: x: 0.0625 y: 0.75 z: 0.0625 x: -0.5 y: 0.5 z: -0.5
+Edge 6 toStr is: x: 0.5 y: 0.5 z: 0.5 x: 0.0625 y: 0.75 z: 0.0625
+Edge 7 toStr is: x: 0.0625 y: 0.75 z: 0.0625 x: 0.5625 y: 0.5625 z: -0.125
+Edge 8 toStr is: x: 0.5625 y: 0.5625 z: -0.125 x: 0.5 y: 0.5 z: 0.5
+Edge 9 toStr is: x: 0 y: 0.5 z: -0.5 x: 0.5625 y: 0.5625 z: -0.125
+Edge 10 toStr is: x: 0.5625 y: 0.5625 z: -0.125 x: 0.0625 y: 0.75 z: 0.0625
+Edge 11 toStr is: x: 0.0625 y: 0.75 z: 0.0625 x: 0 y: 0.5 z: -0.5
+Edge 12 toStr is: x: -0.5 y: 0.5 z: -0.5 x: 0.0625 y: 0.75 z: 0.0625
+Edge 13 toStr is: x: 0.0625 y: 0.75 z: 0.0625 x: -0.5 y: 0.5 z: 0
+Edge 14 toStr is: x: -0.5 y: 0.5 z: 0 x: -0.5 y: 0.5 z: -0.5
+Edge 15 toStr is: x: -0.5 y: 0.5 z: 0.5 x: -0.5 y: 0.5 z: 0
+Edge 16 toStr is: x: -0.5 y: 0.5 z: 0 x: -0.125 y: 0.5625 z: 0.5625
+Edge 17 toStr is: x: -0.125 y: 0.5625 z: 0.5625 x: -0.5 y: 0.5 z: 0.5
+Edge 18 toStr is: x: -0.5 y: 0.5 z: 0.5 x: -0.125 y: 0.5625 z: 0.5625
+Edge 19 toStr is: x: -0.125 y: 0.5625 z: 0.5625 x: 0.0625 y: 0.75 z: 0.0625
+Edge 20 toStr is: x: 0.0625 y: 0.75 z: 0.0625 x: -0.5 y: 0.5 z: 0.5
+Edge 21 toStr is: x: -0.5 y: 0.5 z: 0 x: 0.0625 y: 0.75 z: 0.0625
+Edge 22 toStr is: x: 0.0625 y: 0.75 z: 0.0625 x: -0.125 y: 0.5625 z: 0.5625
+Edge 23 toStr is: x: -0.125 y: 0.5625 z: 0.5625 x: -0.5 y: 0.5 z: 0
+Edge 24 toStr is: x: -0.5 y: -0.5 z: 0.5 x: 0.0625 y: 0.0625 z: 0.75
+Edge 25 toStr is: x: 0.0625 y: 0.0625 z: 0.75 x: -0.5 y: 0 z: 0.5
+Edge 26 toStr is: x: -0.5 y: 0 z: 0.5 x: -0.5 y: -0.5 z: 0.5
+Edge 27 toStr is: x: -0.5 y: 0.5 z: 0.5 x: -0.5 y: 0 z: 0.5
+Edge 28 toStr is: x: -0.5 y: 0 z: 0.5 x: -0.125 y: 0.5625 z: 0.5625
+Edge 29 toStr is: x: -0.125 y: 0.5625 z: 0.5625 x: -0.5 y: 0.5 z: 0.5
+Edge 30 toStr is: x: -0.5 y: 0.5 z: 0.5 x: -0.125 y: 0.5625 z: 0.5625
+Edge 31 toStr is: x: -0.125 y: 0.5625 z: 0.5625 x: 0.0625 y: 0.0625 z: 0.75
+Edge 32 toStr is: x: 0.0625 y: 0.0625 z: 0.75 x: -0.5 y: 0.5 z: 0.5
+Edge 33 toStr is: x: -0.5 y: 0 z: 0.5 x: 0.0625 y: 0.0625 z: 0.75
+Edge 34 toStr is: x: 0.0625 y: 0.0625 z: 0.75 x: -0.125 y: 0.5625 z: 0.5625
+Edge 35 toStr is: x: -0.125 y: 0.5625 z: 0.5625 x: -0.5 y: 0 z: 0.5
+Edge 36 toStr is: x: 0.5 y: 0.5 z: 0.5 x: 0.5625 y: -0.125 z: 0.5625
+Edge 37 toStr is: x: 0.5625 y: -0.125 z: 0.5625 x: 0.0625 y: 0.0625 z: 0.75
+Edge 38 toStr is: x: 0.0625 y: 0.0625 z: 0.75 x: 0.5 y: 0.5 z: 0.5
+Edge 39 toStr is: x: -0.5 y: -0.5 z: 0.5 x: 0.0625 y: 0.0625 z: 0.75
+Edge 40 toStr is: x: 0.0625 y: 0.0625 z: 0.75 x: 0 y: -0.5 z: 0.5
+Edge 41 toStr is: x: 0 y: -0.5 z: 0.5 x: -0.5 y: -0.5 z: 0.5
+Edge 42 toStr is: x: 0.5 y: -0.5 z: 0.5 x: 0 y: -0.5 z: 0.5
+Edge 43 toStr is: x: 0 y: -0.5 z: 0.5 x: 0.5625 y: -0.125 z: 0.5625
+Edge 44 toStr is: x: 0.5625 y: -0.125 z: 0.5625 x: 0.5 y: -0.5 z: 0.5
+Edge 45 toStr is: x: 0.0625 y: 0.0625 z: 0.75 x: 0.5625 y: -0.125 z: 0.5625
+Edge 46 toStr is: x: 0.5625 y: -0.125 z: 0.5625 x: 0 y: -0.5 z: 0.5
+Edge 47 toStr is: x: 0 y: -0.5 z: 0.5 x: 0.0625 y: 0.0625 z: 0.75
+Edge 48 toStr is: x: -0.5 y: -0.5 z: 0.5 x: 0 y: -0.5 z: 0.5
+Edge 49 toStr is: x: 0 y: -0.5 z: 0.5 x: -0.5625 y: -0.5625 z: 0.125
+Edge 50 toStr is: x: -0.5625 y: -0.5625 z: 0.125 x: -0.5 y: -0.5 z: 0.5
+Edge 51 toStr is: x: -0.5 y: -0.5 z: -0.5 x: -0.5625 y: -0.5625 z: 0.125
+Edge 52 toStr is: x: -0.5625 y: -0.5625 z: 0.125 x: -0.0625 y: -0.75 z: -0.0625
+Edge 53 toStr is: x: -0.0625 y: -0.75 z: -0.0625 x: -0.5 y: -0.5 z: -0.5
+Edge 54 toStr is: x: -0.5 y: -0.5 z: -0.5 x: -0.0625 y: -0.75 z: -0.0625
+Edge 55 toStr is: x: -0.0625 y: -0.75 z: -0.0625 x: 0 y: -0.5 z: 0.5
+Edge 56 toStr is: x: 0 y: -0.5 z: 0.5 x: -0.5 y: -0.5 z: -0.5
+Edge 57 toStr is: x: -0.5625 y: -0.5625 z: 0.125 x: 0 y: -0.5 z: 0.5
+Edge 58 toStr is: x: 0 y: -0.5 z: 0.5 x: -0.0625 y: -0.75 z: -0.0625
+Edge 59 toStr is: x: -0.0625 y: -0.75 z: -0.0625 x: -0.5625 y: -0.5625 z: 0.125
+Edge 60 toStr is: x: 0.5 y: -0.5 z: 0.5 x: 0.5 y: -0.5 z: 0
+Edge 61 toStr is: x: 0.5 y: -0.5 z: 0 x: -0.0625 y: -0.75 z: -0.0625
+Edge 62 toStr is: x: -0.0625 y: -0.75 z: -0.0625 x: 0.5 y: -0.5 z: 0.5
+Edge 63 toStr is: x: -0.5 y: -0.5 z: -0.5 x: -0.0625 y: -0.75 z: -0.0625
+Edge 64 toStr is: x: -0.0625 y: -0.75 z: -0.0625 x: 0.125 y: -0.5625 z: -0.5625
+Edge 65 toStr is: x: 0.125 y: -0.5625 z: -0.5625 x: -0.5 y: -0.5 z: -0.5
+Edge 66 toStr is: x: 0.5 y: -0.5 z: -0.5 x: 0.125 y: -0.5625 z: -0.5625
+Edge 67 toStr is: x: 0.125 y: -0.5625 z: -0.5625 x: 0.5 y: -0.5 z: 0
+Edge 68 toStr is: x: 0.5 y: -0.5 z: 0 x: 0.5 y: -0.5 z: -0.5
+Edge 69 toStr is: x: -0.0625 y: -0.75 z: -0.0625 x: 0.5 y: -0.5 z: 0
+Edge 70 toStr is: x: 0.5 y: -0.5 z: 0 x: 0.125 y: -0.5625 z: -0.5625
+Edge 71 toStr is: x: 0.125 y: -0.5625 z: -0.5625 x: -0.0625 y: -0.75 z: -0.0625
+Edge 72 toStr is: x: -0.5 y: -0.5 z: -0.5 x: -0.0625 y: -0.0625 z: -0.75
+Edge 73 toStr is: x: -0.0625 y: -0.0625 z: -0.75 x: 0.125 y: -0.5625 z: -0.5625
+Edge 74 toStr is: x: 0.125 y: -0.5625 z: -0.5625 x: -0.5 y: -0.5 z: -0.5
+Edge 75 toStr is: x: 0.5 y: -0.5 z: -0.5 x: 0.125 y: -0.5625 z: -0.5625
+Edge 76 toStr is: x: 0.125 y: -0.5625 z: -0.5625 x: 0.5 y: 0 z: -0.5
+Edge 77 toStr is: x: 0.5 y: 0 z: -0.5 x: 0.5 y: -0.5 z: -0.5
+Edge 78 toStr is: x: 0.5 y: -0.5 z: -0.5 x: 0.5 y: 0 z: -0.5
+Edge 79 toStr is: x: 0.5 y: 0 z: -0.5 x: -0.0625 y: -0.0625 z: -0.75
+Edge 80 toStr is: x: -0.0625 y: -0.0625 z: -0.75 x: 0.5 y: -0.5 z: -0.5
+Edge 81 toStr is: x: 0.125 y: -0.5625 z: -0.5625 x: -0.0625 y: -0.0625 z: -0.75
+Edge 82 toStr is: x: -0.0625 y: -0.0625 z: -0.75 x: 0.5 y: 0 z: -0.5
+Edge 83 toStr is: x: 0.5 y: 0 z: -0.5 x: 0.125 y: -0.5625 z: -0.5625
+Edge 84 toStr is: x: -0.5 y: 0.5 z: -0.5 x: 0 y: 0.5 z: -0.5
+Edge 85 toStr is: x: 0 y: 0.5 z: -0.5 x: -0.5625 y: 0.125 z: -0.5625
+Edge 86 toStr is: x: -0.5625 y: 0.125 z: -0.5625 x: -0.5 y: 0.5 z: -0.5
+Edge 87 toStr is: x: -0.5 y: -0.5 z: -0.5 x: -0.5625 y: 0.125 z: -0.5625
+Edge 88 toStr is: x: -0.5625 y: 0.125 z: -0.5625 x: -0.0625 y: -0.0625 z: -0.75
+Edge 89 toStr is: x: -0.0625 y: -0.0625 z: -0.75 x: -0.5 y: -0.5 z: -0.5
+Edge 90 toStr is: x: -0.5 y: -0.5 z: -0.5 x: -0.0625 y: -0.0625 z: -0.75
+Edge 91 toStr is: x: -0.0625 y: -0.0625 z: -0.75 x: 0 y: 0.5 z: -0.5
+Edge 92 toStr is: x: 0 y: 0.5 z: -0.5 x: -0.5 y: -0.5 z: -0.5
+Edge 93 toStr is: x: -0.5625 y: 0.125 z: -0.5625 x: 0 y: 0.5 z: -0.5
+Edge 94 toStr is: x: 0 y: 0.5 z: -0.5 x: -0.0625 y: -0.0625 z: -0.75
+Edge 95 toStr is: x: -0.0625 y: -0.0625 z: -0.75 x: -0.5625 y: 0.125 z: -0.5625
+Edge 96 toStr is: x: -0.5 y: 0.5 z: 0.5 x: -0.75 y: -0.0625 z: -0.0625
+Edge 97 toStr is: x: -0.75 y: -0.0625 z: -0.0625 x: -0.5 y: 0.5 z: 0
+Edge 98 toStr is: x: -0.5 y: 0.5 z: 0 x: -0.5 y: 0.5 z: 0.5
+Edge 99 toStr is: x: -0.5 y: 0.5 z: -0.5 x: -0.5 y: 0.5 z: 0
+Edge 100 toStr is: x: -0.5 y: 0.5 z: 0 x: -0.5625 y: 0.125 z: -0.5625
+Edge 101 toStr is: x: -0.5625 y: 0.125 z: -0.5625 x: -0.5 y: 0.5 z: -0.5
+Edge 102 toStr is: x: -0.5 y: 0.5 z: -0.5 x: -0.5625 y: 0.125 z: -0.5625
+Edge 103 toStr is: x: -0.5625 y: 0.125 z: -0.5625 x: -0.75 y: -0.0625 z: -0.0625
+Edge 104 toStr is: x: -0.75 y: -0.0625 z: -0.0625 x: -0.5 y: 0.5 z: -0.5
+Edge 105 toStr is: x: -0.5 y: 0.5 z: 0 x: -0.75 y: -0.0625 z: -0.0625
+Edge 106 toStr is: x: -0.75 y: -0.0625 z: -0.0625 x: -0.5625 y: 0.125 z: -0.5625
+Edge 107 toStr is: x: -0.5625 y: 0.125 z: -0.5625 x: -0.5 y: 0.5 z: 0
+Edge 108 toStr is: x: -0.5 y: 0.5 z: 0.5 x: -0.5 y: 0 z: 0.5
+Edge 109 toStr is: x: -0.5 y: 0 z: 0.5 x: -0.75 y: -0.0625 z: -0.0625
+Edge 110 toStr is: x: -0.75 y: -0.0625 z: -0.0625 x: -0.5 y: 0.5 z: 0.5
+Edge 111 toStr is: x: -0.5 y: -0.5 z: -0.5 x: -0.75 y: -0.0625 z: -0.0625
+Edge 112 toStr is: x: -0.75 y: -0.0625 z: -0.0625 x: -0.5625 y: -0.5625 z: 0.125
+Edge 113 toStr is: x: -0.5625 y: -0.5625 z: 0.125 x: -0.5 y: -0.5 z: -0.5
+Edge 114 toStr is: x: -0.5 y: -0.5 z: -0.5 x: -0.5625 y: -0.5625 z: 0.125
+Edge 115 toStr is: x: -0.5625 y: -0.5625 z: 0.125 x: -0.5 y: 0 z: 0.5
+Edge 116 toStr is: x: -0.5 y: 0 z: 0.5 x: -0.5 y: -0.5 z: -0.5
+Edge 117 toStr is: x: -0.75 y: -0.0625 z: -0.0625 x: -0.5 y: 0 z: 0.5
+Edge 118 toStr is: x: -0.5 y: 0 z: 0.5 x: -0.5625 y: -0.5625 z: 0.125
+Edge 119 toStr is: x: -0.5625 y: -0.5625 z: 0.125 x: -0.75 y: -0.0625 z: -0.0625
+Edge 120 toStr is: x: 0.5 y: 0.5 z: -0.5 x: 0.5625 y: 0.5625 z: -0.125
+Edge 121 toStr is: x: 0.5625 y: 0.5625 z: -0.125 x: 0.5 y: 0 z: -0.5
+Edge 122 toStr is: x: 0.5 y: 0 z: -0.5 x: 0.5 y: 0.5 z: -0.5
+Edge 123 toStr is: x: 0.5 y: -0.5 z: -0.5 x: 0.5 y: 0 z: -0.5
+Edge 124 toStr is: x: 0.5 y: 0 z: -0.5 x: 0.75 y: 0.0625 z: 0.0625
+Edge 125 toStr is: x: 0.75 y: 0.0625 z: 0.0625 x: 0.5 y: -0.5 z: -0.5
+Edge 126 toStr is: x: 0.5 y: -0.5 z: -0.5 x: 0.75 y: 0.0625 z: 0.0625
+Edge 127 toStr is: x: 0.75 y: 0.0625 z: 0.0625 x: 0.5625 y: 0.5625 z: -0.125
+Edge 128 toStr is: x: 0.5625 y: 0.5625 z: -0.125 x: 0.5 y: -0.5 z: -0.5
+Edge 129 toStr is: x: 0.5 y: 0 z: -0.5 x: 0.5625 y: 0.5625 z: -0.125
+Edge 130 toStr is: x: 0.5625 y: 0.5625 z: -0.125 x: 0.75 y: 0.0625 z: 0.0625
+Edge 131 toStr is: x: 0.75 y: 0.0625 z: 0.0625 x: 0.5 y: 0 z: -0.5
+Edge 132 toStr is: x: 0.5 y: 0.5 z: 0.5 x: 0.5625 y: -0.125 z: 0.5625
+Edge 133 toStr is: x: 0.5625 y: -0.125 z: 0.5625 x: 0.75 y: 0.0625 z: 0.0625
+Edge 134 toStr is: x: 0.75 y: 0.0625 z: 0.0625 x: 0.5 y: 0.5 z: 0.5
+Edge 135 toStr is: x: 0.5 y: -0.5 z: -0.5 x: 0.75 y: 0.0625 z: 0.0625
+Edge 136 toStr is: x: 0.75 y: 0.0625 z: 0.0625 x: 0.5 y: -0.5 z: 0
+Edge 137 toStr is: x: 0.5 y: -0.5 z: 0 x: 0.5 y: -0.5 z: -0.5
+Edge 138 toStr is: x: 0.5 y: -0.5 z: -0.5 x: 0.5 y: -0.5 z: 0
+Edge 139 toStr is: x: 0.5 y: -0.5 z: 0 x: 0.5625 y: -0.125 z: 0.5625
+Edge 140 toStr is: x: 0.5625 y: -0.125 z: 0.5625 x: 0.5 y: -0.5 z: -0.5
+Edge 141 toStr is: x: 0.75 y: 0.0625 z: 0.0625 x: 0.5625 y: -0.125 z: 0.5625
+Edge 142 toStr is: x: 0.5625 y: -0.125 z: 0.5625 x: 0.5 y: -0.5 z: 0
+Edge 143 toStr is: x: 0.5 y: -0.5 z: 0 x: 0.75 y: 0.0625 z: 0.0625
+
+!£$%^finding faces problem!
+!£$%^not Enough problem!

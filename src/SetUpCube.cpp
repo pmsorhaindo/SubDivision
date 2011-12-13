@@ -48,17 +48,17 @@ SetUpCube::SetUpCube() {
 	cout<< "cube Edges set up\n";
 
 	faceArray[0] = Face(&edgeArray[2],false,&edgeArray[4],true,&edgeArray[1],false); //top back g
-	faceArray[1] = Face(&edgeArray[3],false,&edgeArray[0],false,&edgeArray[4],false); //top front g
-	faceArray[2] = Face(&edgeArray[7],false,&edgeArray[0],false,&edgeArray[8],false); // front top g
-	faceArray[3] = Face(&edgeArray[8],false,&edgeArray[6],false,&edgeArray[5],false); //front bottom g
+	faceArray[1] = Face(&edgeArray[3],false,&edgeArray[0],false,&edgeArray[4],false); //top front g a
+	faceArray[2] = Face(&edgeArray[7],false,&edgeArray[0],false,&edgeArray[8],false); // front top g a
+	faceArray[3] = Face(&edgeArray[8],false,&edgeArray[6],false,&edgeArray[5],false); //front bottom g a
 	faceArray[4] = Face(&edgeArray[9],false,&edgeArray[12],false,&edgeArray[6],true); // bottom front g
 	faceArray[5] = Face(&edgeArray[12],true,&edgeArray[11],false,&edgeArray[10],false); //bottom back g
 	faceArray[6] = Face(&edgeArray[11],false,&edgeArray[14],false,&edgeArray[15],true); // back bottom g
-	faceArray[7] = Face(&edgeArray[13],false,&edgeArray[15],false,&edgeArray[2],false); //Back top
+	faceArray[7] = Face(&edgeArray[13],false,&edgeArray[15],false,&edgeArray[2],false); //Back top a
 	faceArray[8] = Face(&edgeArray[3],true,&edgeArray[13],false,&edgeArray[16],true); // left top
 	faceArray[9] = Face(&edgeArray[16],false,&edgeArray[9],true,&edgeArray[7],false); //left bottom
 	faceArray[10] = Face(&edgeArray[14],true,&edgeArray[17],true,&edgeArray[1],false); // right top
-	faceArray[11] = Face(&edgeArray[17],false,&edgeArray[10],false,&edgeArray[5],false); // right bottom
+	faceArray[11] = Face(&edgeArray[17],false,&edgeArray[10],false,&edgeArray[5],false); // right bottom a
 	cout<< "cube Faces set up\n";
 
 	int sizeOfEdgeArray = 18;

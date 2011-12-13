@@ -27,6 +27,12 @@ public:
 	virtual ~Butterfly();
 	Vertex getNewEdgePoint(Edge * edgeToWork,Edge * oldEdges, int numberOfEdges, Face * oldFaces, int numberOfOldFaces);
 	void draw();
+	int returnSizeOfVertexArray();
+	int returnSizeOfEdgeArray();
+	int returnSizeOfFaceArray();
+	Vertex * returnVertexArrayPtr();
+	Edge * returnEdgeArrayPtr();
+	Face * returnFaceArrayPtr();
 };
 
 #endif /* BUTTERFLY_H_ */

@@ -25,6 +25,7 @@ SetUpCube * cube = new SetUpCube;
 //Catmull * nextNextNextNextCube = new Catmull(578,2304,576,nextNextNextCube->returnVertexArrayPtr(),nextNextNextCube->returnEdgeArrayPtr(),nextNextNextCube->returnFaceArrayPtr());
 
 Butterfly * nextBCube = new Butterfly(8,18,12,cube->returnVertexArrayPtr(),cube->returnEdgeArrayPtr(),cube->returnFaceArrayPtr());
+Butterfly * nextNextBCube = new Butterfly(26,144,48,nextBCube->returnVertexArrayPtr(),nextBCube->returnEdgeArrayPtr(),nextBCube->returnFaceArrayPtr());
 
 Uint32 display (Uint32 interval , void *param) {
 	SDL_Event event;

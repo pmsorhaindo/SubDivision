@@ -75,7 +75,7 @@ Butterfly::Butterfly(int numberOfOldVertices, int numberOfOldEdges, int numberOf
 		}
 		else
 		{
-			v3Index = gOps.whereInNewVertexArray(tempV2,vertexArray,sizeOfVertexArray);
+			v3Index = gOps.whereInNewVertexArray(tempV3,vertexArray,sizeOfVertexArray);
 		}
 
 		tempV1 = *oldFaces[i].getPointA();
@@ -118,13 +118,13 @@ Butterfly::Butterfly(int numberOfOldVertices, int numberOfOldEdges, int numberOf
 		}
 
 		int point1 = gOps.existsInNewVertexArray(gOps.twoEdgesGetCommonVertex(*oldFaces[i].getEdgeC(),*oldFaces[i].getEdgeA()),vertexArray,sizeOfVertexArray);
-		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[point1],&vertexArray[v3Index]);
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[p1Index],&vertexArray[v3Index]);
 		int newEdgeAIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
 		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[v3Index],&vertexArray[v1Index]);
 		int newEdgeBIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
-		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[v1Index],&vertexArray[point1]);
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[v1Index],&vertexArray[p1Index]);
 		int newEdgeCIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
 
@@ -132,33 +132,33 @@ Butterfly::Butterfly(int numberOfOldVertices, int numberOfOldEdges, int numberOf
 		sizeOfFaceArray++;
 
 		int point2 = gOps.existsInNewVertexArray(gOps.twoEdgesGetCommonVertex(*oldFaces[i].getEdgeA(),*oldFaces[i].getEdgeB()),vertexArray,sizeOfVertexArray);
-		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[point2],&vertexArray[v1Index]);
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[p2Index],&vertexArray[v1Index]);
 		int newEdgeDIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
 		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[v1Index],&vertexArray[v2Index]);
 		int newEdgeEIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
-		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[v2Index],&vertexArray[point2]);
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[v2Index],&vertexArray[p2Index]);
 		int newEdgeFIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
 
-		//faceArray[sizeOfFaceArray] = Face(&edgeArray[newEdgeDIndex],false,&edgeArray[newEdgeEIndex],false,&edgeArray[newEdgeFIndex],false);
-		//sizeOfFaceArray++;
+		faceArray[sizeOfFaceArray] = Face(&edgeArray[newEdgeDIndex],false,&edgeArray[newEdgeEIndex],false,&edgeArray[newEdgeFIndex],false);
+		sizeOfFaceArray++;
 
 		int point3 = gOps.existsInNewVertexArray(gOps.twoEdgesGetCommonVertex(*oldFaces[i].getEdgeB(),*oldFaces[i].getEdgeC()),vertexArray,sizeOfVertexArray);
-		cout << "point3 Index " << point3 << endl;
-		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[point1],&vertexArray[v2Index]);
+		//cout << "point3 Index " << point3 << endl;
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[p3Index],&vertexArray[v2Index]);
 		int newEdgeGIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
 		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[v2Index],&vertexArray[v3Index]);
 		int newEdgeHIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
-		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[v3Index],&vertexArray[point1]);
+		edgeArray[sizeOfEdgeArray] = Edge(&vertexArray[v3Index],&vertexArray[p3Index]);
 		int newEdgeIIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
 
-		//faceArray[sizeOfFaceArray] = Face(&edgeArray[newEdgeGIndex],false,&edgeArray[newEdgeHIndex],false,&edgeArray[newEdgeIIndex],false);
-		//sizeOfFaceArray++;
+		faceArray[sizeOfFaceArray] = Face(&edgeArray[newEdgeGIndex],false,&edgeArray[newEdgeHIndex],false,&edgeArray[newEdgeIIndex],false);
+		sizeOfFaceArray++;
 
 
 		//GOOD
@@ -172,8 +172,8 @@ Butterfly::Butterfly(int numberOfOldVertices, int numberOfOldEdges, int numberOf
 		int newEdgeLIndex = sizeOfEdgeArray;
 		sizeOfEdgeArray++;
 
-		//faceArray[sizeOfFaceArray] = Face(&edgeArray[newEdgeJIndex],false,&edgeArray[newEdgeKIndex],false,&edgeArray[newEdgeLIndex],false);
-		//sizeOfFaceArray++;
+		faceArray[sizeOfFaceArray] = Face(&edgeArray[newEdgeJIndex],false,&edgeArray[newEdgeKIndex],false,&edgeArray[newEdgeLIndex],false);
+		sizeOfFaceArray++;
 
 	}
 
@@ -189,7 +189,9 @@ Butterfly::Butterfly(int numberOfOldVertices, int numberOfOldEdges, int numberOf
 	cout << "x: " << faceArray[i].getPointB()->getX() << " y: "<< faceArray[i].getPointB()->getY() << " z: " << faceArray[i].getPointB()->getZ()<< "\n";
 	cout << "x: " << faceArray[i].getPointC()->getX() << " y: "<< faceArray[i].getPointC()->getY() << " z: " << faceArray[i].getPointC()->getZ()<< "\n";
 	}
-
+	cout << "Face Array has " << sizeOfFaceArray << " inside." <<endl;
+	cout << "Edge Array has " << sizeOfEdgeArray << " inside." <<endl;
+	cout << "Vertex Array has " << sizeOfVertexArray << " inside." <<endl;
 }
 
 Butterfly::~Butterfly() {
@@ -263,7 +265,7 @@ void Butterfly::draw(){
 
 
 
-		for(int i=0;i<11;i++)
+		for(int i=0;i<sizeOfFaceArray;i++)
 		{
 			glBegin(GL_TRIANGLES);
 			//OpenGL must be counter clockwise!
@@ -325,4 +327,28 @@ void Butterfly::draw(){
 		}
 	//cout << "one draw?\n";
 	rotAng += 0.8;
+}
+
+int Butterfly::returnSizeOfVertexArray(){
+	return sizeOfVertexArray;
+}
+
+int Butterfly::returnSizeOfEdgeArray(){
+	return sizeOfEdgeArray;
+}
+
+int Butterfly::returnSizeOfFaceArray(){
+	return sizeOfFaceArray;
+}
+
+Vertex * Butterfly::returnVertexArrayPtr(){
+	return vertexArray;
+}
+
+Edge * Butterfly::returnEdgeArrayPtr(){
+	return edgeArray;
+}
+
+Face * Butterfly::returnFaceArrayPtr(){
+	return faceArray;
 }

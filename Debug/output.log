@@ -22,17 +22,29 @@ Edge 16 toStr is: x: -0.5 y: 0.5 z: 0.5 x: -0.5 y: -0.5 z: -0.5
 Edge 17 toStr is: x: 0.5 y: 0.5 z: 0.5 x: 0.5 y: -0.5 z: -0.5
 
 loop
+point3 Index 1
 loop
+point3 Index 1
 loop
+point3 Index 1
 loop
+point3 Index 1
 loop
+point3 Index 1
 loop
+point3 Index 1
 loop
+point3 Index 1
 loop
+point3 Index 1
 loop
+point3 Index 1
 loop
+point3 Index 1
 loop
+point3 Index 1
 loop
+point3 Index 1
 owch x: 0 y: 0.5 z: -0.5
 owch x: 0.0625 y: 0.75 z: 0.0625
 owch x: 0.5625 y: 0.5625 z: -0.125
@@ -59,3 +71,52 @@ owch x: -0.0625 y: -0.0625 z: -0.75
 owch x: -0.5625 y: 0.125 z: -0.5625
 owch x: -0.75 y: -0.0625 z: -0.0625
 owch x: 0.75 y: 0.0625 z: 0.0625
+
+ ---- face 0 drawn at: 
+x: 0.0625 y: 0.75 z: 0.0625
+x: 0.5625 y: 0.5625 z: -0.125
+x: 0 y: 0.5 z: -0.5
+ ---- face 1 drawn at: 
+x: 0.0625 y: 0.75 z: 0.0625
+x: -0.125 y: 0.5625 z: 0.5625
+x: -0.5 y: 0.5 z: 0
+ ---- face 2 drawn at: 
+x: 0.0625 y: 0.75 z: 0.0625
+x: 0.0625 y: 0.0625 z: 0.75
+x: -0.5 y: 0 z: 0.5
+ ---- face 3 drawn at: 
+x: 0.0625 y: 0.75 z: 0.0625
+x: 0.5625 y: -0.125 z: 0.5625
+x: 0.0625 y: 0.0625 z: 0.75
+ ---- face 4 drawn at: 
+x: 0.0625 y: 0.75 z: 0.0625
+x: -0.0625 y: -0.75 z: -0.0625
+x: -0.5625 y: -0.5625 z: 0.125
+ ---- face 5 drawn at: 
+x: 0.0625 y: 0.75 z: 0.0625
+x: 0.5 y: -0.5 z: 0
+x: -0.0625 y: -0.75 z: -0.0625
+ ---- face 6 drawn at: 
+x: 0.0625 y: 0.75 z: 0.0625
+x: -0.0625 y: -0.0625 z: -0.75
+x: 0.125 y: -0.5625 z: -0.5625
+ ---- face 7 drawn at: 
+x: 0.0625 y: 0.75 z: 0.0625
+x: -0.0625 y: -0.0625 z: -0.75
+x: -0.5625 y: 0.125 z: -0.5625
+ ---- face 8 drawn at: 
+x: 0.0625 y: 0.75 z: 0.0625
+x: -0.75 y: -0.0625 z: -0.0625
+x: -0.5 y: 0.5 z: 0
+ ---- face 9 drawn at: 
+x: 0.0625 y: 0.75 z: 0.0625
+x: -0.5625 y: -0.5625 z: 0.125
+x: -0.75 y: -0.0625 z: -0.0625
+ ---- face 10 drawn at: 
+x: 0.0625 y: 0.75 z: 0.0625
+x: 0.75 y: 0.0625 z: 0.0625
+x: 0.5 y: 0 z: -0.5
+ ---- face 11 drawn at: 
+x: 0.0625 y: 0.75 z: 0.0625
+x: 0.5 y: -0.5 z: 0
+x: 0.75 y: 0.0625 z: 0.0625

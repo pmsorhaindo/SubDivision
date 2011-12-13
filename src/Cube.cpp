@@ -47,11 +47,14 @@ void display () {
 	SetUpCube cube = SetUpCube();
 	Face = cube.getFaceArray();
 	**/
+
 	//cube->draw();
 	//nextCube->draw();
 	//nextNextCube->draw();
 	//nextNextNextCube->draw();
 	//nextNextNextNextCube->draw();
+
+	nextBCube->draw();
 	SDL_GL_SwapBuffers();
 }
 int main(int argc,char * * argv ) {

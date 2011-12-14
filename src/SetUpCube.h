@@ -23,11 +23,13 @@ private:
 	Vertex * vertexArrayPtr;
 	Face * faceArrayPtr;
 	Edge * edgeArrayPtr;
+	int sizeOfEdgeArray;
+	int sizeOfVertexArray;
+	int sizeOfFaceArray;
 
 public:
 	SetUpCube();
 	virtual ~SetUpCube();
-	Edge reverseEdge(Edge e);
 	Face * getFaceArray();
 	Edge * getEdgeArray();
 	Vertex * getVertexArray();
@@ -35,6 +37,9 @@ public:
 	Vertex * returnVertexArrayPtr();
 	Edge * returnEdgeArrayPtr();
 	Face * returnFaceArrayPtr();
+	int returnSizeOfVertexArray();
+	int returnSizeOfEdgeArray();
+	int returnSizeOfFaceArray();
 };
 
 #endif /* SETUPCUBE_H_ */

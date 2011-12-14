@@ -119,7 +119,6 @@ public:
 	Vertex generateNewVertexPoint(Vertex * v, QFace*facePtr, Edge*edgePtr, int faceSize, int edgeSize);
 	Vertex twoEdgesGetCommonVertex(Edge a, Edge b);
 	bool twoEdgesIsCommonVertex(Edge a, Edge b);
-	//int GeometryOps::matchIsFound(int found, twoFace twoFacestruct,);
 	bool existsInNewQFaceArray(Face f, QFace*facePtr,int faceArraySize);
 	bool existsInNewFaceArray(Face f, Face*facePtr,int faceArraySize);
 	bool existsInNewEdgeArray(Edge f, Edge*edgePtr,int edgeArraySize);

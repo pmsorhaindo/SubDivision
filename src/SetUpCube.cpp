@@ -8,7 +8,6 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include "SetUpCube.h"
-#include "GeometryOps.h"
 #include <iostream>
 
 using namespace std;
@@ -77,130 +76,18 @@ SetUpCube::SetUpCube() {
 	//Edge * edgeArrayPtr;
 	edgeArrayPtr = edgeArray;
 
-	GeometryOps gOps = GeometryOps();
-
 	//MAKE NEW FACE EDGE VERTEX STRUCTURE¬!"!!!!!
 	//ok here we go..
 	Vertex newVertexArray[50];
 	Vertex *newVertexArrayPtr = newVertexArray;
 
-
 	int totalNewVerts = 0;
 	int totalNewEdges = 0;
 	int totalNewFaces = 0;
-
-	/**SOLUTION?
-	For each face
-	Take two edges
-	take their edge points for point on newFace
-	and the new Vertex for the 4th point on the face
-	addToVertex Array if not existing in VertexArray
-	Repeat twice (3x more on next iteratations) more for the next two Pair of edges on the face.
-	Repeat for all faces.**/
-
-	/*Pass the class to create new arrays the current amount of vertices faces and edges
-	 * in the current structure so it will generate the right size of array. The array stored in this new class
-	 * will ensure things don't get deleted.
-	 */
-
-	/*for (int i=0; i<sizeOfFaceArray; i++)
-	{
-		Vertex facep;
-		facep = faceArrayPtr[i].getCentroid();
-		newVertexArray[totalNewVerts] = facep;
-		totalNewVerts++;
-
-		Vertex edgePointA;
-		edgePointA = faceArrayPtr[i].getEdgeA()->getEdgePoint();
-		edgePointA = gOps.getEdgePoint(faceArrayPtr[i].getEdgeA(),faceArrayPtr,sizeOfFaceArray,edgeArrayPtr,sizeOfEdgeArray);
-
-		if(!gOps.existsInNewVertexArray(edgePointA,newVertexArrayPtr,50))
-		{
-			newVertexArray[totalNewVerts] = edgePointA;
-			totalNewVerts++;
-		}
-
-		Vertex newV1 = gOps.generateNewVertexPoint(faceArrayPtr[i].getEdgeA()->getVertexB(),faceArrayPtr,edgeArrayPtr,sizeOfFaceArray,sizeOfEdgeArray);
-				 if(!gOps.existsInNewVertexArray(newV1,newVertexArrayPtr,50))
-				 {
-					 newVertexArray[totalNewVerts] = newV1;
-					 totalNewVerts++;
-				 }
-
-		//Edge newE1 = Edge(edgePointA,newV1);
-
-
-		Vertex edgePointB;
-		faceArrayPtr[i].getEdgeB()->setEdgePoint(gOps.getEdgePoint(faceArrayPtr[i].getEdgeB(),faceArrayPtr,sizeOfFaceArray,edgeArrayPtr,sizeOfEdgeArray));
-		edgePointB = faceArrayPtr[i].getEdgeB()->getEdgePoint();
-		if(!gOps.existsInNewVertexArray(edgePointB,newVertexArrayPtr,50))
-		{
-			newVertexArray[totalNewVerts] = edgePointB;
-			totalNewVerts++;
-		}
-
-		//else{cout<<"caught!\n";}
-		Vertex edgePointC;
-		faceArrayPtr[i].getEdgeC()->setEdgePoint(gOps.getEdgePoint(faceArrayPtr[i].getEdgeC(),faceArrayPtr,sizeOfFaceArray,edgeArrayPtr,sizeOfEdgeArray));
-		edgePointC = faceArrayPtr[i].getEdgeC()->getEdgePoint();
-		//edgePointC = gOps.getEdgePoint(faceArrayPtr[i].getEdgeC(),faceArrayPtr,sizeOfFaceArray);
-		if(!gOps.existsInNewVertexArray(edgePointC,newVertexArrayPtr,50))
-		{
-			newVertexArray[totalNewVerts] = edgePointC;
-			totalNewVerts++;
-		}
-		 Vertex newV2 = gOps.generateNewVertexPoint(faceArrayPtr[i].getEdgeA()->getVertexA(),faceArrayPtr,edgeArrayPtr,sizeOfFaceArray,sizeOfEdgeArray);
-		 if(!gOps.existsInNewVertexArray(newV2,newVertexArrayPtr,50))
-		 {
-			 newVertexArray[totalNewVerts] = newV2;
-			 totalNewVerts++;
-		 }
-
-		 Vertex newV3 = gOps.generateNewVertexPoint(faceArrayPtr[i].getEdgeB()->getVertexA(),faceArrayPtr,edgeArrayPtr,sizeOfFaceArray,sizeOfEdgeArray);
-		 if(!gOps.existsInNewVertexArray(newV3,newVertexArrayPtr,50))
-		 {
-			 newVertexArray[totalNewVerts] = newV3;
-			 totalNewVerts++;
-		 }
-		 //else{cout<<"caught!\n";}
-	}*/
-
-	/*cout << "Yay! total new Faces = " << totalNewFaces <<endl;
-	cout << "Yay! total new Edges = " << totalNewEdges <<endl;
-	cout << "Yay! total new Verts = " << totalNewVerts <<endl;
-	//cout << "face 1 attempt "<< newFaceArray[0].getEdgeA().getVertexA()->getX() <<endl;
-
-
-	for (int i =0; i<totalNewVerts; i++)
-	{
-		cout<< "New Shapes Vertex "<< i <<" "<< gOps.vertexToString(newVertexArray[i]) <<endl;
-	}
-
-	cout <<"\n"<<endl;*/
-
-	/*for (int i = 0; i<12; i++)
-	{
-		cout << "***Face " << i <<endl;
-		cout << " first : " << faceArray[i].getEdgeA()->getVertexA()->getX()<< "::"<< faceArray[i].getEdgeA()->getVertexA()->getY() << "::" <<faceArray[i].getEdgeA()->getVertexA()->getZ()<<endl;
-		cout << " second : " << faceArray[i].getEdgeA()->getVertexB()->getX()<< "::"<< faceArray[i].getEdgeA()->getVertexB()->getY() << "::" <<faceArray[i].getEdgeA()->getVertexB()->getZ()<<endl;
-		cout << " third : " << faceArray[i].getEdgeB()->getVertexB()->getX()<< "::"<< faceArray[i].getEdgeB()->getVertexB()->getY() << "::" <<faceArray[i].getEdgeB()->getVertexB()->getZ()<<endl;
-	}*/
-
-	/*for(int i=0;i<sizeOfEdgeArray;i++)
-	{
-		cout <<"***EdgePoint " << i << " = " << gOps.vertexToString(edgeArrayPtr[i].getEdgePoint())<<endl;
-	}*/
-
 }
 
 SetUpCube::~SetUpCube() {
 	// TODO Auto-generated destructor stub
-}
-
-Edge SetUpCube::reverseEdge(Edge reversing){
-	Edge tempEdge;
-	//Edge tempEdge = Edge(reversing.getVertexB(),reversing.getVertexA());
-	return tempEdge;
 }
 
 Face * SetUpCube::getFaceArray(){
@@ -250,7 +137,7 @@ void SetUpCube::draw(){
 				}
 				glEnd();
 			}
-		//cout << "one draw?\n";
+
 		rotAng += 0.2;
 }
 
@@ -267,4 +154,16 @@ Edge * SetUpCube::returnEdgeArrayPtr()
 Vertex * SetUpCube::returnVertexArrayPtr()
 {
 	return vertexArrayPtr;
+}
+
+int SetUpCube::returnSizeOfVertexArray(){
+	return sizeOfVertexArray;
+}
+
+int SetUpCube::returnSizeOfEdgeArray(){
+	return sizeOfEdgeArray;
+}
+
+int SetUpCube::returnSizeOfFaceArray(){
+	return sizeOfFaceArray;
 }

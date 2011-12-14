@@ -1,8 +1,8 @@
 //============================================================================
-// Name        : AidansOpenGL.cpp
+// Name        : Cube.cpp
 // Author      : Mikey
-// Version     :
-// Copyright   : Experimental Code is Experimental, Steal and compile at your own risk
+// Version     : 1.0
+// Copyright   :
 // Description : Subdivision of a Unit Cube in C++, Ansi-style
 //============================================================================
 
@@ -13,19 +13,23 @@
 #include "SetUpCube.h"
 #include "Catmull.h"
 #include "Butterfly.h"
+#include "SubDivide.h"
 
 using namespace std;
 
 #define RUN_GRAPHICS_DISPLAY 0x00 ;
-SetUpCube * cube = new SetUpCube;
+//
 
+SubDivide sub = SubDivide();
+
+//SetUpCube * cube = new SetUpCube;
 //Catmull * nextCube = new Catmull(8, 18, 12, cube->returnVertexArrayPtr(), cube->returnEdgeArrayPtr(), cube->returnFaceArrayPtr());
+//Butterfly * nextBCube = new Butterfly(8,18,12,cube->returnVertexArrayPtr(),cube->returnEdgeArrayPtr(),cube->returnFaceArrayPtr());
+
 //Catmull * nextNextCube = new Catmull(38,144,36,nextCube->returnVertexArrayPtr(),nextCube->returnEdgeArrayPtr(),nextCube->returnFaceArrayPtr());
 //Catmull * nextNextNextCube = new Catmull(146,576,144,nextNextCube->returnVertexArrayPtr(),nextNextCube->returnEdgeArrayPtr(),nextNextCube->returnFaceArrayPtr());
 //Catmull * nextNextNextNextCube = new Catmull(578,2304,576,nextNextNextCube->returnVertexArrayPtr(),nextNextNextCube->returnEdgeArrayPtr(),nextNextNextCube->returnFaceArrayPtr());
-
-Butterfly * nextBCube = new Butterfly(8,18,12,cube->returnVertexArrayPtr(),cube->returnEdgeArrayPtr(),cube->returnFaceArrayPtr());
-Butterfly * nextNextBCube = new Butterfly(26,144,48,nextBCube->returnVertexArrayPtr(),nextBCube->returnEdgeArrayPtr(),nextBCube->returnFaceArrayPtr());
+//Butterfly * nextNextBCube = new Butterfly(26,144,48,nextBCube->returnVertexArrayPtr(),nextBCube->returnEdgeArrayPtr(),nextBCube->returnFaceArrayPtr());
 
 Uint32 display (Uint32 interval , void *param) {
 	SDL_Event event;
@@ -49,13 +53,15 @@ void display () {
 	Face = cube.getFaceArray();
 	**/
 
+	sub.draw();
 	//cube->draw();
+
 	//nextCube->draw();
 	//nextNextCube->draw();
 	//nextNextNextCube->draw();
 	//nextNextNextNextCube->draw();
 
-	nextBCube->draw();
+	//nextBCube->draw();
 	SDL_GL_SwapBuffers();
 }
 int main(int argc,char * * argv ) {

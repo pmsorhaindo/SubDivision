@@ -78,13 +78,13 @@ Butterfly::Butterfly(int numberOfOldVertices, int numberOfOldEdges, int numberOf
 			v3Index = gOps.whereInNewVertexArray(tempV3,vertexArray,sizeOfVertexArray);
 		}
 
-		tempV1 = *oldFaces[i].getPointA();
-		tempV2 = *oldFaces[i].getPointB();
-		tempV3 = *oldFaces[i].getPointC();
+		Vertex tempV4 = *oldFaces[i].getPointA();
+		Vertex tempV5 = *oldFaces[i].getPointB();
+		Vertex tempV6 = *oldFaces[i].getPointC();
 
 		int p1Index,p2Index,p3Index;
 
-		if (!gOps.existsInNewVertexArray(tempV1,vertexArray,sizeOfVertexArray))
+		if (!gOps.existsInNewVertexArray(tempV4,vertexArray,sizeOfVertexArray))
 		{
 			vertexArray[sizeOfVertexArray] = *oldFaces[i].getPointA();
 			p1Index = sizeOfVertexArray;
@@ -92,10 +92,10 @@ Butterfly::Butterfly(int numberOfOldVertices, int numberOfOldEdges, int numberOf
 		}
 		else
 		{
-			p1Index= gOps.whereInNewVertexArray(tempV1,vertexArray,sizeOfVertexArray);
+			p1Index= gOps.whereInNewVertexArray(tempV4,vertexArray,sizeOfVertexArray);
 		}
 
-		if (!gOps.existsInNewVertexArray(tempV2,vertexArray,sizeOfVertexArray))
+		if (!gOps.existsInNewVertexArray(tempV5,vertexArray,sizeOfVertexArray))
 		{
 			vertexArray[sizeOfVertexArray] = *oldFaces[i].getPointB();
 			p2Index = sizeOfVertexArray;
@@ -103,10 +103,10 @@ Butterfly::Butterfly(int numberOfOldVertices, int numberOfOldEdges, int numberOf
 		}
 		else
 		{
-			p2Index = gOps.whereInNewVertexArray(tempV2,vertexArray,sizeOfVertexArray);
+			p2Index = gOps.whereInNewVertexArray(tempV5,vertexArray,sizeOfVertexArray);
 		}
 
-		if (!gOps.existsInNewVertexArray(tempV3,vertexArray,sizeOfVertexArray))
+		if (!gOps.existsInNewVertexArray(tempV6,vertexArray,sizeOfVertexArray))
 		{
 			vertexArray[sizeOfVertexArray] = *oldFaces[i].getPointC();
 			p3Index = sizeOfVertexArray;
@@ -114,7 +114,7 @@ Butterfly::Butterfly(int numberOfOldVertices, int numberOfOldEdges, int numberOf
 		}
 		else
 		{
-			p3Index = gOps.whereInNewVertexArray(tempV2,vertexArray,sizeOfVertexArray);
+			p3Index = gOps.whereInNewVertexArray(tempV6,vertexArray,sizeOfVertexArray);
 		}
 
 		int point1 = gOps.existsInNewVertexArray(gOps.twoEdgesGetCommonVertex(*oldFaces[i].getEdgeC(),*oldFaces[i].getEdgeA()),vertexArray,sizeOfVertexArray);
@@ -230,7 +230,10 @@ Vertex Butterfly::getNewEdgePoint(Edge * edgeToWork,Edge * oldEdges, int numberO
 		Vertex t6 = gOps.getWings(t1, t4, oldFaces, numberOfOldFaces,t2);
 		Vertex t7 = gOps.getWings(t2, t3, oldFaces, numberOfOldFaces,t1);
 		Vertex t8 = gOps.getWings(t2, t4, oldFaces, numberOfOldFaces,t1);
-		/*cout << "points t1-t8" << "\n";
+
+		/* UNIT TESTING POINTS FOR Butterfly
+		 *
+		 * out << "points t1-t8" << "\n";
 		cout << "t1" <<gOps.vertexToString(t1) << "\n";
 		cout << "t2" <<gOps.vertexToString(t2) << "\n";
 		cout << "t3" <<gOps.vertexToString(t3) << "\n";

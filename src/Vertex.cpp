@@ -1,10 +1,10 @@
-/*
- * Vertex.cpp
- *
- *  Created on: 6 Oct 2011
- *      Author: Mikey
- */
-
+//============================================================================
+// Name        : GeometryOps.h
+// Author      : Mikey
+// Version     : 1.0
+// Copyright   :
+// Description : This class holds information relevant for to a specific Vertex. - in C++, Ansi-style
+//============================================================================
 #include "Vertex.h"
 #include <iostream>
 
@@ -49,30 +49,19 @@ void Vertex::setZ(float val){
 }
 
 void Vertex::div(float val){
-	//std::cout << "before div x was: " << x <<"\n";
 	x=x/val;
-	//std::cout << "after div x was: " << x <<"\n";
-	//std::cout << "before div y was: " << y <<"\n";
 	y=y/val;
-	//std::cout << "after div y was: " << y <<"\n";
-	//std::cout << "before div z was: " << z <<"\n";
 	z=z/val;
-	//std::cout << "after div z was: " << z <<"\n";
 }
 
 void Vertex::add(Vertex v){
-	//cout << "Addition Test\n";
-	//cout << "x:"<<x<<" + vx:"<<v.getX();
 	x = x+v.getX();
-	//cout << " = " << x<<endl;
-	//cout << "y:"<<y<<" + vy:"<<v.getY();
 	y = y+v.getY();
-	//cout << " = " << y<<endl;
-	//cout << "z:"<<z<<" + vz:"<<v.getZ();
 	z = z+v.getZ();
-	//cout << " = " << z<<endl;
 }
 
+// Overloading the operators  + - * and / for Vertices for ease of writing code.
+// Syntax assistance provided by http://www.cplusplus.com/doc/tutorial/classes2/
 Vertex Vertex::operator+(const Vertex &a) const
 {
 	return Vertex(x+a.x,y+a.y,z+a.z);

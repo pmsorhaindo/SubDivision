@@ -44,7 +44,7 @@ Butterfly::Butterfly(int numberOfOldVertices, int numberOfOldEdges, int numberOf
 		Vertex tempV1 = getNewEdgePoint(oldFaces[i].getEdgeA(),oldEdges,numberOfOldEdges,oldFaces,numberOfOldFaces);
 		Vertex tempV2 = getNewEdgePoint(oldFaces[i].getEdgeB(),oldEdges,numberOfOldEdges,oldFaces,numberOfOldFaces);
 		Vertex tempV3 = getNewEdgePoint(oldFaces[i].getEdgeC(),oldEdges,numberOfOldEdges,oldFaces,numberOfOldFaces);
-		cout << "loop\n";
+
 		if (!gOps.existsInNewVertexArray(tempV1,vertexArray,sizeOfVertexArray))
 		{
 			vertexArray[sizeOfVertexArray] = getNewEdgePoint(oldFaces[i].getEdgeA(),oldEdges,numberOfOldEdges,oldFaces,numberOfOldFaces);

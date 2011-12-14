@@ -24,6 +24,8 @@ using namespace std;
  *  access to my implementations of Catmull-Clark and Butterfly Subdivision
  */
 SubDivide sub = SubDivide();
+
+// Global switches to choose whether to draw the lines, points and faces.
 bool faces = true;
 bool lines = true;
 bool points= true;
@@ -37,11 +39,14 @@ Uint32 display (Uint32 interval , void *param) {
 	SDL_PushEvent(&event);
 	return interval;
 }
+
 void display () {
 	//Simple draw call - the decision of what to draw is made by the Subdivision class.
 	sub.draw(faces,lines,points);
 	SDL_GL_SwapBuffers();
 }
+
+
 int main(int argc,char * * argv ) {
 	// Some boilerplate SDL and OpenGL code -taken from lecture 1.
 	SDL_Surface * surf ;
@@ -92,28 +97,32 @@ int main(int argc,char * * argv ) {
 		}
 
 		// A SDL keyboard handling loop.
+		// Assisted by http://sdl.beuc.net/sdl.wiki/Handling_the_Keyboard
 		while( SDL_PollEvent( &event ) ){
 			switch( event.type ){
 				case SDL_KEYDOWN:
 				cout << "Key press detected\n";
 				switch (event.key.keysym.sym){
 
+					//Apply catmull clark on a 'c' key press
 					case SDLK_c:
 						sub.apply(1);
 						break;
-
+					//Apply Butterfly on a 'b' key press
 					case SDLK_b:
 						sub.apply(2);
 						break;
 
+					// Reversing/switching the current values of lines points and faces.
+					// Toggle lines on 'l'
 					case SDLK_l:
 						lines = !lines;
 						break;
-
+					// Toggle points on 'p'
 					case SDLK_p:
 						points = !points;
 						break;
-
+					// Toggle faces on 'f'
 					case SDLK_o:
 						faces = !faces;
 						break;
@@ -127,8 +136,12 @@ int main(int argc,char * * argv ) {
 					break;
 
 				/* SDL_QUIT event (window close) */
+				case SDLK_ESCAPE:
+					void SDL_Quit(void);
+					break;
+
 				case SDL_QUIT:
-					//quit = 1;
+					void SDL_Quit(void);
 					break;
 
 				default:

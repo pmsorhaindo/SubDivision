@@ -134,108 +134,6 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 	return otherFaces;
 }
 
-/*GeometryOps::twoQFace GeometryOps::getOtherFace(Edge e,QFace*ptr,int i){
-	GeometryOps::twoQFace otherFaces;
-	int found=0;
-	//cout<<"arrrghh: "<<edgeToString(e)<<endl;
-	for (int it=0;it<i;it++)
-	{
-		//cout<<"arrrghh: "<<edgeToString(e)<<endl;
-		//cout<<"hmmmmmm: "<<edgeToString(*ptr[it].getEdgeA())<<endl;
-		//cout<<"hmmmmmm: "<<edgeToString(*ptr[it].getEdgeB())<<endl;
-		//cout<<"hmmmmmm: "<<edgeToString(*ptr[it].getEdgeC())<<endl;
-		QFace & face = ptr[it];
-		Edge * pEdge = face.getEdgeA();
-		Vertex * pVert = pEdge->getVertexA();
-		//cout << "we have " <<vertexToString(*pVert) << " vertex?\n";
-		//cout << "we have " <<vertexToString(*(e.getVertexA())) << " e?\n";
-		if(compareEdges(ptr[it].getEdgeA(),&e))
-		{
-			//cout << "check" <<endl;
-			if(found==0){
-				//cout<<"got a Face\n";
-				found++;
-				otherFaces.faceOne=ptr[it];
-			}
-			else if (found==1)
-			{
-				//cout << "got a Two Face\n";
-				found++;
-				otherFaces.faceTwo=ptr[it];
-			}
-			else if (found==2)
-			{
-				cerr << "problem!"<<endl;
-				found++;
-				otherFaces.faceTwo=ptr[it];
-			}
-		}
-		if(compareEdges(ptr[it].getEdgeB(),&e))
-		{
-			if(found==0){
-				//cout<<"got a Face\n";
-				found++;
-				otherFaces.faceOne=ptr[it];
-			}
-			else if (found==1)
-			{
-				//cout << "got a Two Face\n";
-				found++;
-				otherFaces.faceTwo=ptr[it];
-
-			}
-			else if (found==2)
-			{
-				cerr << "problem!"<<endl;
-				found=found+1;
-				otherFaces.faceTwo=ptr[it];
-			}
-		}
-		if(compareEdges(ptr[it].getEdgeC(),&e))
-		{
-			if(found==0){
-				//cout<<"got a Face\n";
-				found++;
-				otherFaces.faceOne=ptr[it];
-			}
-			else if (found==1)
-			{
-				//cout << "got a Two Face\n";
-				found++;
-				otherFaces.faceTwo=ptr[it];
-			}
-			else if (found==2)
-			{
-				cerr << "problem!"<<endl;
-				found++;
-				otherFaces.faceTwo=ptr[it];
-			}
-		}
-		if(compareEdges(ptr[it].getEdgeD(),&e))
-				{
-					if(found==0){
-						//cout<<"got a Face\n";
-						found++;
-						otherFaces.faceOne=ptr[it];
-					}
-					else if (found==1)
-					{
-						//cout << "got a Two Face\n";
-						found++;
-						otherFaces.faceTwo=ptr[it];
-					}
-					else if (found==2)
-					{
-						cerr << "problem!"<<endl;
-						found++;
-						otherFaces.faceTwo=ptr[it];
-					}
-				}
-	}
-	if (found!=2) cout <<"!£$%^finding faces problem!\n";
-	if (found==1) cout <<"!£$%^not Enough problem!\n";
-	return otherFaces;
-}*/
 
 GeometryOps::twoQFace GeometryOps::getOtherFace(Edge e,QFace*ptr,int i){
 	GeometryOps::twoQFace otherFaces;
@@ -339,6 +237,10 @@ GeometryOps::twoQFace GeometryOps::getOtherFace(Edge e,QFace*ptr,int i){
 	return otherFaces;
 }
 
+/*
+ * Compares the values of two Edges to see if they are the same.
+ * This function returns true if they are.
+ */
 bool GeometryOps::compareEdges(Edge *e1, Edge* e2){
 	bool areSame = false;
 	if (
@@ -352,6 +254,9 @@ bool GeometryOps::compareEdges(Edge *e1, Edge* e2){
 	return areSame;
 }
 
+/*
+ * Prints a Vertex to console
+ */
 string GeometryOps::vertexToString(const Vertex & v){
 	//cout <<"VertexString: "<<v.getX()<<endl;
 	string vertexString;
@@ -361,18 +266,19 @@ string GeometryOps::vertexToString(const Vertex & v){
 	return vertexString;
 }
 
+/*
+ * A useful debugging function to print a Faces unique vertices.
+ */
 string GeometryOps::printUniqueVertices(Face f){
 	string uniqueVertsStr;
 	Vertex first,second,third;
 	first = *f.getEdgeA()->getVertexA();
-	//cout << "First!!! << " + vertexToString(first)<<endl;
 	second = *f.getEdgeA()->getVertexB();
 	if(!compareVertices(*f.getEdgeB()->getVertexA(),*f.getEdgeA()->getVertexA()))
 	{
 		if(!compareVertices(*f.getEdgeB()->getVertexA(),*f.getEdgeA()->getVertexB()))
 			{
 			third = *f.getEdgeB()->getVertexA();
-			//cout << "third!!! x: " << third.getX()<<endl;
 			}
 	}
 	if(!compareVertices(*f.getEdgeB()->getVertexB(),*f.getEdgeA()->getVertexA()))
@@ -380,18 +286,21 @@ string GeometryOps::printUniqueVertices(Face f){
 		if(!compareVertices(*f.getEdgeB()->getVertexB(),*f.getEdgeA()->getVertexB()))
 		{
 		third = *f.getEdgeB()->getVertexB();
-		//cout << "third!!! x: " << third.getX()<<endl;
 		}
 	}
 	uniqueVertsStr = "v1: "+vertexToString(first)+" v2: "+vertexToString(second)+" v3: "+vertexToString(third);
 	return uniqueVertsStr;
 }
 
+/*
+ * Prints an Edge to console as two Vertices.
+ */
 string GeometryOps::edgeToString(Edge e){
 	string returnString = vertexToString(*e.getVertexA());
 	returnString = returnString + " " +vertexToString(*e.getVertexB());
 	return returnString;
 }
+
 
 GeometryOps::twoEdge GeometryOps::getOtherEdges(Face f,Edge e){
 	GeometryOps::twoEdge twoEdgeStruct;
@@ -399,6 +308,9 @@ GeometryOps::twoEdge GeometryOps::getOtherEdges(Face f,Edge e){
 	return twoEdgeStruct;
 }
 
+/*
+ * Multiplies two Vertices.
+ */
 Vertex GeometryOps::multVert(Vertex v,float factor){
 	float x =(v.getX()*factor);
 	float y =(v.getY()*factor);
@@ -407,6 +319,9 @@ Vertex GeometryOps::multVert(Vertex v,float factor){
 	return returnV;
 }
 
+/*
+ * Multiplies an Edge
+ */
 GeometryOps::twoVert GeometryOps::multTwoVerts(Edge e,float factor){
 	GeometryOps::twoVert twoVertStruct;
 	twoVertStruct.vertOne=multVert(*e.getVertexA(),factor);
@@ -414,6 +329,9 @@ GeometryOps::twoVert GeometryOps::multTwoVerts(Edge e,float factor){
 	return twoVertStruct;
 }
 
+/*
+ * This function uses compare Vertices to see if an Edge contains a provided Vertex v.
+ */
 bool GeometryOps::edgeContainsVertex(Edge e, Vertex * v){
 	bool doesContain=false;
 	if(compareVertices(*e.getVertexA(),*v)) doesContain=true;
@@ -421,6 +339,9 @@ bool GeometryOps::edgeContainsVertex(Edge e, Vertex * v){
 	return doesContain;
 }
 
+/*
+ * Uses the Compare Vertices method to see if a provided vertex v is contained in Face f.
+ */
 bool GeometryOps::faceContainsVertex(Face f, Vertex v){
 	bool doesContain=false;
 	if(compareVertices(*f.getEdgeA()->getVertexA(),v)) doesContain=true;
@@ -432,6 +353,9 @@ bool GeometryOps::faceContainsVertex(Face f, Vertex v){
 	return doesContain;
 }
 
+/*
+ * Uses the Compare Vertices method to see if a provided vertex v is contained in QFace f.
+ */
 bool GeometryOps::faceContainsVertex(QFace f, Vertex v){
 	bool doesContain=false;
 		if(compareVertices(*f.getEdgeA()->getVertexA(),v)) doesContain=true;
@@ -445,6 +369,9 @@ bool GeometryOps::faceContainsVertex(QFace f, Vertex v){
 		return doesContain;
 }
 
+/*
+ * Calculates a Catmull Clark Edgepoint.
+ */
 Vertex GeometryOps::getEdgePoint(Edge* edg,Face*fptr,int i,Edge * eptr,int j){
 	Vertex edgePoint = Vertex();
 	GeometryOps::twoFace touchingFaces;
@@ -462,6 +389,9 @@ Vertex GeometryOps::getEdgePoint(Edge* edg,Face*fptr,int i,Edge * eptr,int j){
 	return edgePoint;
 }
 
+/*
+ * Calculates a Catmull Clark Edgepoint. Overloading the original Faces version to accept QFaces.
+ */
 Vertex GeometryOps::getEdgePoint(Edge* edg,QFace*fptr,int iFaces,Edge * eptr,int i){
 	Vertex edgePoint = Vertex();
 	GeometryOps::twoQFace touchingFaces;
@@ -479,60 +409,46 @@ Vertex GeometryOps::getEdgePoint(Edge* edg,QFace*fptr,int iFaces,Edge * eptr,int
 	return edgePoint;
 }
 
+/*
+ * Uses the faceContainsVertex method and loops through an array of Faces
+ * Faces which contain the given Vertex v are returned in a sixFace Structure.
+ */
 GeometryOps::sixFace GeometryOps::getAdjacentFaces(Vertex v, Face*ptr, int i){
 	GeometryOps::sixFace adjFaces;
 	int found = 0;
+	// where i is the amount of faces in the array
 	for (int it=0;it<i;it++)
 	{
 		if(faceContainsVertex(ptr[it],v))
 		{
-			//cout << "Face At! : " << it << "\n";
 			if(found==0){
 				found++;
 				adjFaces.faceOne=ptr[it];
-				//cout << "1aFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
-				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
-				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
 			}
 			else if (found==1)
 			{
 				found++;
 				adjFaces.faceTwo=ptr[it];
-				//cout << "1bFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
-				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
-				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
 			}
 			else if (found==2)
 			{
 				found++;
 				adjFaces.faceThree=ptr[it];
-				//cout << "1bFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
-				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
-				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
 			}
 			else if (found==3)
 			{
 				found++;
 				adjFaces.faceFour=ptr[it];
-				//cout << "1bFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
-				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
-				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
 			}
 			else if (found==4)
 			{
 				found++;
 				adjFaces.faceFive=ptr[it];
-				//cout << "1bFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
-				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
-				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
 			}
 			else if (found==5)
 			{
 				found++;
 				adjFaces.faceSix=ptr[it];
-				//cout << "1bFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
-				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
-				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
 			}
 		}
 	}
@@ -540,6 +456,10 @@ GeometryOps::sixFace GeometryOps::getAdjacentFaces(Vertex v, Face*ptr, int i){
 	return adjFaces;
 }
 
+/*
+ * Uses the faceContainsVertex method and loops through an array of QFaces
+ * QFaces which contain the given Vertex v are returned in a sixQFace Structure.
+ */
 GeometryOps::sixQFace GeometryOps::getAdjacentFaces(Vertex v, QFace*ptr, int i){
 	GeometryOps::sixQFace adjFaces;
 	int found = 0;
@@ -551,49 +471,31 @@ GeometryOps::sixQFace GeometryOps::getAdjacentFaces(Vertex v, QFace*ptr, int i){
 			if(found==0){
 				found++;
 				adjFaces.faceOne=ptr[it];
-				//cout << "1aFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
-				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
-				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
 			}
 			else if (found==1)
 			{
 				found++;
 				adjFaces.faceTwo=ptr[it];
-				//cout << "1bFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
-				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
-				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
 			}
 			else if (found==2)
 			{
 				found++;
 				adjFaces.faceThree=ptr[it];
-				//cout << "1bFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
-				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
-				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
 			}
 			else if (found==3)
 			{
 				found++;
 				adjFaces.faceFour=ptr[it];
-				//cout << "1bFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
-				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
-				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
 			}
 			else if (found==4)
 			{
 				found++;
 				adjFaces.faceFive=ptr[it];
-				//cout << "1bFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
-				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
-				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
 			}
 			else if (found==5)
 			{
 				found++;
 				adjFaces.faceSix=ptr[it];
-				//cout << "1bFace a centroid (x) is : " << ptr[it].getCentroid().getX() <<endl;
-				//cout << "Face a centroid (y) is : " << ptr[it].getCentroid().getY() <<endl;
-				//cout << "Face a centroid (z) is : " << ptr[it].getCentroid().getZ() <<endl;
 			}
 		}
 	}
@@ -601,6 +503,10 @@ GeometryOps::sixQFace GeometryOps::getAdjacentFaces(Vertex v, QFace*ptr, int i){
 	return adjFaces;
 }
 
+/*
+ * Uses the edgeContainsVertex method and loops through an array of Edges
+ * to return all the Edges that touch a Vertex. This is returned in an eightEdge Structure.
+ */
 GeometryOps::eightEdge GeometryOps::getIncidentEdges(Vertex *v, Edge*ptr, int iEdges){
 	GeometryOps::eightEdge incEdges;
 	int found = 0;
@@ -653,10 +559,13 @@ GeometryOps::eightEdge GeometryOps::getIncidentEdges(Vertex *v, Edge*ptr, int iE
 	return incEdges;
 }
 
+/*
+ * This generates a Catmull-Clark Q point which is the average of all the Face-Centroids divided
+ * by the number of Faces incident on a particular Vertex v which is provided.
+ */
 Vertex GeometryOps::getQ(Vertex v, Face*ptr, int i){
 	GeometryOps::sixFace faces = getAdjacentFaces(v,ptr,i);
 	Vertex newQ;
-	//cout << "Q six face contains: " << faces.contains << "\n";
 	if(faces.contains==3) newQ = faces.faceOne.getCentroid()+faces.faceTwo.getCentroid()+faces.faceThree.getCentroid();
 	if(faces.contains==4) newQ = faces.faceOne.getCentroid()+faces.faceTwo.getCentroid()+faces.faceThree.getCentroid()+faces.faceFour.getCentroid();
 	if(faces.contains==5) newQ = faces.faceOne.getCentroid()+faces.faceTwo.getCentroid()+faces.faceThree.getCentroid()+faces.faceFour.getCentroid()+faces.faceFive.getCentroid();
@@ -665,6 +574,11 @@ Vertex GeometryOps::getQ(Vertex v, Face*ptr, int i){
 	return newQ/faces.contains;
 }
 
+/*
+ * Overloaded.
+ * This generates a Catmull-Clark Q point which is the average of all the QFace-Centroids divided
+ * by the number of QFaces incident on a particular Vertex v which is provided.
+ */
 Vertex GeometryOps::getQ(Vertex v, QFace*ptr, int i){
 	GeometryOps::sixQFace faces = getAdjacentFaces(v,ptr,i);
 	Vertex newQ;
@@ -675,6 +589,10 @@ Vertex GeometryOps::getQ(Vertex v, QFace*ptr, int i){
 	return newQ/faces.contains;
 }
 
+/*
+ * This generates a Catmull-Clark R points which is the which is the average of all the Edge-midpoints incident
+ * on a Vertex v which is provided. This is then multiplied by two for use in the final newVertexPoint Function.
+ */
 Vertex GeometryOps::get2R(Vertex v, Edge*ptr, int i){
 	GeometryOps::eightEdge edges = getIncidentEdges(&v,ptr,i);
 	Vertex newR;
@@ -688,12 +606,18 @@ Vertex GeometryOps::get2R(Vertex v, Edge*ptr, int i){
 	return (newR/edges.contains)*2;
 }
 
+/*
+ * This generates a Catmull-Clark S point which is the original Vertex point and divides it by the valence of that point.
+ */
 Vertex GeometryOps::getSandStuff(Vertex v, Edge*ptr, int i){
 	GeometryOps::eightEdge edges = getIncidentEdges(&v,ptr,i);
 	Vertex sAnd = v*(edges.contains-3);
 	return sAnd;
 }
 
+/*
+ * This generates a new Catmull Clark vertex point on a Shape composed of Triangles.
+ */
 Vertex GeometryOps::generateNewVertexPoint(Vertex * v, Face*facePtr, Edge*edgePtr, int faceSize, int edgeSize){
 	GeometryOps::eightEdge edges = getIncidentEdges(v,edgePtr,edgeSize);
 	Vertex jeden = getQ(*v,facePtr,faceSize);
@@ -703,6 +627,9 @@ Vertex GeometryOps::generateNewVertexPoint(Vertex * v, Face*facePtr, Edge*edgePt
 	return polishAverageOfVertices;
 }
 
+/*
+ * This generates a new Catmull Clark vertex point on a Shape composed of Quads.
+ */
 Vertex GeometryOps::generateNewVertexPoint(Vertex * v, QFace*facePtr, Edge*edgePtr, int faceSize, int edgeSize){
 	GeometryOps::eightEdge edges = getIncidentEdges(v,edgePtr,edgeSize);
 	Vertex jeden = getQ(*v,facePtr,faceSize);
@@ -712,6 +639,10 @@ Vertex GeometryOps::generateNewVertexPoint(Vertex * v, QFace*facePtr, Edge*edgeP
 	return polishAverageOfVertices;
 }
 
+/*
+ * This function takes two Edges and returns the and returns the Vertex that they share.
+ * The function will return the (0,0,0) vertex if no Vertex is shared.
+ */
 Vertex GeometryOps::twoEdgesGetCommonVertex(Edge a, Edge b){
 	if(compareVertices(*a.getVertexA(),*b.getVertexA())){
 		return *a.getVertexA();
@@ -726,10 +657,14 @@ Vertex GeometryOps::twoEdgesGetCommonVertex(Edge a, Edge b){
 	{
 		return *a.getVertexB();
 	}
-	return Vertex(); // run twoEdgesIsCommonVertex to not catch this nasty thing.
+	return Vertex(); // Run twoEdgesIsCommonVertex to not catch this nasty thing.
 
 }
 
+/*
+ * This function uses compareVertices to return true if two edges share a common Vertex,
+ * and false otherwise.
+ */
 bool GeometryOps::twoEdgesIsCommonVertex(Edge a, Edge b){
 	if(compareVertices(*a.getVertexA(),*b.getVertexA())||
 			compareVertices(*a.getVertexA(),*b.getVertexB())||
@@ -740,12 +675,20 @@ bool GeometryOps::twoEdgesIsCommonVertex(Edge a, Edge b){
 	return false;
 }
 
+/*
+ * This function returns true if an a Face identical to Face f is stored in the array
+ * pointed to by the pointer facePtr.
+ */
 bool GeometryOps::existsInNewFaceArray(Face f, Face*facePtr,int faceArraySize){
 	bool exists = false;
 	//TODO: not needed
 	return exists;
 }
 
+/*
+ * This function returns true if an Edge of the same value of Edge e exists in the
+ * Array of Edges pointed to by edgePtr and false otherwise.
+ */
 bool GeometryOps::existsInNewEdgeArray(Edge e, Edge*edgePtr,int edgeArraySize){
 	bool exists = false;
 		for(int i=0; i<edgeArraySize; i++)
@@ -757,6 +700,10 @@ bool GeometryOps::existsInNewEdgeArray(Edge e, Edge*edgePtr,int edgeArraySize){
 		return exists;
 }
 
+/*
+ * This function returns true if a Vertex of the same value as the Vertex v provided as a parameter,
+ * exists in the array of vertices pointed to by vertexPtr and false otherwise.
+ */
 bool GeometryOps::existsInNewVertexArray(Vertex v, Vertex*vertexPtr,int vertexArraySize){
 	bool exists = false;
 	for(int i=0; i<vertexArraySize; i++)
@@ -768,6 +715,11 @@ bool GeometryOps::existsInNewVertexArray(Vertex v, Vertex*vertexPtr,int vertexAr
 	return exists;
 }
 
+/*
+ * This function returns the position of a vertex within an array of Vertices.
+ * It returns -1 if the vertex is not found however the existsInNewVertexArray
+ * function can be run beforehand to avoid this.
+ */
 int GeometryOps::whereInNewVertexArray(Vertex v, Vertex*vertexPtr,int vertexArraySize){
 	for(int i=0; i<vertexArraySize; i++)
 		{
@@ -779,6 +731,10 @@ int GeometryOps::whereInNewVertexArray(Vertex v, Vertex*vertexPtr,int vertexArra
 	return -1;
 }
 
+/*
+ * Providing this function with two vertices and a Face will return the vertex in the face that hasn't been provided.
+ * This function will break if points that are not in the face are provided.
+ */
 Vertex GeometryOps::thirdPointInFace(Vertex v1,Vertex v2,Face f){
 
 	/*cout <<endl;
@@ -816,6 +772,10 @@ Vertex GeometryOps::thirdPointInFace(Vertex v1,Vertex v2,Face f){
 	return err;
 }
 
+/*
+ * Gets the outermost point of a 'Butterfly stencil' when given the edge of the two Vertex points
+ * which make up the edge of the triangle touching that outermost point. This will be called four times per stencil.
+ */
 Vertex GeometryOps::getWings(Vertex e1, Vertex e2, Face * facePtr, int sizeOfFaceArray, Vertex opposingV){
 	//Could possibly be changed to work with just an edge and opposing Vertex.
 	Vertex wing = Vertex();

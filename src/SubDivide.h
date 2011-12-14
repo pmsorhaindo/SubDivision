@@ -29,6 +29,7 @@ public:
 	virtual ~SubDivide();
 	void apply(int type);
 	void draw(bool faces, bool lines, bool points);
+	void printState();
 };
 
 #endif /* SUBDIVIDE_H_ */

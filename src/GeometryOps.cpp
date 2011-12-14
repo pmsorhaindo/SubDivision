@@ -14,15 +14,18 @@
 using namespace std;
 
 GeometryOps::GeometryOps() {
-	// TODO Auto-generated constructor stub
+	// Empty Constructor
 }
 
 GeometryOps::~GeometryOps() {
-	// TODO Auto-generated destructor stub
+	// Empty Destructor
 }
 
+/*
+ * This function returns a vertex which is the average of the two vertices which
+ * make up the Edge which it is provided with.
+ */
 Vertex GeometryOps::edgeMidPoint(Edge e1){
-
 	float tempvx = e1.getVertexA()->getX()-e1.getVertexB()->getX();
 	float tempvy = e1.getVertexA()->getY()-e1.getVertexB()->getY();
 	float tempvz = e1.getVertexA()->getZ()-e1.getVertexB()->getZ();
@@ -30,6 +33,9 @@ Vertex GeometryOps::edgeMidPoint(Edge e1){
 	return vert;
 }
 
+/*
+ * This function given three Vertex returns their average as a Vertex.
+ */
 Vertex GeometryOps::getCentroid(Vertex v1, Vertex v2, Vertex v3){
 	float x =v1.getX()+v2.getX()+v3.getX();
 	float y =v1.getY()+v2.getY()+v3.getY();
@@ -38,6 +44,10 @@ Vertex GeometryOps::getCentroid(Vertex v1, Vertex v2, Vertex v3){
 	return v;
 }
 
+/*
+ * This function compares two Vertices x, y and z values to see if they are the same
+ * and returns true if this is so.
+ */
 bool GeometryOps::compareVertices(Vertex v1,Vertex  v2){
 	bool areSame = true;
 	if(v1.getX()!=v2.getX())
@@ -49,34 +59,35 @@ bool GeometryOps::compareVertices(Vertex v1,Vertex  v2){
 	return areSame;
 }
 
+/*
+ * This function uses stringstream to convert a float to a string.
+ * Assisted by cplusplus.com/forum/general/8165
+ */
 string GeometryOps::floatToString(float val){
-	//cplusplus.com/forum/general/8165
 	stringstream ss(stringstream::in|stringstream::out);
 	ss<<val;
 	string returnString = ss.str();
 	return returnString;
 }
 
+/*
+ * This function given an Edge e, returns the two Faces that share this Edge.
+ * It will throw errors if it doesn't find exactly two Faces.
+ */
 GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 	GeometryOps::twoFace otherFaces;
 
 	int found=0;
 	for (int it=0;it<i;it++)
 	{
-		//cout<<"arrrghh: "<<edgeToString(e)<<endl;
-		//cout<<"hmmmmmm: "<<edgeToString(*ptr[it].getEdgeA())<<endl;
-		//cout<<"hmmmmmm: "<<edgeToString(*ptr[it].getEdgeB())<<endl;
-		//cout<<"hmmmmmm: "<<edgeToString(*ptr[it].getEdgeC())<<endl;
 		if(compareEdges(ptr[it].getEdgeA(),&e))
 		{
 			if(found==0){
-				//cout<<"got a Face\n";
 				found++;
 				otherFaces.faceOne=ptr[it];
 			}
 			else if (found==1)
 			{
-				//cout << "got a Two Face\n";
 				found++;
 				otherFaces.faceTwo=ptr[it];
 			}
@@ -90,13 +101,11 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 		if(compareEdges(ptr[it].getEdgeB(),&e))
 		{
 			if(found==0){
-				//cout<<"got a Face\n";
 				found++;
 				otherFaces.faceOne=ptr[it];
 			}
 			else if (found==1)
 			{
-				//cout << "got a Two Face\n";
 				found++;
 				otherFaces.faceTwo=ptr[it];
 
@@ -111,13 +120,11 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 		if(compareEdges(ptr[it].getEdgeC(),&e))
 		{
 			if(found==0){
-				//cout<<"got a Face\n";
 				found++;
 				otherFaces.faceOne=ptr[it];
 			}
 			else if (found==1)
 			{
-				//cout << "got a Two Face\n";
 				found++;
 				otherFaces.faceTwo=ptr[it];
 			}
@@ -134,27 +141,24 @@ GeometryOps::twoFace GeometryOps::getOtherFace(Edge e,Face*ptr,int i){
 	return otherFaces;
 }
 
-
+/*
+ * Overloaded.
+ * This function given an Edge returns the two QFaces that share this Edge.
+ * It will throw errors if it doesn't find exactly two QFaces.
+ */
 GeometryOps::twoQFace GeometryOps::getOtherFace(Edge e,QFace*ptr,int i){
 	GeometryOps::twoQFace otherFaces;
 	int found=0;
 	for (int it=0;it<i;it++)
 	{
-		//cout<<"arrrghh: "<<edgeToString(e)<<endl;
-		//cout<<"hmmmmmm: "<<edgeToString(*ptr[it].getEdgeA())<<endl;
-		//cout<<"hmmmmmm: "<<edgeToString(*ptr[it].getEdgeB())<<endl;
-		//cout<<"hmmmmmm: "<<edgeToString(*ptr[it].getEdgeC())<<endl;
-		//cout<<"hmmmmmm: "<<edgeToString(*ptr[it].getEdgeD())<<endl;
 		if(compareEdges(ptr[it].getEdgeA(),&e))
 		{
 			if(found==0){
-				//cout<<"got a Face\n";
 				found++;
 				otherFaces.faceOne=ptr[it];
 			}
 			else if (found==1)
 			{
-				//cout << "got a Two Face\n";
 				found++;
 				otherFaces.faceTwo=ptr[it];
 			}
@@ -168,13 +172,11 @@ GeometryOps::twoQFace GeometryOps::getOtherFace(Edge e,QFace*ptr,int i){
 		if(compareEdges(ptr[it].getEdgeB(),&e))
 		{
 			if(found==0){
-				//cout<<"got a Face\n";
 				found++;
 				otherFaces.faceOne=ptr[it];
 			}
 			else if (found==1)
 			{
-				//cout << "got a Two Face\n";
 				found++;
 				otherFaces.faceTwo=ptr[it];
 
@@ -189,13 +191,11 @@ GeometryOps::twoQFace GeometryOps::getOtherFace(Edge e,QFace*ptr,int i){
 		if(compareEdges(ptr[it].getEdgeC(),&e))
 		{
 			if(found==0){
-				//cout<<"got a Face\n";
 				found++;
 				otherFaces.faceOne=ptr[it];
 			}
 			else if (found==1)
 			{
-				//cout << "got a Two Face\n";
 				found++;
 				otherFaces.faceTwo=ptr[it];
 			}
@@ -209,13 +209,11 @@ GeometryOps::twoQFace GeometryOps::getOtherFace(Edge e,QFace*ptr,int i){
 		if(compareEdges(ptr[it].getEdgeD(),&e))
 				{
 					if(found==0){
-						//cout<<"got a Face\n";
 						found++;
 						otherFaces.faceOne=ptr[it];
 					}
 					else if (found==1)
 					{
-						//cout << "got a Two Face\n";
 						found++;
 						otherFaces.faceTwo=ptr[it];
 

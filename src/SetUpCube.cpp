@@ -16,8 +16,7 @@ using namespace std;
 //TODO Rename from SetupCube?
 SetUpCube::SetUpCube() {
 
-	cout<<"cube starts setting up!\n";
-
+	//cout<<"cube starts setting up!\n";
 	vertexArray[0] = Vertex(-0.5f,-0.5f,0.5f);
 	vertexArray[1] = Vertex(0.5f,-0.5f,0.5f);
 	vertexArray[2] = Vertex(0.5f,0.5f,0.5f);
@@ -26,7 +25,7 @@ SetUpCube::SetUpCube() {
 	vertexArray[5] = Vertex(0.5f,-0.5f,-0.5f);
 	vertexArray[6] = Vertex(0.5f,0.5f,-0.5f);
 	vertexArray[7] = Vertex(-0.5f,0.5f,-0.5f);
-	cout<< "cube Vertices set up\n";
+	//cout<< "cube Vertices set up\n";
 
 	edgeArray[0] = Edge(&vertexArray[3],&vertexArray[2]); // a 1
 	edgeArray[1] = Edge(&vertexArray[2],&vertexArray[6]); // b 2
@@ -46,7 +45,7 @@ SetUpCube::SetUpCube() {
 	edgeArray[15] = Edge(&vertexArray[4],&vertexArray[6]); // p 16
 	edgeArray[16] = Edge(&vertexArray[3],&vertexArray[4]); // q 17
 	edgeArray[17] = Edge(&vertexArray[2],&vertexArray[5]); // r 18
-	cout<< "cube Edges set up\n";
+	//cout<< "cube Edges set up\n";
 
 	faceArray[0] = Face(&edgeArray[2],false,&edgeArray[4],true,&edgeArray[1],false); //top back g
 	faceArray[1] = Face(&edgeArray[3],false,&edgeArray[0],false,&edgeArray[4],false); //top front g a
@@ -96,6 +95,10 @@ Face * SetUpCube::getFaceArray(){
 	return faceArray;
 }
 
+/*
+ * Drawing function loads translates and rotates the OpenGL camera and draws the faces
+ * lines and points if their respective parameters which are passed are true.
+ */
 void SetUpCube::draw(bool faces, bool lines, bool points){
 		glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
 		// Reset The Current Modelview Matrix
@@ -105,6 +108,7 @@ void SetUpCube::draw(bool faces, bool lines, bool points){
 		glRotatef(rotAng,0.0f,0.5f,1.0);
 
 		if(faces){
+			// For each face get each unique point in the Face get its X,Y and Z values for use in glVertex3f within GL_TRIANGLES.
 			for(int i=0;i<12;i++)
 				{
 				glBegin(GL_TRIANGLES);
@@ -142,15 +146,13 @@ void SetUpCube::draw(bool faces, bool lines, bool points){
 			}
 		}
 
+		// Drawing code for lines. If requested.
 		if(lines)
 		{
 			for (int j =0; j<sizeOfEdgeArray;j++)
 			{
 				glBegin(GL_LINES);
-				//OpenGL must be counter clockwise!
-
 				glColor3f(1.0f,1.0f,1.0f);
-
 
 				glVertex3f(edgeArray[j].getVertexA()->getX(),edgeArray[j].getVertexA()->getY(),edgeArray[j].getVertexA()->getZ());
 				glVertex3f(edgeArray[j].getVertexB()->getX(),edgeArray[j].getVertexB()->getY(),edgeArray[j].getVertexB()->getZ());
@@ -159,6 +161,7 @@ void SetUpCube::draw(bool faces, bool lines, bool points){
 			}
 		}
 
+		// Drawing code for points. If requested.
 		if (points)
 		{
 			for (int j =0; j<sizeOfVertexArray;j++)
@@ -177,6 +180,7 @@ void SetUpCube::draw(bool faces, bool lines, bool points){
 		rotAng += 0.2;
 }
 
+// Returning pointers and sizes of arrays for use on the next iteration of Subdivision.
 Face * SetUpCube::returnFaceArrayPtr()
 {
 	return faceArrayPtr;

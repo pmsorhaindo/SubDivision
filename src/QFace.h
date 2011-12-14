@@ -1,16 +1,17 @@
-/*
- * QFace.h
- *
- *  Created on: 6 Oct 2011
- *      Author: Mikey
- */
+//============================================================================
+// Name        : QFace.cpp
+// Author      : Mikey
+// Version     : 1.0
+// Copyright   :
+// Description : This allows for the storage of Four sided faces. To store three sided faces
+//               I use a seperate class called Face. - in C++, Ansi-style
+//============================================================================
 
 #ifndef QFACE_H_
 #define QFACE_H_
 #include "Edge.h"
 
 class QFace {
-
 
 private:
 	Edge *a;
@@ -31,7 +32,6 @@ public:
 	Edge * getEdgeB();
 	Edge * getEdgeC();
 	Edge * getEdgeD();
-	Vertex calcCentroid();
 	void setCentroid();
 	Vertex getCentroid();
 	bool getEdgeADirection();

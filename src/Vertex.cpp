@@ -1,5 +1,5 @@
 //============================================================================
-// Name        : GeometryOps.h
+// Name        : Vertex.cpp
 // Author      : Mikey
 // Version     : 1.0
 // Copyright   :
@@ -10,12 +10,18 @@
 
 using namespace std;
 
+/*
+ * Creates a new Vertex at the origin (0,0,0)
+ */
 Vertex::Vertex(){
 	x=0;
 	y=0;
 	z=0;
 }
 
+/*
+ * Creates a new Vertex with the given x, y and z values.
+ */
 Vertex::Vertex(float newX, float newY, float newZ) {
 	x = newX;
 	y = newY;

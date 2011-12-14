@@ -1,9 +1,12 @@
-/*
- * QFace.cpp
- *
- *  Created on: 6 Oct 2011
- *      Author: Mikey
- */
+//============================================================================
+// Name        : QFace.cpp
+// Author      : Mikey
+// Version     : 1.0
+// Copyright   :
+// Description : This allows for the storage of Four sided faces. To store three sided faces
+//               I use a seperate class called Face. - in C++, Ansi-style
+//============================================================================
+
 
 #include "QFace.h"
 #include <iostream>
@@ -14,6 +17,9 @@ QFace::QFace(){
 
 }
 
+/*
+ * Creates a new QFace from the Edges provided the boolean values allow Edges to be reversed.
+ */
 QFace::QFace(Edge * newa, bool revAval, Edge * newb, bool revBval, Edge * newc, bool revCval, Edge * newd,  bool revDval){
 	a=newa;
 	b=newb;
@@ -27,7 +33,7 @@ QFace::QFace(Edge * newa, bool revAval, Edge * newb, bool revBval, Edge * newc, 
 }
 
 QFace::~QFace() {
-	// TODO Auto-generated destructor stub
+	// Destructor
 }
 
 Edge * QFace::getEdgeA(){
@@ -46,17 +52,10 @@ Edge * QFace::getEdgeD(){
 	return d;
 }
 
-Vertex QFace::calcCentroid(){
-	Vertex v;
-
-	float x=((this->a->getVertexA()->getX()+this->a->getVertexA()->getY()+this->a->getVertexA()->getZ())/3.0f);
-	float y=((this->a->getVertexB()->getX()+this->a->getVertexB()->getY()+this->a->getVertexB()->getZ())/3.0f);
-	float z=((this->b->getVertexA()->getX()+this->b->getVertexA()->getY()+this->b->getVertexA()->getZ())/3.0f);
-
-	v = Vertex(x,y,z);
-	return v;
-}
-
+/*
+ * This calculates the Centroid (the Vertex Average of all points on a face) this is called on QFace creation.
+ * The value is stored in the QFaces private variable QFacePoint.
+ */
 void QFace::setCentroid(){
 	float a1 = this->getEdgeA()->getVertexA()->getX()+this->getEdgeB()->getVertexA()->getX()+this->getEdgeC()->getVertexA()->getX()+this->getEdgeD()->getVertexA()->getX();
 	float b1 = this->getEdgeA()->getVertexA()->getY()+this->getEdgeB()->getVertexA()->getY()+this->getEdgeC()->getVertexA()->getY()+this->getEdgeD()->getVertexA()->getY();
@@ -84,6 +83,13 @@ bool QFace::getEdgeDDirection(){
 	return edgeCReversed;
 }
 
+
+/*
+ * Get Point allows unique vertices to still be retrieved from faces in a
+ * A, B, C, D manner without worrying about reversed Edges. It returns the first
+ * point in the Edge which is unique unless the edge has been reversed, these
+ * methods detect this and return the second point if reversing has occurred
+ */
 Vertex * QFace::getPointA()
 {
 	if(!edgeAReversed)

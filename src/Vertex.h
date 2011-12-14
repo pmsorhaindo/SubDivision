@@ -1,9 +1,10 @@
-/*
- * Vertex.h
- *
- *  Created on: 6 Oct 2011
- *      Author: Mikey
- */
+//============================================================================
+// Name        : Vertex.h
+// Author      : Mikey
+// Version     : 1.0
+// Copyright   :
+// Description : This class holds information relevant for to a specific Vertex. - in C++, Ansi-style
+//============================================================================
 
 #ifndef VERTEX_H_
 #define VERTEX_H_

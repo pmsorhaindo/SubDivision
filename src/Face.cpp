@@ -1,9 +1,11 @@
-/*
- * Face.cpp
- *
- *  Created on: 6 Oct 2011
- *      Author: Mikey
- */
+//============================================================================
+// Name        : Face.cpp
+// Author      : Mikey
+// Version     : 1.0
+// Copyright   :
+// Description : This allows for the storage of Triangular faces. To store four sided faces
+//               I use a seperate class called QFace. - in C++, Ansi-style
+//============================================================================
 
 #include "Face.h"
 #include <iostream>
@@ -14,29 +16,27 @@ Face::Face(){
 
 }
 
+/*
+ * Creates a new Face ignoring direction of edges.
+ */
 Face::Face(Edge * newa, Edge * newb, Edge * newc){
-	//cout << "inside Face\n";
 	a=newa;
-	//cout << "first Edge in face\n";
 	b=newb;
 	c=newc;
-	//cout <<"All edges set in Face\n";
 	setCentroid();
-	//cout << "centroid set\n";
 }
 
+/*
+ * Creates a new Face allowing for the reversing of Edges.
+ */
 Face::Face(Edge * newa, bool revAval, Edge * newb, bool revBval, Edge * newc, bool revCval){
-	//cout << "inside Face\n";
 	a=newa;
 	edgeAReversed = revAval;
-	//cout << "first Edge in face\n";
 	b=newb;
 	edgeBReversed = revBval;
 	c=newc;
 	edgeCReversed = revCval;
-	//cout <<"All edges set in Face\n";
 	setCentroid();
-	//cout << "centroid set\n";
 }
 
 
@@ -44,61 +44,34 @@ Face::~Face() {
 	// TODO Auto-generated destructor stub
 }
 
+/*
+ * This function returns an Edge, pretty simple but at one point all three getEdges contained
+ * code currently commented out here to 'unreverse' the edges if they had been reversed for
+ * the purpose of drawing anti-clockwise triangles easily. This resulted in a memory leak.
+ */
 Edge* Face::getEdgeA(){
-	//cout << "getEdgeA\n";
-	//cout << a <<"\n";
-
 	/*if(edgeAReversed==true)
 	{
 		Edge * tempEdge = new Edge(a->getVertexB(),a->getVertexA());
 		return tempEdge;
 	} //BAD MEMORY LEAKING CODE :(*/
-
 	return a;
 }
 
 Edge* Face::getEdgeB(){
-	//cout << "getEdgeB\n";
-	//cout << b << "\n";
-
-	/*if(edgeBReversed==true)
-		{
-		Edge * tempEdge = new Edge(b->getVertexB(),b->getVertexA());
-			return tempEdge;
-
-		}//BAD MEMORY LEAKING CODE :(*/
-
 	return b;
 }
 
 Edge* Face::getEdgeC(){
-
-	/*if(edgeCReversed==true)
-			{
-				Edge * tempEdge = new Edge(c->getVertexB(),c->getVertexA());
-				return tempEdge;
-			} //BAD MEMORY LEAKING CODE :(*/
-
 	return c;
 }
 
-Vertex Face::calcCentroid(){
-	Vertex v;
-	float x=((this->a->getVertexA()->getX()+this->a->getVertexA()->getY()+this->a->getVertexA()->getZ())/3.0f);
-	float y=((this->a->getVertexB()->getX()+this->a->getVertexB()->getY()+this->a->getVertexB()->getZ())/3.0f);
-	float z=((this->b->getVertexA()->getX()+this->b->getVertexA()->getY()+this->b->getVertexA()->getZ())/3.0f);
-	v = Vertex(x,y,z);
-	//std::cout <<"Facepoint aax: "<< this->a.getVertexA().getX() << " aay: " << this->a.getVertexA().getY() << " aaz: " << this->a.getVertexA().getZ()<<endl;
-	//std::cout <<"Facepoint abx: "<< this->a.getVertexB().getX() << " aby: " << this->a.getVertexB().getY() << " abz: " << this->a.getVertexB().getZ()<<endl;
-	//std::cout <<"Facepoint bbx: "<< this->c.getVertexA().getX() << " bby: " << this->c.getVertexA().getY() << " bbz: " << this->c.getVertexA().getZ()<<endl;
-	return v;
-}
-
+/*
+ * This calculates the Centroid (the Vertex Average of all points on a face) this is called on Face creation.
+ * The value is stored in the Faces private variable facePoint.
+ */
 void Face::setCentroid(){
-	//cout << "in setCentroid\n";
-	//cout << "adding this " << this->getEdgeA()->getVertexA()->getX()<<"\n";
-	//cout << "this "<< this->getEdgeB()->getVertexA()->getX() <<"\n";
-	//cout << "and this C "<< this->getEdgeC()->getVertexA()->getX() << "\n";
+
 	float ax,ay,az,bx,by,bz,cx,cy,cz;
 	if (!this->getEdgeADirection())
 	{
@@ -160,6 +133,13 @@ bool Face::getEdgeBDirection(){
 bool Face::getEdgeCDirection(){
 	return edgeCReversed;
 }
+
+/*
+ * Get Point allows unique vertices to still be retrieved from faces in a
+ * A, B, C manner without worrying about reversed Edges. It returns the first
+ * point in the Edge which is unique unless the edge has been reversed, these
+ * methods detect this and return the second point if reversing has occurred
+ */
 
 Vertex * Face::getPointA()
 {

@@ -1,4 +1,30 @@
-cube starts setting up!
-cube Vertices set up
-cube Edges set up
 cube Faces set up
+Type C to apply Catmull-Clark
+Type B to apply Butterfly
+Type P to toggle Points
+Type L to toggle Lines/Edges
+Type O to toggle Faces
+or press the Spacebar to Print the status to the screen...
+
+Type C to apply Catmull-Clark
+Type B to apply Butterfly
+Type P to toggle Points
+Type L to toggle Lines/Edges
+Type O to toggle Faces
+or press the Spacebar to Print the status to the screen...
+
+Type C to apply Catmull-Clark
+Type B to apply Butterfly
+Type P to toggle Points
+Type L to toggle Lines/Edges
+Type O to toggle Faces
+or press the Spacebar to Print the status to the screen...
+
+Type C to apply Catmull-Clark
+Type B to apply Butterfly
+Type P to toggle Points
+Type L to toggle Lines/Edges
+Type O to toggle Faces
+or press the Spacebar to Print the status to the screen...
+
+Status: Unit Cube, Subdivision Scheme Butterfly, Iterations 4

@@ -1,16 +1,17 @@
-/*
- * Face.h
- *
- *  Created on: 6 Oct 2011
- *      Author: Mikey
- */
+//============================================================================
+// Name        : Face.cpp
+// Author      : Mikey
+// Version     : 1.0
+// Copyright   :
+// Description : This allows for the storage of Triangular faces. To store four sided faces
+//               I use a seperate class called QFace. - in C++, Ansi-style
+//============================================================================
 
 #ifndef FACE_H_
 #define FACE_H_
 #include "Edge.h"
 
 class Face {
-
 
 private:
 	Edge *a;
@@ -29,7 +30,6 @@ public:
 	Edge* getEdgeA();
 	Edge* getEdgeB();
 	Edge* getEdgeC();
-	Vertex calcCentroid();
 	void setCentroid();
 	Vertex getCentroid();
 	bool getEdgeADirection();

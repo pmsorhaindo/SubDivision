@@ -101,7 +101,7 @@ int main(int argc,char * * argv ) {
 		while( SDL_PollEvent( &event ) ){
 			switch( event.type ){
 				case SDL_KEYDOWN:
-				cout << "Key press detected\n";
+				//cout << "Key press detected\n";
 				switch (event.key.keysym.sym){
 
 					//Apply catmull clark on a 'c' key press
@@ -126,13 +126,17 @@ int main(int argc,char * * argv ) {
 					case SDLK_o:
 						faces = !faces;
 						break;
+					// Print Status
+					case SDLK_SPACE:
+						sub.printState();
+						break;
 
 					default:
 						break;
 				}
 
 				case SDL_KEYUP:
-					cout << "Key release detected\n";
+					//cout << "Key release detected\n";
 					break;
 
 				/* SDL_QUIT event (window close) */

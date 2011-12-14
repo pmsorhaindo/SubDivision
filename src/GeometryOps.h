@@ -19,16 +19,26 @@
 class GeometryOps {
 public:
 
+	/*
+	 * Custom Structure to hold and return two Faces.
+	 */
 	struct twoFace{
 		Face faceOne;
 		Face faceTwo;
 	};
 
+	/*
+	 * Custom Structure to hold and return two QFaces.
+	 */
 	struct twoQFace{
 			QFace faceOne;
 			QFace faceTwo;
 		};
 
+	/*
+	 * Custom Structure to hold and return six Faces.
+	 * Can also hold the number of faces currently assigned in the variable contains.
+	 */
 	struct sixFace{
 			int contains;
 			Face faceOne;
@@ -38,6 +48,11 @@ public:
 			Face faceFive;
 			Face faceSix;
 		};
+
+	/*
+	 * Custom Structure to hold and return six QFaces.
+	 * Can also hold the number of Quads currently assigned in the variable contains.
+	 */
 	struct sixQFace{
 				int contains;
 				QFace faceOne;
@@ -48,7 +63,11 @@ public:
 				QFace faceSix;
 			};
 
-
+	/*
+	 * A custom structure to hold and return eight Edges,
+	 * the number of Edges in the structure can be monitored with
+	 * the variable contains.
+	 */
 	struct eightEdge{
 		int contains;
 		Edge edgeOne;
@@ -61,17 +80,26 @@ public:
 		Edge edgeEight;
 	};
 
+	/*
+	 * A custom structure to hold and return two Edges
+	 */
 	struct twoEdge{
 				Vertex edgeOne;
 				Vertex edgeTwo;
 			};
 
+	/*
+	 * A custom structure to hold and return three Edges
+	 */
 	struct threeEdge{
 				Vertex edgeOne;
 				Vertex edgeTwo;
 				Vertex edgeThree;
 			};
 
+	/*
+	 * A custom structure to hold and return two Vertices
+	 */
 	struct twoVert{
 			Vertex vertOne;
 			Vertex vertTwo;

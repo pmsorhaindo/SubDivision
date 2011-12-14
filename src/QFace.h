@@ -1,5 +1,5 @@
 //============================================================================
-// Name        : QFace.cpp
+// Name        : QFace.h
 // Author      : Mikey
 // Version     : 1.0
 // Copyright   :

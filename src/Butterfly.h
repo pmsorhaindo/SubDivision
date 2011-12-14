@@ -1,5 +1,5 @@
 //============================================================================
-// Name        : Butterfly.cpp
+// Name        : Butterfly.h
 // Author      : Mikey
 // Version     : 1.0
 // Copyright   :

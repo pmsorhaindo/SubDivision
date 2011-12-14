@@ -1,9 +1,11 @@
-/*
- * Edge.h
- *
- *  Created on: 6 Oct 2011
- *      Author: Mikey
- */
+//============================================================================
+// Name        : Edge.h
+// Author      : Mikey
+// Version     : 1.0
+// Copyright   :
+// Description : This allows for the storage of Edges. These are comprised of two Vertex's
+//               a start point A, and an end point B. - in C++, Ansi-style
+//============================================================================
 
 #ifndef EDGE_H_
 #define EDGE_H_

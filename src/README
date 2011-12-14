@@ -1,0 +1,38 @@
+To compile run
+make 
+and to execute run the executable
+./subdivision
+
+Program Operation.
+Type C to apply Catmull-Clark
+Type B to apply Butterfly
+Type P to toggle Points
+Type L to toggle Lines/Edges
+Type O to toggle Faces
+or press the Spacebar to Print the status to the screen...
+
+Code Listing:
+Butterfly.h
+Butterfly.cpp
+Catmull.h
+Catmull.cpp
+Edge.h
+Edge.cpp
+Face.h
+Face.cpp
+GeometryOps.h
+GeometryOps.cpp
+Qface.h
+Qface.cpp
+SetUpCube.h
+SetUpCube.cpp
+Subdivide.h
+Subdivide.cpp
+Vertex.h
+Vertex.cpp
+
+The only code that was taken directly from another source can be found in
+GeometryOps.cpp : Line 259
+It converts floats to strings. However this is not used in the final build but was heavily used during developing and debugging.
+This code at http://www.cplusplus.com/forum/general/8165/
+It is taken from a forum offering help to a previously asked question.

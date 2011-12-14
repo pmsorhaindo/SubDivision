@@ -254,9 +254,9 @@ bool GeometryOps::compareEdges(Edge *e1, Edge* e2){
 
 /*
  * Prints a Vertex to console
+ * This code at http://www.cplusplus.com/forum/general/8165/
  */
 string GeometryOps::vertexToString(const Vertex & v){
-	//cout <<"VertexString: "<<v.getX()<<endl;
 	string vertexString;
 	stringstream ss(stringstream::in|stringstream::out);
 	vertexString = "x: "+floatToString(v.getX())+" y: "+floatToString(v.getY())+" z: "+floatToString(v.getZ());

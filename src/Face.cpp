@@ -140,7 +140,6 @@ bool Face::getEdgeCDirection(){
  * point in the Edge which is unique unless the edge has been reversed, these
  * methods detect this and return the second point if reversing has occurred
  */
-
 Vertex * Face::getPointA()
 {
 	if(!edgeAReversed)

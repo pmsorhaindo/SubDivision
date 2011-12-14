@@ -1,9 +1,11 @@
-/*
- * SetUpCube.h
- *
- *  Created on: 6 Oct 2011
- *      Author: Mikey
- */
+//============================================================================
+// Name        : SetUpCube.h
+// Author      : Mikey
+// Version     : 1.0
+// Copyright   :
+// Description : Generates and draws a basic unit cube centered over the
+//               origin (0,0,0). - in C++, Ansi-style
+//============================================================================
 
 #ifndef SETUPCUBE_H_
 #define SETUPCUBE_H_
@@ -33,7 +35,7 @@ public:
 	Face * getFaceArray();
 	Edge * getEdgeArray();
 	Vertex * getVertexArray();
-	void draw();
+	void draw(bool faces, bool lines, bool points);
 	Vertex * returnVertexArrayPtr();
 	Edge * returnEdgeArrayPtr();
 	Face * returnFaceArrayPtr();

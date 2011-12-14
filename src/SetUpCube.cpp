@@ -1,9 +1,11 @@
-/*
- * SetUpCube.cpp
- *
- *  Created on: 6 Oct 2011
- *      Author: Mikey
- */
+//============================================================================
+// Name        : SetUpCube.cpp
+// Author      : Mikey
+// Version     : 1.0
+// Copyright   :
+// Description : Generates and draws a basic unit cube centered over the
+//               origin (0,0,0). - in C++, Ansi-style
+//============================================================================
 
 #include <GL/gl.h>
 #include <GL/glu.h>
@@ -94,7 +96,7 @@ Face * SetUpCube::getFaceArray(){
 	return faceArray;
 }
 
-void SetUpCube::draw(){
+void SetUpCube::draw(bool faces, bool lines, bool points){
 		glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
 		// Reset The Current Modelview Matrix
 		glLoadIdentity();
@@ -102,8 +104,9 @@ void SetUpCube::draw(){
 		glTranslatef(0.0f,0.0f,-5.0f);
 		glRotatef(rotAng,0.0f,0.5f,1.0);
 
-		for(int i=0;i<12;i++)
-			{
+		if(faces){
+			for(int i=0;i<12;i++)
+				{
 				glBegin(GL_TRIANGLES);
 				//OpenGL must be counter clockwise!
 
@@ -137,6 +140,39 @@ void SetUpCube::draw(){
 				}
 				glEnd();
 			}
+		}
+
+		if(lines)
+		{
+			for (int j =0; j<sizeOfEdgeArray;j++)
+			{
+				glBegin(GL_LINES);
+				//OpenGL must be counter clockwise!
+
+				glColor3f(1.0f,1.0f,1.0f);
+
+
+				glVertex3f(edgeArray[j].getVertexA()->getX(),edgeArray[j].getVertexA()->getY(),edgeArray[j].getVertexA()->getZ());
+				glVertex3f(edgeArray[j].getVertexB()->getX(),edgeArray[j].getVertexB()->getY(),edgeArray[j].getVertexB()->getZ());
+
+				glEnd();
+			}
+		}
+
+		if (points)
+		{
+			for (int j =0; j<sizeOfVertexArray;j++)
+			{
+				glBegin(GL_POINTS);
+				//OpenGL must be counter clockwise!
+
+				glColor3f(1.0f,1.0f,0.0f);
+
+				glVertex3f(vertexArray[j].getX(),vertexArray[j].getY(),vertexArray[j].getZ());
+
+				glEnd();
+			}
+		}
 
 		rotAng += 0.2;
 }

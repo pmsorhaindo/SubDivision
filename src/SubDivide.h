@@ -1,9 +1,11 @@
-/*
- * SubDivide.h
- *
- *  Created on: 14 Dec 2011
- *      Author: mikey
- */
+//============================================================================
+// Name        : SubDivide.h
+// Author      : Mikey
+// Version     : 1.0
+// Copyright   :
+// Description : Organizes my subdivision program to run
+//               both implementations recursively. - in C++, Ansi-style
+//============================================================================
 
 #ifndef SUBDIVIDE_H_
 #define SUBDIVIDE_H_
@@ -26,7 +28,7 @@ public:
 	SubDivide();
 	virtual ~SubDivide();
 	void apply(int type);
-	void draw();
+	void draw(bool faces, bool lines, bool points);
 };
 
 #endif /* SUBDIVIDE_H_ */

@@ -1,9 +1,10 @@
-/*
- * Catmull.h
- *
- *  Created on: 9 Nov 2011
- *      Author: mikey
- */
+//============================================================================
+// Name        : Catmull.h
+// Author      : Mikey
+// Version     : 1.0
+// Copyright   :
+// Description : This class implements and stiches up Catmull-Clark Subdivison. - in C++, Ansi-style
+//============================================================================
 
 #ifndef CATMULL_H_
 #define CATMULL_H_
@@ -31,7 +32,7 @@ public:
 	Catmull(Vertex * vArray, Edge * eArray, Face * fArray);
 	Catmull(int passedVertices, int passedEdges, int passedFaces, Vertex *ova, Edge *oea, QFace *ofa);
 	virtual ~Catmull();
-	void draw();
+	void draw(bool faces, bool lines, bool points);
 	int returnSizeOfVertexArray();
 	int returnSizeOfEdgeArray();
 	int returnSizeOfFaceArray();

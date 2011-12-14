@@ -1,9 +1,12 @@
-/*
- * GeometryOps.cpp
- *
- *  Created on: 6 Oct 2011
- *      Author: Mikey
- */
+//============================================================================
+// Name        : GeometryOps.cpp
+// Author      : Mikey
+// Version     : 1.0
+// Copyright   :
+// Description : This class handles all the calculations that need to be performed
+//               on faces edges, vertices or a combination of the three to produce
+//               new vertices for drawing the next iteration. - in C++, Ansi-style
+//============================================================================
 
 #include "GeometryOps.h"
 
@@ -800,20 +803,21 @@ Vertex GeometryOps::thirdPointInFace(Vertex v1,Vertex v2,Face f){
 		return *f.getPointA();
 	}
 
-
-	/*if(compareVertices(v1,*f.getEdgeA()->getVertexA())&&compareVertices(v2,*f.getEdgeB()->getVertexA())) return *f.getEdgeC()->getVertexA();
+	/*
+	 * Another approach
+	 * if(compareVertices(v1,*f.getEdgeA()->getVertexA())&&compareVertices(v2,*f.getEdgeB()->getVertexA())) return *f.getEdgeC()->getVertexA();
 	if(compareVertices(v2,*f.getEdgeA()->getVertexA())&&compareVertices(v1,*f.getEdgeB()->getVertexA())) return *f.getEdgeC()->getVertexA();
 	if(compareVertices(v1,*f.getEdgeB()->getVertexA())&&compareVertices(v2,*f.getEdgeC()->getVertexA())) return *f.getEdgeA()->getVertexA();
 	if(compareVertices(v2,*f.getEdgeB()->getVertexA())&&compareVertices(v1,*f.getEdgeC()->getVertexB())) return *f.getEdgeA()->getVertexA();
 	if(compareVertices(v1,*f.getEdgeC()->getVertexA())&&compareVertices(v2,*f.getEdgeA()->getVertexA())) return *f.getEdgeB()->getVertexA();
 	if(compareVertices(v2,*f.getEdgeC()->getVertexA())&&compareVertices(v1,*f.getEdgeA()->getVertexA())) return *f.getEdgeB()->getVertexA();*/
 	Vertex err = Vertex();
-	cout << "bleh!" << "\n";
+	cout << "gOPs: Error finding third vertex!" << "\n";
 	return err;
 }
 
 Vertex GeometryOps::getWings(Vertex e1, Vertex e2, Face * facePtr, int sizeOfFaceArray, Vertex opposingV){
-	//change to work with and edge and opposing Vertex
+	//Could possibly be changed to work with just an edge and opposing Vertex.
 	Vertex wing = Vertex();
 	Edge edge = Edge(&e2,&e1);
 	GeometryOps::twoFace facesBack = getOtherFace(edge,facePtr,sizeOfFaceArray);

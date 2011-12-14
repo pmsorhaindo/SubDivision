@@ -1,10 +1,10 @@
-/*
- * Butterfly.cpp
- *
- *  Created on: 11 Dec 2011
- *      Author: mikey
- */
-
+//============================================================================
+// Name        : Butterfly.cpp
+// Author      : Mikey
+// Version     : 1.0
+// Copyright   :
+// Description : This class implements and stiches up Butterfly Subdivison. - in C++, Ansi-style
+//============================================================================
 
 #include <GL/gl.h>
 #include <GL/glu.h>
@@ -255,7 +255,7 @@ Vertex Butterfly::getNewEdgePoint(Edge * edgeToWork,Edge * oldEdges, int numberO
 		return resultv;
 }
 
-void Butterfly::draw(){
+void Butterfly::draw(bool faces,bool lines,bool points){
 		glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
 		// Reset The Current Modelview Matrix
 		glLoadIdentity();
@@ -263,72 +263,68 @@ void Butterfly::draw(){
 		glTranslatef(0.0f,0.0f,-5.0f);
 		glRotatef(rotAng,0.0f,0.1f,0.);
 
-
-
-		for(int i=0;i<sizeOfFaceArray;i++)
+		// Drawing code for faces. If requested.
+		if(faces)
 		{
-			glBegin(GL_TRIANGLES);
-			//OpenGL must be counter clockwise!
-
-			if(i%4==1)
+			// For each face get each unique point in the Face get its X,Y and Z values for use in glVertex3f within GL_TRIANGLES.
+			for(int i=0;i<sizeOfFaceArray;i++)
 			{
+				glBegin(GL_TRIANGLES);
+				//OpenGL must be counter clockwise!
+
+				//based on the i value of the iteration change the colour of the face. Using modulo to alternate between Red and Blue.
 				glColor3f(1.0f,0.0f,0.0f); //Red
+
+				if(i%2==1)
+				{
+					glColor3f(0.0f,0.0f,1.0f); //Blue
+				}
+				glVertex3f(faceArray[i].getEdgeA()->getVertexA()->getX(),faceArray[i].getEdgeA()->getVertexA()->getY(),faceArray[i].getEdgeA()->getVertexA()->getZ());
+				glVertex3f(faceArray[i].getEdgeB()->getVertexA()->getX(),faceArray[i].getEdgeB()->getVertexA()->getY(),faceArray[i].getEdgeB()->getVertexA()->getZ());
+				glVertex3f(faceArray[i].getEdgeC()->getVertexA()->getX(),faceArray[i].getEdgeC()->getVertexA()->getY(),faceArray[i].getEdgeC()->getVertexA()->getZ());
+
+				glEnd();
 			}
-			else if(i%4==2)
-			{
-				glColor3f(0.0f,0.0f,1.0f); //Blue
-			}
-			/*else if(i%4==3)
-			{
-				glColor3f(1.0f,0.5f,0.2f);
-			}
-			else
-			{
-				glColor3f(1.0f,0.5f,0.2f);
-			}*/
-
-			//glVertex3f(0.0f,0.5f,0.0f);
-			//glVertex3f(0.5f,0.5f,0.0f);
-			//glVertex3f(0.5f,0.0f,0.0f);
-
-			glVertex3f(faceArray[i].getEdgeA()->getVertexA()->getX(),faceArray[i].getEdgeA()->getVertexA()->getY(),faceArray[i].getEdgeA()->getVertexA()->getZ());
-			glVertex3f(faceArray[i].getEdgeB()->getVertexA()->getX(),faceArray[i].getEdgeB()->getVertexA()->getY(),faceArray[i].getEdgeB()->getVertexA()->getZ());
-			glVertex3f(faceArray[i].getEdgeC()->getVertexA()->getX(),faceArray[i].getEdgeC()->getVertexA()->getY(),faceArray[i].getEdgeC()->getVertexA()->getZ());
-
-
-			glEnd();
-
-			glBegin(GL_LINES);
-			//OpenGL must be counter clockwise!
-
-			if(i%2==1)
-			{
-				glColor3f(1.0f,0.0f,0.0f); //Red
-			}
-			else
-			{
-				glColor3f(0.0f,0.0f,1.0f); //Blue
-			}
-
-			//glVertex3f(faceArray[i].getPointA()->getX(),faceArray[i].getPointA()->getY(),faceArray[i].getPointA()->getZ());
-			//glVertex3f(faceArray[i].getPointB()->getX(),faceArray[i].getPointB()->getY(),faceArray[i].getPointB()->getZ());
-			//glVertex3f(faceArray[i].getPointC()->getX(),faceArray[i].getPointC()->getY(),faceArray[i].getPointC()->getZ());
-
-			//glVertex3f(0,0.416667,-0.416667);
-			//glVertex3f(0.291667,0.291667,-0.395833);
-			//glVertex3f(0.291667,0.291667,-0.395833);
-			//glVertex3f(0,0.5,0);
-			//glVertex3f(0,0.5,0);
-			//glVertex3f(0.166667,0.5,-0.166667);
-			//glColor3f(0.0f,0.0f,1.0f);
-			//glVertex3f(0.166667,0.5,-0.166667);
-			//glVertex3f(0,0.416667,-0.416667);
-			glEnd();
 		}
-	//cout << "one draw?\n";
+
+
+		// Drawing code for lines. If requested.
+		if (lines)
+		{
+			for (int j =0; j<sizeOfEdgeArray;j++)
+			{
+				glBegin(GL_LINES);
+				//OpenGL must be counter clockwise!
+
+				glColor3f(1.0f,1.0f,1.0f);
+
+
+				glVertex3f(edgeArray[j].getVertexA()->getX(),edgeArray[j].getVertexA()->getY(),edgeArray[j].getVertexA()->getZ());
+				glVertex3f(edgeArray[j].getVertexB()->getX(),edgeArray[j].getVertexB()->getY(),edgeArray[j].getVertexB()->getZ());
+
+				glEnd();
+			}
+		}
+
+		// Drawing code for points. If requested.
+		if (points)
+		{
+			for (int j =0; j<sizeOfVertexArray;j++)
+			{
+				glBegin(GL_POINTS);
+				//OpenGL must be counter clockwise!
+
+				glColor3f(1.0f,1.0f,0.0f);
+
+				glVertex3f(vertexArray[j].getX(),vertexArray[j].getY(),vertexArray[j].getZ());
+
+				glEnd();
+			}
+		}
 	rotAng += 0.8;
 }
 
+// Returning pointers and sizes of arrays for use on the next iteration of Butterfly.
 int Butterfly::returnSizeOfVertexArray(){
 	return sizeOfVertexArray;
 }

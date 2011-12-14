@@ -18,18 +18,15 @@
 using namespace std;
 
 #define RUN_GRAPHICS_DISPLAY 0x00 ;
-//
-
+/*
+ *  An instance of the Subdivide class is created.
+ *  This creates a unit cube for display with the default constructor and allows
+ *  access to my implementations of Catmull-Clark and Butterfly Subdivision
+ */
 SubDivide sub = SubDivide();
-
-//SetUpCube * cube = new SetUpCube;
-//Catmull * nextCube = new Catmull(8, 18, 12, cube->returnVertexArrayPtr(), cube->returnEdgeArrayPtr(), cube->returnFaceArrayPtr());
-//Butterfly * nextBCube = new Butterfly(8,18,12,cube->returnVertexArrayPtr(),cube->returnEdgeArrayPtr(),cube->returnFaceArrayPtr());
-
-//Catmull * nextNextCube = new Catmull(38,144,36,nextCube->returnVertexArrayPtr(),nextCube->returnEdgeArrayPtr(),nextCube->returnFaceArrayPtr());
-//Catmull * nextNextNextCube = new Catmull(146,576,144,nextNextCube->returnVertexArrayPtr(),nextNextCube->returnEdgeArrayPtr(),nextNextCube->returnFaceArrayPtr());
-//Catmull * nextNextNextNextCube = new Catmull(578,2304,576,nextNextNextCube->returnVertexArrayPtr(),nextNextNextCube->returnEdgeArrayPtr(),nextNextNextCube->returnFaceArrayPtr());
-//Butterfly * nextNextBCube = new Butterfly(26,144,48,nextBCube->returnVertexArrayPtr(),nextBCube->returnEdgeArrayPtr(),nextBCube->returnFaceArrayPtr());
+bool faces = true;
+bool lines = true;
+bool points= true;
 
 Uint32 display (Uint32 interval , void *param) {
 	SDL_Event event;
@@ -41,30 +38,12 @@ Uint32 display (Uint32 interval , void *param) {
 	return interval;
 }
 void display () {
-	/**
-	glClear (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT) ;
-	// Reset The Current Modelview Matrix
-	glLoadIdentity();
-	// put the thing somewhere between the near and far clipping panes
-	glTranslatef(0.0f,0.0f,-100.0f);
-	// TODO: Drawing code goes here!!
-	// Don't forget to swap the buffers
-	SetUpCube cube = SetUpCube();
-	Face = cube.getFaceArray();
-	**/
-
-	sub.draw();
-	//cube->draw();
-
-	//nextCube->draw();
-	//nextNextCube->draw();
-	//nextNextNextCube->draw();
-	//nextNextNextNextCube->draw();
-
-	//nextBCube->draw();
+	//Simple draw call - the decision of what to draw is made by the Subdivision class.
+	sub.draw(faces,lines,points);
 	SDL_GL_SwapBuffers();
 }
 int main(int argc,char * * argv ) {
+	// Some boilerplate SDL and OpenGL code -taken from lecture 1.
 	SDL_Surface * surf ;
 	Uint32 width = 640 ;
 	Uint32 height = 480 ;
@@ -83,6 +62,7 @@ int main(int argc,char * * argv ) {
 		cout << "Failed to initialise video mode : " << SDL_GetError () << endl;
 		SDL_Quit ();
 	}
+
 	// Set the state of our new OpenGL context
 	glViewport (0,0,(GLsizei)(width),(GLsizei)(height));
 	glMatrixMode (GL_PROJECTION) ;
@@ -94,9 +74,10 @@ int main(int argc,char * * argv ) {
 	glClearColor(0.0f,0.0f,0.0f,0.5f); // Black Background
 	glClearDepth(1.0f); // Depth Buffer Setup
 	glEnable (GL_DEPTH_TEST); // Enables Depth Testing
-	glDepthFunc (GL_LEQUAL); //  The Type Of Depth Test i n g To Do
+	glDepthFunc (GL_LEQUAL); //  The Type Of Depth Testing To Do
 	glHint (GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST ) ; // Really Nice Perspective Calculation
 	SDL_AddTimer (delay,display,NULL) ; //Call the function "display (Uint32 interval, void * param )" every delay milliseconds
+
 	// Add the main event loop
 	SDL_Event event;
 
@@ -109,22 +90,51 @@ int main(int argc,char * * argv ) {
 			display ();
 			break;
 		}
-			while( SDL_PollEvent( &event ) ){
-					/* We are only worried about SDL_KEYDOWN and SDL_KEYUP events */
-					switch( event.type ){
-					  case SDL_KEYDOWN:
-						printf( "Key press detected\n" );
+
+		// A SDL keyboard handling loop.
+		while( SDL_PollEvent( &event ) ){
+			switch( event.type ){
+				case SDL_KEYDOWN:
+				cout << "Key press detected\n";
+				switch (event.key.keysym.sym){
+
+					case SDLK_c:
+						sub.apply(1);
+						break;
+
+					case SDLK_b:
 						sub.apply(2);
 						break;
 
-					  case SDL_KEYUP:
-						printf( "Key release detected\n" );
+					case SDLK_l:
+						lines = !lines;
 						break;
 
-					  default:
+					case SDLK_p:
+						points = !points;
+						break;
+
+					case SDLK_o:
+						faces = !faces;
+						break;
+
+					default:
 						break;
 				}
+
+				case SDL_KEYUP:
+					cout << "Key release detected\n";
+					break;
+
+				/* SDL_QUIT event (window close) */
+				case SDL_QUIT:
+					//quit = 1;
+					break;
+
+				default:
+					break;
 			}
+		}
 	}
 	return 0;
 }

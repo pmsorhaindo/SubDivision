@@ -1,9 +1,11 @@
-/*
- * SubDivide.cpp
- *
- *  Created on: 14 Dec 2011
- *      Author: mikey
- */
+//============================================================================
+// Name        : SubDivide.cpp
+// Author      : Mikey
+// Version     : 1.0
+// Copyright   :
+// Description : Organizes my subdivision program to run
+//               both implementations recursively. - in C++, Ansi-style
+//============================================================================
 
 #include "SubDivide.h"
 
@@ -39,18 +41,18 @@ void SubDivide::apply(int newtype) {
 
 }
 
-void SubDivide::draw() {
+void SubDivide::draw(bool faces, bool lines, bool points) {
 
 	if(iterations == 0){
-		cube->draw();
+		cube->draw(faces,lines,points);
 	}
 	else if (iterations>0&&type==1)
 	{
-		currentCatmull->draw();
+		currentCatmull->draw(faces,lines,points);
 	}
 	else if (iterations>0&&type==2)
 	{
-		currentButterfly->draw();
+		currentButterfly->draw(faces,lines,points);
 	}
 }
 

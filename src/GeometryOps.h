@@ -1,9 +1,12 @@
-/*
- * GeometryOps.h
- *
- *  Created on: 6 Oct 2011
- *      Author: Mikey
- */
+//============================================================================
+// Name        : GeometryOps.h
+// Author      : Mikey
+// Version     : 1.0
+// Copyright   :
+// Description : This class handles all the calculations that need to be performed
+//               on faces edges, vertices or a combination of the three to produce
+//               new vertices for drawing the next iteration. - in C++, Ansi-style
+//============================================================================
 
 #ifndef GEOMETRYOPS_H_
 #define GEOMETRYOPS_H_
@@ -87,7 +90,6 @@ public:
 
 	GeometryOps();
 	virtual ~GeometryOps();
-	//pass by reference to save on the copying
 	Vertex edgeMidPoint(Edge e1);
 	Vertex getCentroid(Vertex v1, Vertex v2, Vertex v3);
 	Vertex getEdgePoint(Edge* edg,Face*fptr,int iFaces,Edge * eptr,int iEdges);

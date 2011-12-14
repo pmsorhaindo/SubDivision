@@ -114,6 +114,7 @@ int main(int argc,char * * argv ) {
 					switch( event.type ){
 					  case SDL_KEYDOWN:
 						printf( "Key press detected\n" );
+						sub.apply(2);
 						break;
 
 					  case SDL_KEYUP:

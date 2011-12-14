@@ -60,9 +60,9 @@ SetUpCube::SetUpCube() {
 	faceArray[11] = Face(&edgeArray[17],false,&edgeArray[10],false,&edgeArray[5],false); // right bottom a
 	cout<< "cube Faces set up\n";
 
-	int sizeOfEdgeArray = 18;
-	int sizeOfVertexArray = 8;
-	int sizeOfFaceArray = 12;
+	sizeOfEdgeArray = 18;
+	sizeOfVertexArray = 8;
+	sizeOfFaceArray = 12;
 
 
 	//angle variable to rotate the cube.
